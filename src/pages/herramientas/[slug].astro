@@ -1,0 +1,229 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getEntries, render } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import Icono from '@/components/Icono.astro';
+import TarjetaHerramienta from '@/components/TarjetaHerramienta.astro';
+import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
+import { CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO } from '@/data/taxonomias';
+import { getHerramientas, getPrompts, urlHerramienta, urlTema, type Herramienta } from '@/utils/contenido';
+import { fechaISO, fechaLarga } from '@/utils/fechas';
+
+export const getStaticPaths = (async () => {
+  const todas = await getHerramientas();
+  return todas.map((herramienta) => ({ params: { slug: herramienta.id }, props: { herramienta, todas } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  herramienta: Herramienta;
+  todas: Herramienta[];
+}
+const { herramienta, todas } = Astro.props;
+const { data } = herramienta;
+const { Content } = await render(herramienta);
+const temas = await getEntries(data.temas);
+const prompts = (await getPrompts()).filter((p) => p.data.herramientas.some((h) => h.id === herramienta.id)).slice(0, 3);
+const similares = todas
+  .filter((h) => h.id !== herramienta.id && h.data.categorias.some((c) => data.categorias.includes(c)))
+  .slice(0, 3);
+const ruta = urlHerramienta(herramienta);
+const dominio = new URL(data.urlOficial).hostname.replace(/^www\./, '');
+---
+
+<Base
+  titulo={data.seo.titulo ?? `${data.nombre} para docentes: usos, límites y precio`}
+  descripcion={data.seo.descripcion ?? data.descripcion}
+  noindex={data.seo.noindex}
+  migas={[
+    { nombre: 'Herramientas', href: '/herramientas/' },
+    { nombre: data.nombre, href: ruta },
+  ]}
+>
+  <article class="contenedor contenedor--texto">
+    <header class="cabecera-pagina">
+      <p class="antetitulo">{data.categorias.map((c) => CATEGORIAS_HERRAMIENTA[c]).join(' · ')}</p>
+      <h1>{data.nombre}</h1>
+      <p class="entradilla">{data.descripcion}</p>
+      <p class="acciones">
+        <a class="boton" href={data.urlOficial} rel="noopener" target="_blank">
+          Web oficial ({dominio}) <Icono nombre="externo" tamano={16} />
+          <span class="visualmente-oculto">(se abre en una pestaña nueva)</span>
+        </a>
+      </p>
+    </header>
+
+    <dl class="resumen">
+      <div>
+        <dt>Proveedor</dt>
+        <dd>{data.proveedor}</dd>
+      </div>
+      <div>
+        <dt>Precio</dt>
+        <dd>
+          <strong>{MODALIDADES_PRECIO[data.precio.modalidad]}.</strong>
+          {data.precio.resumen}
+          <span class="meta">
+            Verificado el <time datetime={fechaISO(data.precio.verificadoEl)}>{fechaLarga(data.precio.verificadoEl)}</time> en
+            <a href={data.precio.fuente} rel="noopener" target="_blank">la página oficial de precios</a>.
+          </span>
+          {data.precio.notas && <span class="meta">{data.precio.notas}</span>}
+        </dd>
+      </div>
+      {
+        data.edadMinima && (
+          <div>
+            <dt>Edad mínima</dt>
+            <dd>{data.edadMinima}</dd>
+          </div>
+        )
+      }
+      {
+        data.privacidad && (
+          <div>
+            <dt>Privacidad</dt>
+            <dd>{data.privacidad}</dd>
+          </div>
+        )
+      }
+      <div>
+        <dt>Ficha revisada</dt>
+        <dd><time datetime={fechaISO(data.fechaVerificacion)}>{fechaLarga(data.fechaVerificacion)}</time></dd>
+      </div>
+    </dl>
+
+    <section class="bloque" aria-labelledby="t-utilidad">
+      <h2 id="t-utilidad">Utilidad educativa</h2>
+      <p>{data.utilidadEducativa}</p>
+    </section>
+
+    <div class="dos-columnas">
+      <section class="bloque" aria-labelledby="t-usos">
+        <h2 id="t-usos">Usos docentes</h2>
+        <ul>{data.usos.map((u) => <li>{u}</li>)}</ul>
+      </section>
+      <section class="bloque" aria-labelledby="t-limites">
+        <h2 id="t-limites">Limitaciones</h2>
+        <ul>{data.limitaciones.map((u) => <li>{u}</li>)}</ul>
+      </section>
+    </div>
+
+    <section class="bloque" aria-labelledby="t-ejemplos">
+      <h2 id="t-ejemplos">Ejemplos de aplicación</h2>
+      <ol>{data.ejemplos.map((u) => <li>{u}</li>)}</ol>
+    </section>
+
+    <div class="prosa bloque">
+      <Content />
+    </div>
+
+    {
+      temas.length > 0 && (
+        <p class="temas">
+          {temas.map((t) => (
+            <a class="etiqueta etiqueta--acento" href={urlTema(t.id)}>
+              {t.data.nombre}
+            </a>
+          ))}
+        </p>
+      )
+    }
+  </article>
+
+  {
+    prompts.length > 0 && (
+      <section class="contenedor relacionados" aria-labelledby="t-p">
+        <h2 id="t-p">Prompts probados con {data.nombre}</h2>
+        <div class="rejilla">
+          {prompts.map((p) => (
+            <TarjetaPrompt prompt={p} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+  {
+    similares.length > 0 && (
+      <section class="contenedor relacionados" aria-labelledby="t-s">
+        <h2 id="t-s">Herramientas de la misma categoría</h2>
+        <div class="rejilla">
+          {similares.map((h) => (
+            <TarjetaHerramienta herramienta={h} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .acciones {
+    margin-top: var(--e-5);
+  }
+  .resumen {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    font-size: var(--t-sm);
+  }
+  .resumen > div {
+    display: grid;
+    gap: var(--e-1);
+    padding: var(--e-3) var(--e-4);
+  }
+  .resumen > div + div {
+    border-top: 1px solid var(--c-borde);
+  }
+  @media (min-width: 40rem) {
+    .resumen > div {
+      grid-template-columns: 9rem 1fr;
+      gap: var(--e-4);
+    }
+  }
+  .resumen dt {
+    color: var(--c-texto-3);
+    font-weight: 600;
+  }
+  .resumen dd {
+    margin: 0;
+  }
+  .resumen dd .meta {
+    display: block;
+    margin-top: var(--e-1);
+  }
+  .bloque {
+    margin-top: var(--e-6);
+  }
+  .bloque h2 {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-3);
+  }
+  .bloque ul,
+  .bloque ol {
+    padding-left: 1.3em;
+    display: grid;
+    gap: var(--e-2);
+  }
+  .dos-columnas {
+    display: grid;
+    gap: 0 var(--e-6);
+  }
+  @media (min-width: 48rem) {
+    .dos-columnas {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .temas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+    margin-top: var(--e-6);
+  }
+  .relacionados {
+    margin-top: var(--e-8);
+  }
+  .relacionados h2 {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-4);
+  }
+</style>

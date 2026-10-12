@@ -1,0 +1,55 @@
+---
+import { SITE_ENV, PUBLIC_GSC_VERIFICATION } from 'astro:env/server';
+import { SITIO } from '@/data/sitio';
+
+export interface SeoProps {
+  titulo: string;
+  descripcion: string;
+  /** Ruta o URL canónica. Por defecto, la ruta actual. */
+  canonical?: string;
+  tipo?: 'website' | 'article';
+  imagen?: { src: string; alt: string; ancho?: number; alto?: number };
+  noindex?: boolean;
+  publicado?: Date;
+  actualizado?: Date;
+  /** Uno o varios objetos schema.org. Se serializan como JSON-LD. */
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { titulo, descripcion, canonical, tipo = 'website', imagen, noindex = false, publicado, actualizado, jsonLd = [] } =
+  Astro.props as SeoProps;
+
+const esInicio = Astro.url.pathname === '/';
+// El nombre del sitio se añade solo si cabe en ~65 caracteres; si no, prima el título propio.
+const conMarca = `${titulo} · ${SITIO.nombre}`;
+const tituloCompleto = esInicio ? `${SITIO.nombre}: IA aplicada a la educación` : conMarca.length <= 65 ? conMarca : titulo;
+const urlCanonica = new URL(canonical ?? Astro.url.pathname, Astro.site);
+const img = imagen ?? { src: SITIO.imagenSocial, alt: SITIO.nombre, ancho: 1200, alto: 630 };
+const urlImagen = new URL(img.src, Astro.site);
+// Fuera de producción nada es indexable, aunque la página lo pida.
+const robots = noindex || SITE_ENV !== 'production' ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
+const json = (o: unknown) => JSON.stringify(o).replace(/</g, '\\u003c');
+---
+
+<title>{tituloCompleto}</title>
+<meta name="description" content={descripcion} />
+<link rel="canonical" href={urlCanonica} />
+<meta name="robots" content={robots} data-noindex-pagina={noindex ? 'true' : undefined} />
+
+<meta property="og:site_name" content={SITIO.nombre} />
+<meta property="og:locale" content={SITIO.locale} />
+<meta property="og:type" content={tipo} />
+<meta property="og:title" content={esInicio ? tituloCompleto : titulo} />
+<meta property="og:description" content={descripcion} />
+<meta property="og:url" content={urlCanonica} />
+<meta property="og:image" content={urlImagen} />
+<meta property="og:image:alt" content={img.alt} />
+{img.ancho && <meta property="og:image:width" content={String(img.ancho)} />}
+{img.alto && <meta property="og:image:height" content={String(img.alto)} />}
+{publicado && <meta property="article:published_time" content={publicado.toISOString()} />}
+{actualizado && <meta property="article:modified_time" content={actualizado.toISOString()} />}
+<meta name="twitter:card" content="summary_large_image" />
+
+{PUBLIC_GSC_VERIFICATION && <meta name="google-site-verification" content={PUBLIC_GSC_VERIFICATION} />}
+
+{jsonLd.map((o) => <script type="application/ld+json" set:html={json(o)} />)}

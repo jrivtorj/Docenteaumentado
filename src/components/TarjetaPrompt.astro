@@ -1,0 +1,82 @@
+---
+import { ETAPAS, TAREAS_DOCENTES } from '@/data/taxonomias';
+import { normalizar, urlPrompt, type Prompt } from '@/utils/contenido';
+
+interface Props {
+  prompt: Prompt;
+  nivel?: 2 | 3;
+}
+const { prompt, nivel = 3 } = Astro.props;
+const { data } = prompt;
+const H = `h${nivel}` as 'h2' | 'h3';
+const herramientas = data.generico ? ['cualquiera', ...data.herramientas.map((h) => h.id)] : data.herramientas.map((h) => h.id);
+const texto = normalizar([data.titulo, data.descripcion, data.finalidad, ...data.etiquetas].join(' '));
+---
+
+<article
+  class="tarjeta-p"
+  data-filtrable
+  data-tarea={data.tarea}
+  data-etapas={data.etapas.join(' ')}
+  data-herramientas={herramientas.join(' ')}
+  data-texto={texto}
+>
+  <p class="antetitulo">{TAREAS_DOCENTES[data.tarea]}</p>
+  <H class="tarjeta-p__titulo"><a href={urlPrompt(prompt)}>{data.titulo}</a></H>
+  <p class="tarjeta-p__resumen">{data.descripcion}</p>
+  <ul class="etiquetas" aria-label="Etapas">
+    {data.etapas.map((e) => <li class="etiqueta">{ETAPAS[e]}</li>)}
+  </ul>
+</article>
+
+<style>
+  .tarjeta-p {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-2);
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    background: var(--c-superficie);
+    transition:
+      border-color var(--transicion),
+      box-shadow var(--transicion);
+  }
+  .tarjeta-p:hover {
+    border-color: var(--c-borde-fuerte);
+    box-shadow: var(--sombra-hover);
+  }
+  .tarjeta-p[hidden] {
+    display: none;
+  }
+  .tarjeta-p__titulo {
+    font-size: var(--t-lg);
+    line-height: 1.3;
+  }
+  .tarjeta-p__titulo a {
+    color: var(--c-texto);
+    text-decoration: none;
+  }
+  .tarjeta-p__titulo a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .tarjeta-p__titulo a:hover {
+    color: var(--c-acento);
+  }
+  .tarjeta-p__titulo a:focus-visible {
+    outline: none;
+  }
+  .tarjeta-p__titulo a:focus-visible::after {
+    outline: 3px solid var(--c-foco);
+    outline-offset: 2px;
+    border-radius: var(--radio);
+  }
+  .tarjeta-p__resumen {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+    flex: 1;
+  }
+</style>

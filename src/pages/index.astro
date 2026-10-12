@@ -1,0 +1,275 @@
+---
+import Base from '@/layouts/Base.astro';
+import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
+import TarjetaHerramienta from '@/components/TarjetaHerramienta.astro';
+import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
+import Newsletter from '@/components/Newsletter.astro';
+import Icono from '@/components/Icono.astro';
+import { getEntry } from 'astro:content';
+import { SITIO } from '@/data/sitio';
+import { getArticulos, getHerramientas, getPrompts } from '@/utils/contenido';
+import { organizacionYSitio } from '@/utils/jsonld';
+
+// Herramientas que se muestran en portada (editar a voluntad).
+const DESTACADAS = ['gemini-notebook', 'claude', 'chatgpt'];
+const todos = await getArticulos();
+const editoriales = todos.filter((a) => a.data.tipo !== 'opinion' && a.data.tipo !== 'tutorial');
+const destacados = editoriales.filter((a) => a.data.destacado).slice(0, 3);
+const idsDestacados = new Set(destacados.map((a) => a.id));
+const recientes = editoriales.filter((a) => !idsDestacados.has(a.id)).slice(0, 3);
+const tutoriales = todos.filter((a) => a.data.tipo === 'tutorial').slice(0, 3);
+const opinion = todos.filter((a) => a.data.tipo === 'opinion').slice(0, 3);
+const herramientas = (await getHerramientas()).filter((h) => DESTACADAS.includes(h.id));
+const prompts = await getPrompts();
+const promptsMuestra = prompts.slice(0, 3);
+const autor = await getEntry('autores', SITIO.autorPrincipal);
+---
+
+<Base titulo={SITIO.nombre} descripcion={SITIO.descripcion} jsonLd={[organizacionYSitio(Astro.site!)]}>
+  <section class="hero">
+    <div class="contenedor hero__rejilla">
+      <div>
+        <p class="antetitulo">Inteligencia artificial aplicada a la enseñanza</p>
+        <h1 class="hero__titulo">
+          La inteligencia artificial no sustituye al docente. <span>Amplía lo que un buen docente puede hacer.</span>
+        </h1>
+        <p class="entradilla hero__entradilla">
+          Tutoriales aplicados, prompts probados y análisis críticos para profesorado de Secundaria, Bachillerato y FP.
+          Sin promesas mágicas: con criterio pedagógico y fuentes verificables.
+        </p>
+        <div class="hero__acciones">
+          <a class="boton" href="/prompts/"><Icono nombre="prompt" /> Biblioteca de prompts</a>
+          <a class="boton boton--secundario" href="/ia-en-el-aula/">Tutoriales para el aula</a>
+        </div>
+      </div>
+      <aside class="hero__principios" aria-label="Principios editoriales">
+        <h2 class="visualmente-oculto">Principios</h2>
+        <ol>
+          <li><strong>El criterio es tuyo.</strong> La IA propone; el docente decide, revisa y firma.</li>
+          <li><strong>Aplicado.</strong> Cada texto termina en algo que puedes usar mañana en clase.</li>
+          <li><strong>Verificable.</strong> Fuentes primarias, fechas visibles y dudas declaradas.</li>
+          <li><strong>Independiente.</strong> Sin enlaces de afiliación ni contenido patrocinado.</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="seccion seccion--suave" aria-labelledby="t-prompts">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <div>
+          <p class="antetitulo">Biblioteca</p>
+          <h2 id="t-prompts">{prompts.length} prompts docentes listos para adaptar</h2>
+        </div>
+        <a class="enlace-flecha" href="/prompts/">Ver la biblioteca completa</a>
+      </div>
+      <div class="rejilla">
+        {promptsMuestra.map((p) => <TarjetaPrompt prompt={p} />)}
+      </div>
+    </div>
+  </section>
+
+  {
+    destacados.length > 0 && (
+      <section class="seccion" aria-labelledby="t-destacados">
+        <div class="contenedor">
+          <div class="cabecera-seccion">
+            <h2 id="t-destacados">Para empezar</h2>
+            <a class="enlace-flecha" href="/articulos/">
+              Todos los artículos
+            </a>
+          </div>
+          <div class="rejilla">
+            {destacados.map((a) => (
+              <TarjetaArticulo articulo={a} variante="destacada" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    recientes.length > 0 && (
+      <section class="seccion" aria-labelledby="t-recientes">
+        <div class="contenedor">
+          <div class="cabecera-seccion">
+            <h2 id="t-recientes">Publicado recientemente</h2>
+          </div>
+          <div class="rejilla">
+            {recientes.map((a) => (
+              <TarjetaArticulo articulo={a} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="seccion seccion--suave" aria-labelledby="t-tutoriales">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <div>
+          <p class="antetitulo">IA en el aula</p>
+          <h2 id="t-tutoriales">Tutoriales paso a paso</h2>
+        </div>
+        <a class="enlace-flecha" href="/ia-en-el-aula/">Todos los tutoriales</a>
+      </div>
+      <div class="rejilla">
+        {tutoriales.map((a) => <TarjetaArticulo articulo={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-herramientas">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <div>
+          <p class="antetitulo">Catálogo</p>
+          <h2 id="t-herramientas">Herramientas analizadas</h2>
+        </div>
+        <a class="enlace-flecha" href="/herramientas/">Ver el catálogo</a>
+      </div>
+      <p class="meta nota-catalogo">
+        Fichas con usos, limitaciones y precio comprobado en la web oficial, con fecha de verificación.
+      </p>
+      <div class="rejilla">
+        {herramientas.map((h) => <TarjetaHerramienta herramienta={h} />)}
+      </div>
+    </div>
+  </section>
+
+  {
+    opinion.length > 0 && (
+      <section class="seccion seccion--suave" aria-labelledby="t-opinion">
+        <div class="contenedor">
+          <div class="cabecera-seccion">
+            <div>
+              <p class="antetitulo">Opinión</p>
+              <h2 id="t-opinion">Para pensar antes de usar</h2>
+            </div>
+            <a class="enlace-flecha" href="/opinion/">
+              Más opinión
+            </a>
+          </div>
+          <div class="rejilla">
+            {opinion.map((a) => (
+              <TarjetaArticulo articulo={a} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="seccion" aria-labelledby="newsletter-titulo">
+    <div class="contenedor">
+      <Newsletter />
+    </div>
+  </section>
+
+  <section class="seccion proyecto" aria-labelledby="t-proyecto">
+    <div class="contenedor proyecto__rejilla">
+      <div>
+        <p class="antetitulo">El proyecto</p>
+        <h2 id="t-proyecto">Escrito desde el aula, no desde el marketing</h2>
+      </div>
+      <div class="pila">
+        <p>
+          <strong>{SITIO.nombre}</strong> nace para ayudar al profesorado a comprender y usar la inteligencia artificial
+          al preparar clases, diseñar recursos y evaluar, con una regla fija: la IA amplía las capacidades del docente,
+          no sustituye su criterio pedagógico.
+        </p>
+        {
+          autor && (
+            <p>
+              Lo escribe {autor.data.nombre}. {autor.data.bio} <a href="/sobre-el-autor/">Conoce al autor y los criterios editoriales</a>.
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--e-7) var(--e-7);
+    border-bottom: 1px solid var(--c-borde);
+  }
+  .hero__rejilla {
+    display: grid;
+    gap: var(--e-6);
+  }
+  @media (min-width: 64rem) {
+    .hero {
+      padding-block: var(--e-8);
+    }
+    .hero__rejilla {
+      grid-template-columns: 1.7fr 1fr;
+      align-items: end;
+      gap: var(--e-8);
+    }
+  }
+  .hero__titulo {
+    margin-top: var(--e-3);
+    max-width: 22ch;
+  }
+  .hero__titulo span {
+    color: var(--c-acento);
+  }
+  .hero__entradilla {
+    margin-top: var(--e-5);
+  }
+  .hero__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-3);
+    margin-top: var(--e-6);
+  }
+  .hero__principios ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: p;
+    display: grid;
+    gap: var(--e-4);
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
+  }
+  .hero__principios li {
+    counter-increment: p;
+    padding-left: 2.2rem;
+    position: relative;
+  }
+  .hero__principios li::before {
+    content: counter(p, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    color: var(--c-acento);
+  }
+  .hero__principios strong {
+    color: var(--c-texto);
+  }
+  .nota-catalogo {
+    margin: calc(-1 * var(--e-3)) 0 var(--e-5);
+  }
+  .proyecto__rejilla {
+    display: grid;
+    gap: var(--e-4);
+    max-width: 60rem;
+  }
+  @media (min-width: 56rem) {
+    .proyecto__rejilla {
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--e-7);
+    }
+  }
+  .proyecto h2 {
+    font-family: var(--f-serif);
+    font-size: var(--t-2xl);
+    margin-top: var(--e-2);
+  }
+</style>

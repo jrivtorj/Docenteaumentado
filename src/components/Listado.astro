@@ -1,0 +1,17 @@
+---
+/** Listado paginado reutilizable para secciones editoriales. */
+import type { Page } from 'astro';
+import TarjetaArticulo from './TarjetaArticulo.astro';
+import Paginacion from './Paginacion.astro';
+import type { Articulo } from '@/utils/contenido';
+
+interface Props {
+  page: Page<Articulo>;
+}
+const { page } = Astro.props;
+---
+
+<div class="rejilla">
+  {page.data.map((a) => <TarjetaArticulo articulo={a} nivel={2} />)}
+</div>
+<Paginacion page={page} />

@@ -1,0 +1,60 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Filtros from '@/components/Filtros.astro';
+import TarjetaHerramienta from '@/components/TarjetaHerramienta.astro';
+import { CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO } from '@/data/taxonomias';
+import { getHerramientas } from '@/utils/contenido';
+
+const herramientas = await getHerramientas();
+const conteo = (c: string) => herramientas.filter((h) => h.data.categorias.includes(c as never)).length;
+---
+
+<Base
+  titulo="Herramientas de IA para docentes: catálogo comentado"
+  descripcion="Catálogo de herramientas de IA para profesorado con usos educativos, limitaciones y precio verificado en la web oficial, con fecha de comprobación."
+  migas={[{ nombre: 'Herramientas', href: '/herramientas/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Herramientas de IA para docentes"
+      antetitulo="Catálogo"
+      entradilla="Cada ficha explica para qué sirve en clase, qué no hace bien y cuánto cuesta según su web oficial en la fecha indicada. Los precios cambian: compruébalos antes de contratar."
+    >
+      <p class="meta">
+        Criterio de inclusión: utilidad docente real y disponibilidad en España. Ninguna ficha es patrocinada. Lee nuestros <a href="/sobre-el-autor/#criterios-editoriales">criterios editoriales</a>.
+      </p>
+    </CabeceraPagina>
+
+    <Filtros
+      objetivo="#lista-herramientas"
+      placeholder="presentaciones, fuentes, rúbricas…"
+      grupos={[
+        {
+          nombre: 'categoria',
+          etiqueta: 'Categoría',
+          atributo: 'categorias',
+          modo: 'token',
+          opciones: Object.entries(CATEGORIAS_HERRAMIENTA).map(([valor, texto]) => ({
+            valor,
+            texto: `${texto} (${conteo(valor)})`,
+          })),
+        },
+        {
+          nombre: 'precio',
+          etiqueta: 'Modalidad',
+          atributo: 'modalidad',
+          opciones: Object.entries(MODALIDADES_PRECIO).map(([valor, texto]) => ({ valor, texto })),
+        },
+      ]}
+    />
+
+    <div id="lista-herramientas" class="rejilla">
+      {herramientas.map((h) => <TarjetaHerramienta herramienta={h} nivel={2} />)}
+    </div>
+    <p class="aviso" data-sin-resultados hidden>
+      Todavía no hay fichas que cumplan esos filtros. El catálogo crece poco a poco: solo se publica una herramienta
+      cuando se ha probado y verificado su información.
+    </p>
+  </div>
+</Base>

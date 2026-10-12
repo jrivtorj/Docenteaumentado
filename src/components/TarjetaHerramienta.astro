@@ -1,0 +1,99 @@
+---
+import { CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO } from '@/data/taxonomias';
+import { normalizar, urlHerramienta, type Herramienta } from '@/utils/contenido';
+
+interface Props {
+  herramienta: Herramienta;
+  nivel?: 2 | 3;
+}
+const { herramienta, nivel = 3 } = Astro.props;
+const { data } = herramienta;
+const H = `h${nivel}` as 'h2' | 'h3';
+const texto = normalizar([data.nombre, data.descripcion, data.proveedor, ...data.etiquetas, ...data.usos].join(' '));
+---
+
+<article
+  class="tarjeta-h"
+  data-filtrable
+  data-categorias={data.categorias.join(' ')}
+  data-modalidad={data.precio.modalidad}
+  data-texto={texto}
+>
+  <div class="tarjeta-h__cabecera">
+    <H class="tarjeta-h__titulo"><a href={urlHerramienta(herramienta)}>{data.nombre}</a></H>
+    <span class="meta">{data.proveedor}</span>
+  </div>
+  <p class="tarjeta-h__resumen">{data.descripcion}</p>
+  <ul class="etiquetas" aria-label="Categorías">
+    {data.categorias.map((c) => <li class="etiqueta">{CATEGORIAS_HERRAMIENTA[c]}</li>)}
+  </ul>
+  <p class="tarjeta-h__precio">
+    <span class="visualmente-oculto">Modalidad de precio: </span>
+    {MODALIDADES_PRECIO[data.precio.modalidad]}
+  </p>
+</article>
+
+<style>
+  .tarjeta-h {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-3);
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    background: var(--c-superficie);
+    transition:
+      border-color var(--transicion),
+      box-shadow var(--transicion);
+  }
+  .tarjeta-h:hover {
+    border-color: var(--c-borde-fuerte);
+    box-shadow: var(--sombra-hover);
+  }
+  .tarjeta-h[hidden] {
+    display: none;
+  }
+  .tarjeta-h__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--e-1) var(--e-3);
+  }
+  .tarjeta-h__titulo {
+    font-size: var(--t-lg);
+  }
+  .tarjeta-h__titulo a {
+    color: var(--c-texto);
+    text-decoration: none;
+  }
+  .tarjeta-h__titulo a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .tarjeta-h__titulo a:hover {
+    color: var(--c-acento);
+  }
+  .tarjeta-h__titulo a:focus-visible {
+    outline: none;
+  }
+  .tarjeta-h__titulo a:focus-visible::after {
+    outline: 3px solid var(--c-foco);
+    outline-offset: 2px;
+    border-radius: var(--radio);
+  }
+  .tarjeta-h__resumen {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+    flex: 1;
+  }
+  .tarjeta-h__precio {
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: var(--c-texto-2);
+    border-top: 1px solid var(--c-borde);
+    padding-top: var(--e-3);
+  }
+</style>

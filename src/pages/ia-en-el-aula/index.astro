@@ -1,0 +1,56 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
+import { getArticulos } from '@/utils/contenido';
+
+const tutoriales = await getArticulos('tutorial');
+const guias = await getArticulos('guia');
+---
+
+<Base
+  titulo="IA aplicada al aula: tutoriales y guías"
+  descripcion="Tutoriales paso a paso para diseñar situaciones de aprendizaje, rúbricas, pruebas y materiales con IA, y guías para usarla con criterio en el aula."
+  migas={[{ nombre: 'IA en el aula', href: '/ia-en-el-aula/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="IA aplicada al aula"
+      antetitulo="Tutoriales y guías"
+      entradilla="Procedimientos completos, con prompts, ejemplos y puntos de control para revisar lo que produce la IA antes de llevarlo a clase."
+    />
+
+    <section aria-labelledby="t-tutoriales" class="bloque">
+      <h2 id="t-tutoriales" class="bloque__titulo">Tutoriales paso a paso</h2>
+      <div class="rejilla">
+        {tutoriales.map((a) => <TarjetaArticulo articulo={a} />)}
+      </div>
+    </section>
+
+    <section aria-labelledby="t-guias" class="bloque">
+      <h2 id="t-guias" class="bloque__titulo">Guías</h2>
+      <div class="rejilla">
+        {guias.map((a) => <TarjetaArticulo articulo={a} />)}
+      </div>
+    </section>
+
+    <section aria-labelledby="t-proximos" class="bloque">
+      <h2 id="t-proximos" class="bloque__titulo">En preparación</h2>
+      <p class="meta">
+        Actividades competenciales, adaptación de materiales a distintas necesidades, recursos de matemáticas y ciencias y
+        actividades de alfabetización digital. Mientras tanto, la <a href="/prompts/">biblioteca de prompts</a> ya cubre
+        estas tareas.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .bloque {
+    margin-top: var(--e-6);
+  }
+  .bloque__titulo {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-4);
+  }
+</style>

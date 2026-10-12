@@ -1,0 +1,87 @@
+---
+import { getEntry } from 'astro:content';
+import Pagina from '@/layouts/Pagina.astro';
+import { SITIO } from '@/data/sitio';
+
+/*
+ * PÁGINA EDITABLE. Solo contiene datos facilitados por el autor. Antes de publicar,
+ * revisa cada párrafo y completa lo marcado como [Completar] o bórralo.
+ * No añadas méritos, premios, publicaciones ni cifras que no puedas acreditar.
+ */
+const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
+---
+
+<Pagina
+  titulo="Sobre el autor"
+  tituloSeo={`Sobre el autor: ${autor.data.nombre}`}
+  descripcion={`Quién escribe ${SITIO.nombre}, por qué existe este proyecto y qué criterios editoriales sigue al hablar de inteligencia artificial en educación.`}
+  ruta="/sobre-el-autor/"
+  antetitulo="El proyecto"
+  entradilla="Quién escribe esta web, por qué y con qué reglas."
+>
+  <h2 id="quien-escribe">Quién escribe</h2>
+  <p>
+    Soy <strong>{autor.data.nombre}</strong>, licenciado en Ciencias Químicas y profesor de Educación Secundaria en
+    Canarias. He dado clase en ESO, Bachillerato y Formación Profesional, y buena parte de mi trabajo fuera del aula ha
+    estado ligado a la coordinación, la innovación educativa y la gestión de proyectos.
+  </p>
+  <p>
+    Mi formación científica condiciona cómo miro la inteligencia artificial: como una herramienta potente que hay que
+    probar, medir y someter a crítica, no como una promesa. Me interesan especialmente sus usos en matemáticas y
+    ciencias, donde un error de cálculo o de unidades no es un detalle, y su encaje en la programación didáctica que
+    exige la LOMLOE.
+  </p>
+  <p class="pendiente">[Completar si se desea: centro o isla, años de experiencia, materias que impartes, proyectos concretos que quieras mencionar. Elimina este párrafo si no lo usas.]</p>
+
+  <h2 id="por-que">Por qué existe esta web</h2>
+  <p>
+    El profesorado recibe a diario titulares sobre IA que oscilan entre el entusiasmo comercial y el alarmismo. Lo que
+    escasea es material aplicado: cómo preparar una situación de aprendizaje con ayuda de un asistente sin que el
+    resultado sea genérico, cómo revisar una rúbrica generada por IA o qué datos del alumnado no deberían salir nunca
+    del centro.
+  </p>
+  <p>
+    {SITIO.nombre} intenta cubrir ese hueco con tutoriales, prompts reutilizables y análisis críticos, escritos por un
+    docente para docentes y partiendo de una idea: <strong>la IA debe ampliar las capacidades del docente, no sustituir
+    su criterio pedagógico</strong>.
+  </p>
+
+  <h2 id="criterios-editoriales">Criterios editoriales</h2>
+  <ol>
+    <li>
+      <strong>Hechos, opiniones y previsiones van separados.</strong> Las piezas de opinión se identifican como tales; en
+      actualidad, lo comprobado, lo opinado y lo previsto se marcan de forma visible.
+    </li>
+    <li>
+      <strong>Fuentes primarias siempre que sea posible.</strong> Documentación oficial, normativa publicada en boletines,
+      organismos educativos e investigaciones originales, enlazadas al final de cada texto.
+    </li>
+    <li>
+      <strong>Nada se presenta como verificado si no lo está.</strong> Cuando un dato no se ha podido comprobar se dice
+      expresamente.
+    </li>
+    <li>
+      <strong>Precios y funciones con fecha.</strong> Las fichas de herramientas indican en qué fecha y en qué página
+      oficial se comprobó el precio. Las herramientas cambian; las fichas se revisan periódicamente.
+    </li>
+    <li>
+      <strong>Independencia.</strong> Ninguna herramienta paga por aparecer en esta web. Si en el futuro hubiera enlaces
+      de afiliación o colaboraciones, se señalarían de forma explícita en cada página afectada.
+    </li>
+    <li>
+      <strong>Fechas visibles y correcciones.</strong> Cada texto muestra su fecha de publicación y, si cambia de forma
+      sustancial, la de actualización. Los errores se corrigen indicándolo.
+    </li>
+    <li>
+      <strong>Uso de IA en la propia web.</strong> Este sitio utiliza herramientas de IA como apoyo en la redacción y la
+      revisión, igual que propone hacer en el aula: el autor revisa, verifica y asume la responsabilidad de todo lo
+      publicado.
+    </li>
+  </ol>
+
+  <h2 id="contacto">Contacto</h2>
+  <p>
+    Si detectas un error, quieres proponer un tema o compartir cómo usas la IA en tu aula, escríbeme desde la página de
+    <a href="/contacto/">contacto</a>.
+  </p>
+</Pagina>

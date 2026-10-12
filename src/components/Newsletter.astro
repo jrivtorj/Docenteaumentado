@@ -1,0 +1,113 @@
+---
+import { PUBLIC_NEWSLETTER_ACTION, PUBLIC_NEWSLETTER_EMAIL_FIELD, PUBLIC_NEWSLETTER_PROVIDER } from 'astro:env/server';
+
+interface Props {
+  /** id único si el componente aparece más de una vez en la misma página. */
+  id?: string;
+  compacto?: boolean;
+}
+const { id = 'newsletter', compacto = false } = Astro.props;
+const activo = Boolean(PUBLIC_NEWSLETTER_ACTION);
+---
+
+<section class:list={['newsletter', { 'newsletter--compacto': compacto }]} aria-labelledby={`${id}-titulo`}>
+  <div class="newsletter__texto">
+    <h2 id={`${id}-titulo`}>Una carta quincenal, sin ruido</h2>
+    <p>
+      Un tutorial aplicado, un prompt probado y una lectura crítica sobre IA educativa. Sin publicidad y con baja en un
+      clic.
+    </p>
+  </div>
+
+  <form
+    class="newsletter__form"
+    method="post"
+    action={activo ? PUBLIC_NEWSLETTER_ACTION : undefined}
+    target={activo ? '_blank' : undefined}
+    aria-describedby={`${id}-nota`}
+  >
+    <div class="campo">
+      <label for={`${id}-email`}>Correo electrónico</label>
+      <div class="newsletter__fila">
+        <input
+          id={`${id}-email`}
+          class="entrada"
+          type="email"
+          name={PUBLIC_NEWSLETTER_EMAIL_FIELD}
+          autocomplete="email"
+          required
+          disabled={!activo}
+        />
+        <button class="boton" type="submit" disabled={!activo}>Suscribirme</button>
+      </div>
+    </div>
+    <label class="newsletter__consentimiento">
+      <input type="checkbox" name="consentimiento" required disabled={!activo} />
+      <span>He leído la <a href="/privacidad/">política de privacidad</a> y acepto recibir la newsletter.</span>
+    </label>
+    {
+      activo ? (
+        <p id={`${id}-nota`} class="meta">
+          El alta la gestiona {PUBLIC_NEWSLETTER_PROVIDER ?? 'el proveedor de envío'}, que te pedirá confirmar el correo.
+          Solo guardamos tu dirección para enviarte la newsletter.
+        </p>
+      ) : (
+        <p id={`${id}-nota`} class="aviso aviso--pendiente" role="note">
+          <strong>Suscripción aún no disponible.</strong> La newsletter está preparada pero el proveedor de envío no se ha
+          configurado. No se recoge ningún dato.
+        </p>
+      )
+    }
+  </form>
+</section>
+
+<style>
+  .newsletter {
+    display: grid;
+    gap: var(--e-5);
+    padding: var(--e-6) var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    background: var(--c-superficie);
+  }
+  @media (min-width: 56rem) {
+    .newsletter:not(.newsletter--compacto) {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      padding: var(--e-7);
+    }
+  }
+  .newsletter h2 {
+    font-family: var(--f-serif);
+    font-size: var(--t-xl);
+  }
+  .newsletter__texto p {
+    margin-top: var(--e-2);
+    color: var(--c-texto-2);
+  }
+  .newsletter__form {
+    display: grid;
+    gap: var(--e-3);
+  }
+  .newsletter__fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2);
+  }
+  .newsletter__fila .entrada {
+    flex: 1 1 14rem;
+  }
+  .newsletter__consentimiento {
+    display: flex;
+    gap: var(--e-2);
+    align-items: flex-start;
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
+  }
+  .newsletter__consentimiento input {
+    margin-top: 0.3em;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--c-acento);
+  }
+</style>

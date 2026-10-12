@@ -1,0 +1,170 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Icono from '@/components/Icono.astro';
+---
+
+<Base
+  titulo="Constructor de prompts para docentes"
+  descripcion="Herramienta gratuita para construir prompts docentes bien estructurados: rol, contexto del grupo, tarea, formato de salida y criterios de calidad. Funciona sin registro."
+  migas={[
+    { nombre: 'Laboratorio', href: '/laboratorio/' },
+    { nombre: 'Constructor de prompts', href: '/laboratorio/constructor-de-prompts/' },
+  ]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Constructor de prompts para docentes"
+      antetitulo="Laboratorio"
+      entradilla="Completa los apartados que necesites. El prompt se compone a la derecha (o debajo, en el móvil) y puedes copiarlo con un clic. Nada se envía a ningún servidor."
+    >
+      <p class="meta">
+        Fundamento: <a href="/articulos/como-escribir-prompts-para-docentes/">cómo escribir prompts eficaces para tareas docentes</a>.
+      </p>
+    </CabeceraPagina>
+
+    <noscript><p class="aviso">Esta herramienta necesita JavaScript.</p></noscript>
+
+    <div class="constructor" data-constructor>
+      <form class="constructor__form" aria-label="Partes del prompt">
+        <div class="campo">
+          <label for="k-rol">1. Rol que debe adoptar la IA</label>
+          <input id="k-rol" class="entrada" name="rol" value="docente experto en didáctica de [materia] en [etapa]" />
+          <span class="ayuda">Un rol concreto orienta el vocabulario y el nivel de exigencia.</span>
+        </div>
+        <div class="campo">
+          <label for="k-contexto">2. Contexto del grupo y del centro</label>
+          <textarea id="k-contexto" class="entrada" name="contexto" rows="3" placeholder="Ej.: 3.º ESO, 24 alumnos, dos con dificultades de lectura, 4 sesiones de 55 min, acceso a portátiles."></textarea>
+          <span class="ayuda">No incluyas nombres ni datos personales del alumnado.</span>
+        </div>
+        <div class="campo">
+          <label for="k-tarea">3. Tarea concreta</label>
+          <textarea id="k-tarea" class="entrada" name="tarea" rows="3" placeholder="Ej.: Diseña una actividad de indagación sobre reacciones químicas cotidianas."></textarea>
+        </div>
+        <div class="campo">
+          <label for="k-curriculo">4. Referentes curriculares (pégalos tú)</label>
+          <textarea id="k-curriculo" class="entrada" name="curriculo" rows="3" placeholder="Copia aquí los criterios de evaluación y saberes básicos de tu currículo oficial."></textarea>
+          <span class="ayuda">La IA no debe inventar criterios: dáselos literalmente.</span>
+        </div>
+        <div class="campo">
+          <label for="k-formato">5. Formato de la respuesta</label>
+          <select id="k-formato" class="entrada" name="formato">
+            <option value="">Sin especificar</option>
+            <option>una tabla con columnas claramente rotuladas</option>
+            <option>un documento con apartados numerados y títulos</option>
+            <option>una lista de pasos numerados</option>
+            <option>texto listo para entregar al alumnado, con lenguaje adecuado a su edad</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="k-criterios">6. Criterios de calidad y restricciones</label>
+          <textarea id="k-criterios" class="entrada" name="criterios" rows="3">No inventes datos, normativa ni referencias. Si te falta información, pregúntame antes de responder.</textarea>
+        </div>
+        <label class="casilla">
+          <input type="checkbox" name="preguntas" checked />
+          <span>Pedir a la IA que haga preguntas antes de responder si le falta contexto</span>
+        </label>
+        <label class="casilla">
+          <input type="checkbox" name="revision" checked />
+          <span>Pedir una lista final de aspectos que el docente debe revisar</span>
+        </label>
+      </form>
+
+      <section class="constructor__salida" aria-labelledby="t-salida" data-copiar-zona>
+        <div class="constructor__cabecera">
+          <h2 id="t-salida">Tu prompt</h2>
+          <button type="button" class="boton" data-copiar="#salida-prompt" hidden>
+            <Icono nombre="copiar" /><span data-etiqueta>Copiar prompt</span>
+          </button>
+        </div>
+        <pre id="salida-prompt" class="salida" tabindex="0" aria-live="off"></pre>
+        <p class="visualmente-oculto" data-copiar-estado aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '@/scripts/copiar';
+
+  const form = document.querySelector<HTMLFormElement>('[data-constructor] form')!;
+  const salida = document.querySelector<HTMLElement>('#salida-prompt')!;
+
+  function componer() {
+    const d = new FormData(form);
+    const v = (k: string) => String(d.get(k) ?? '').trim();
+    const partes: string[] = [];
+    if (v('rol')) partes.push(`Actúa como ${v('rol')}.`);
+    if (v('contexto')) partes.push(`CONTEXTO\n${v('contexto')}`);
+    if (v('tarea')) partes.push(`TAREA\n${v('tarea')}`);
+    if (v('curriculo')) partes.push(`REFERENTES CURRICULARES (úsalos literalmente, no los modifiques)\n${v('curriculo')}`);
+    if (v('formato')) partes.push(`FORMATO\nPresenta la respuesta como ${v('formato')}.`);
+    if (v('criterios')) partes.push(`CRITERIOS DE CALIDAD\n${v('criterios')}`);
+    if (d.get('preguntas')) partes.push('Antes de responder, si te falta información imprescindible, hazme hasta tres preguntas y espera mi respuesta.');
+    if (d.get('revision')) partes.push('Al final, añade una lista breve de aspectos que debo revisar antes de usar el material con el alumnado.');
+    salida.textContent = partes.join('\n\n') || 'Empieza a rellenar los campos…';
+  }
+  form.addEventListener('input', componer);
+  form.addEventListener('change', componer);
+  componer();
+</script>
+
+<style>
+  .constructor {
+    display: grid;
+    gap: var(--e-6);
+  }
+  @media (min-width: 64rem) {
+    .constructor {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+    .constructor__salida {
+      position: sticky;
+      top: 5.5rem;
+    }
+  }
+  .constructor__form {
+    display: grid;
+    gap: var(--e-4);
+  }
+  .casilla {
+    display: flex;
+    gap: var(--e-2);
+    font-size: var(--t-sm);
+    align-items: flex-start;
+  }
+  .casilla input {
+    margin-top: 0.3em;
+    accent-color: var(--c-acento);
+  }
+  .constructor__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--e-3);
+    margin-bottom: var(--e-3);
+  }
+  .constructor__cabecera h2 {
+    font-size: var(--t-xl);
+  }
+  .salida {
+    font-family: var(--f-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde-fuerte);
+    border-radius: var(--radio);
+    background: var(--c-fondo-suave);
+    min-height: 12rem;
+    max-height: 70vh;
+    overflow: auto;
+  }
+  [data-copiar][data-estado='copiado'] {
+    background: var(--c-ok);
+    border-color: var(--c-ok);
+  }
+</style>

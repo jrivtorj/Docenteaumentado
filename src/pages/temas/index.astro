@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import { getArticulos, getPrompts, getHerramientas, urlTema } from '@/utils/contenido';
+
+const temas = (await getCollection('temas')).sort((a, b) => a.data.orden - b.data.orden);
+const [articulos, prompts, herramientas] = await Promise.all([getArticulos(), getPrompts(), getHerramientas()]);
+const total = (id: string) =>
+  articulos.filter((a) => a.data.temas.some((t) => t.id === id)).length +
+  prompts.filter((p) => p.data.temas.some((t) => t.id === id)).length +
+  herramientas.filter((h) => h.data.temas.some((t) => t.id === id)).length;
+const conContenido = temas.filter((t) => total(t.id) > 0);
+---
+
+<Base
+  titulo="Temas: IA en educación por grupos temáticos"
+  descripcion="Explora El docente aumentado por temas: prompts, situaciones de aprendizaje, evaluación, matemáticas y ciencias, alfabetización digital, privacidad y asistentes de IA."
+  migas={[{ nombre: 'Temas', href: '/temas/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Temas"
+      antetitulo="Explorar"
+      entradilla="Cada tema reúne guías, tutoriales, prompts y herramientas relacionados para que puedas profundizar en un asunto sin saltar de buscador en buscador."
+    />
+    <ul class="temas rejilla">
+      {
+        conContenido.map((t) => (
+          <li>
+            <h2>
+              <a href={urlTema(t.id)}>{t.data.nombre}</a>
+            </h2>
+            <p>{t.data.descripcion}</p>
+            <p class="meta">{total(t.id)} recursos</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .temas {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    display: grid;
+    gap: var(--e-2);
+    align-content: start;
+  }
+  h2 {
+    font-size: var(--t-lg);
+  }
+  li p:not(.meta) {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+  }
+</style>

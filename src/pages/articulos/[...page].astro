@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Listado from '@/components/Listado.astro';
+import { getArticulos } from '@/utils/contenido';
+import { POR_PAGINA, conPagina } from '@/utils/paginas';
+
+export const getStaticPaths = (async ({ paginate }) => paginate(await getArticulos(), { pageSize: POR_PAGINA })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const titulo = conPagina('Todos los artículos', page.currentPage);
+---
+
+<Base
+  titulo={titulo}
+  descripcion={conPagina('Archivo completo de guías, tutoriales, análisis de actualidad y artículos de opinión sobre inteligencia artificial en educación.', page.currentPage)}
+  migas={[{ nombre: 'Artículos', href: '/articulos/' }, ...(page.currentPage > 1 ? [{ nombre: `Página ${page.currentPage}`, href: page.url.current }] : [])]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo={titulo}
+      antetitulo="Archivo"
+      entradilla="Todo lo publicado, del más reciente al más antiguo. Si buscas algo concreto, usa el buscador o explora por temas."
+    >
+      <p class="meta"><a href="/buscar/">Buscar</a> · <a href="/temas/">Explorar por temas</a></p>
+    </CabeceraPagina>
+    <Listado page={page} />
+  </div>
+</Base>

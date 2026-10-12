@@ -1,0 +1,97 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
+import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
+import TarjetaHerramienta from '@/components/TarjetaHerramienta.astro';
+import { getArticulos, getHerramientas, getPrompts, urlTema } from '@/utils/contenido';
+
+/** Por debajo de este número de recursos la página de tema existe pero no se indexa (evita páginas pobres). */
+const MINIMO_INDEXABLE = 3;
+
+export const getStaticPaths = (async () => {
+  const temas = await getCollection('temas');
+  const [articulos, prompts, herramientas] = await Promise.all([getArticulos(), getPrompts(), getHerramientas()]);
+  return temas
+    .map((tema) => {
+      const de = <T extends { data: { temas: { id: string }[] } }>(xs: T[]) => xs.filter((x) => x.data.temas.some((t) => t.id === tema.id));
+      return {
+        params: { tema: tema.id },
+        props: { tema, articulos: de(articulos), prompts: de(prompts), herramientas: de(herramientas) },
+      };
+    })
+    .filter((p) => p.props.articulos.length + p.props.prompts.length + p.props.herramientas.length > 0);
+}) satisfies GetStaticPaths;
+
+interface Props {
+  tema: CollectionEntry<'temas'>;
+  articulos: Awaited<ReturnType<typeof getArticulos>>;
+  prompts: Awaited<ReturnType<typeof getPrompts>>;
+  herramientas: Awaited<ReturnType<typeof getHerramientas>>;
+}
+const { tema, articulos, prompts, herramientas } = Astro.props;
+const total = articulos.length + prompts.length + herramientas.length;
+---
+
+<Base
+  titulo={tema.data.nombre}
+  descripcion={tema.data.descripcion}
+  noindex={total < MINIMO_INDEXABLE}
+  migas={[
+    { nombre: 'Temas', href: '/temas/' },
+    { nombre: tema.data.nombre, href: urlTema(tema.id) },
+  ]}
+>
+  <div class="contenedor">
+    <CabeceraPagina titulo={tema.data.nombre} antetitulo="Tema" entradilla={tema.data.descripcion} />
+
+    {
+      articulos.length > 0 && (
+        <section class="bloque" aria-labelledby="t-a">
+          <h2 id="t-a">Artículos y tutoriales</h2>
+          <div class="rejilla">
+            {articulos.map((a) => (
+              <TarjetaArticulo articulo={a} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+    {
+      prompts.length > 0 && (
+        <section class="bloque" aria-labelledby="t-p">
+          <h2 id="t-p">Prompts</h2>
+          <div class="rejilla">
+            {prompts.map((p) => (
+              <TarjetaPrompt prompt={p} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+    {
+      herramientas.length > 0 && (
+        <section class="bloque" aria-labelledby="t-h">
+          <h2 id="t-h">Herramientas</h2>
+          <div class="rejilla">
+            {herramientas.map((h) => (
+              <TarjetaHerramienta herramienta={h} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .bloque {
+    margin-top: var(--e-6);
+  }
+  .bloque h2 {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-4);
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { fechaLarga } from '@/utils/fechas';
+interface Fuente {
+  titulo: string;
+  url: string;
+  editor?: string;
+  fecha?: string;
+  consultado?: Date;
+}
+interface Props {
+  fuentes: Fuente[];
+}
+const { fuentes } = Astro.props;
+---
+
+{
+  fuentes.length > 0 && (
+    <section class="fuentes" aria-labelledby="t-fuentes">
+      <h2 id="t-fuentes">Fuentes y referencias</h2>
+      <ol>
+        {fuentes.map((f) => (
+          <li>
+            <a href={f.url} rel="noopener" target="_blank">
+              {f.titulo}
+            </a>
+            {f.editor && <span>. {f.editor}</span>}
+            {f.fecha && <span> ({f.fecha})</span>}.
+            {f.consultado && <span class="meta">Consultado el {fechaLarga(f.consultado)}.</span>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
+<style>
+  .fuentes {
+    margin-top: var(--e-7);
+    padding-top: var(--e-5);
+    border-top: 1px solid var(--c-borde);
+  }
+  h2 {
+    font-size: var(--t-lg);
+    margin-bottom: var(--e-3);
+  }
+  ol {
+    padding-left: 1.4em;
+    display: grid;
+    gap: var(--e-2);
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
+  }
+</style>

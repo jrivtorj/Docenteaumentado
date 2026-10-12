@@ -1,0 +1,172 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+---
+
+<Base
+  titulo="Buscar"
+  descripcion="Busca artículos, tutoriales, prompts y herramientas de IA para docentes en El docente aumentado."
+  noindex
+  migas={[{ nombre: 'Buscar', href: '/buscar/' }]}
+>
+  <div class="contenedor contenedor--texto">
+    <CabeceraPagina titulo="Buscar en el sitio" />
+    <form class="buscador" role="search" action="/buscar/" method="get" data-buscador>
+      <label for="q" class="visualmente-oculto">Término de búsqueda</label>
+      <input id="q" name="q" type="search" class="entrada" placeholder="Ej.: rúbrica, situación de aprendizaje, química" autocomplete="off" />
+      <fieldset class="buscador__tipos">
+        <legend class="visualmente-oculto">Tipo de contenido</legend>
+        <label><input type="radio" name="tipo" value="" checked /> Todo</label>
+        <label><input type="radio" name="tipo" value="articulo" /> Artículos</label>
+        <label><input type="radio" name="tipo" value="Prompt" /> Prompts</label>
+        <label><input type="radio" name="tipo" value="Herramienta" /> Herramientas</label>
+      </fieldset>
+      <button class="boton" type="submit">Buscar</button>
+    </form>
+    <p class="meta estado" data-estado aria-live="polite"></p>
+    <ol class="resultados" data-resultados></ol>
+    <noscript>
+      <p class="aviso">El buscador necesita JavaScript. Puedes navegar por <a href="/temas/">temas</a> o por el <a href="/articulos/">archivo de artículos</a>.</p>
+    </noscript>
+  </div>
+</Base>
+
+<script>
+  interface Item {
+    tipo: string;
+    titulo: string;
+    descripcion: string;
+    url: string;
+    texto: string;
+  }
+  const normalizar = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  const form = document.querySelector<HTMLFormElement>('[data-buscador]')!;
+  const entrada = form.querySelector<HTMLInputElement>('input[name="q"]')!;
+  const estado = document.querySelector<HTMLElement>('[data-estado]')!;
+  const lista = document.querySelector<HTMLOListElement>('[data-resultados]')!;
+  let indice: Item[] | null = null;
+
+  async function cargar(): Promise<Item[]> {
+    if (indice) return indice;
+    const r = await fetch('/buscar.json');
+    indice = (await r.json()) as Item[];
+    return indice;
+  }
+
+  function puntuar(item: Item, terminos: string[]): number {
+    const titulo = normalizar(item.titulo);
+    let p = 0;
+    for (const t of terminos) {
+      if (!item.texto.includes(t)) return 0;
+      p += titulo.includes(t) ? 5 : 1;
+    }
+    return p;
+  }
+
+  function pintar(resultados: Item[], consulta: string) {
+    lista.replaceChildren(
+      ...resultados.map((r) => {
+        const li = document.createElement('li');
+        const tipo = document.createElement('p');
+        tipo.className = 'antetitulo';
+        tipo.textContent = r.tipo;
+        const h = document.createElement('h2');
+        const a = document.createElement('a');
+        a.href = r.url;
+        a.textContent = r.titulo;
+        h.append(a);
+        const d = document.createElement('p');
+        d.textContent = r.descripcion;
+        li.append(tipo, h, d);
+        return li;
+      }),
+    );
+    estado.textContent = consulta
+      ? resultados.length
+        ? `${resultados.length} resultados para «${consulta}».`
+        : `Sin resultados para «${consulta}». Prueba con otra palabra o explora los temas.`
+      : '';
+  }
+
+  async function buscar() {
+    const consulta = entrada.value.trim();
+    const tipo = new FormData(form).get('tipo') as string;
+    const params = new URLSearchParams();
+    if (consulta) params.set('q', consulta);
+    if (tipo) params.set('tipo', tipo);
+    history.replaceState(null, '', params.size ? `?${params}` : location.pathname);
+    if (consulta.length < 2) {
+      pintar([], '');
+      return;
+    }
+    const terminos = normalizar(consulta).split(/\s+/).filter(Boolean);
+    const items = await cargar();
+    const res = items
+      .filter((i) => !tipo || (tipo === 'articulo' ? !['Prompt', 'Herramienta'].includes(i.tipo) : i.tipo === tipo))
+      .map((i) => ({ i, p: puntuar(i, terminos) }))
+      .filter((x) => x.p > 0)
+      .sort((a, b) => b.p - a.p)
+      .map((x) => x.i);
+    pintar(res, consulta);
+  }
+
+  let t: number | undefined;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    buscar();
+  });
+  entrada.addEventListener('input', () => {
+    clearTimeout(t);
+    t = window.setTimeout(buscar, 200);
+  });
+  form.addEventListener('change', buscar);
+
+  const inicial = new URLSearchParams(location.search);
+  entrada.value = inicial.get('q') ?? '';
+  const tipoInicial = inicial.get('tipo');
+  if (tipoInicial) form.querySelector<HTMLInputElement>(`input[name="tipo"][value="${CSS.escape(tipoInicial)}"]`)?.click();
+  if (entrada.value) buscar();
+  entrada.focus();
+</script>
+
+<style>
+  .buscador {
+    display: grid;
+    gap: var(--e-3);
+  }
+  .buscador__tipos {
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-2) var(--e-4);
+    font-size: var(--t-sm);
+  }
+  .buscador__tipos input {
+    accent-color: var(--c-acento);
+  }
+  .buscador .boton {
+    justify-self: start;
+  }
+  .estado {
+    margin-block: var(--e-5) var(--e-3);
+  }
+  .resultados {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--e-5);
+  }
+  .resultados :global(li) {
+    padding-bottom: var(--e-5);
+    border-bottom: 1px solid var(--c-borde);
+  }
+  .resultados :global(h2) {
+    font-size: var(--t-lg);
+    margin-block: var(--e-1);
+  }
+  .resultados :global(p:not(.antetitulo)) {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+  }
+</style>

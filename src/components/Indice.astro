@@ -1,0 +1,45 @@
+---
+import type { MarkdownHeading } from 'astro';
+interface Props {
+  encabezados: MarkdownHeading[];
+}
+const h2 = Astro.props.encabezados.filter((h) => h.depth === 2);
+---
+
+{
+  h2.length >= 4 && (
+    <details class="indice" open>
+      <summary>Contenido</summary>
+      <ol>
+        {h2.map((h) => (
+          <li>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+
+<style>
+  .indice {
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    padding: var(--e-3) var(--e-4);
+    font-size: var(--t-sm);
+    background: var(--c-fondo-suave);
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 650;
+  }
+  ol {
+    margin-top: var(--e-3);
+    padding-left: 1.3em;
+    display: grid;
+    gap: var(--e-2);
+  }
+  a {
+    color: var(--c-texto-2);
+  }
+</style>

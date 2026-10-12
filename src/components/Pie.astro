@@ -1,0 +1,96 @@
+---
+import { NAV_PIE, SITIO } from '@/data/sitio';
+const anio = new Date().getFullYear();
+---
+
+<footer role="contentinfo" class="pie">
+  <div class="contenedor pie__rejilla">
+    <div class="pie__marca">
+      <p class="pie__nombre">{SITIO.nombre}</p>
+      <p class="pie__lema">{SITIO.lema}</p>
+    </div>
+    {
+      NAV_PIE.map((grupo) => (
+        <nav aria-label={grupo.titulo}>
+          <h2 class="pie__titulo">{grupo.titulo}</h2>
+          <ul>
+            {grupo.enlaces.map((e) => (
+              <li>
+                <a href={e.href}>{e.texto}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+  <div class="contenedor pie__legal">
+    <p>
+      © {anio} {SITIO.nombre}. Contenido original del autor salvo indicación. Proyecto independiente, sin relación comercial con las
+      herramientas analizadas.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    margin-top: var(--e-8);
+    border-top: 1px solid var(--c-borde);
+    background: var(--c-fondo-suave);
+    font-size: var(--t-sm);
+  }
+  .pie__rejilla {
+    display: grid;
+    gap: var(--e-6);
+    padding-block: var(--e-7) var(--e-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+  .pie__marca {
+    grid-column: 1 / -1;
+    max-width: 26rem;
+  }
+  @media (min-width: 64rem) {
+    .pie__rejilla {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    .pie__marca {
+      grid-column: auto;
+    }
+  }
+  .pie__nombre {
+    font-family: var(--f-serif);
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+  .pie__lema {
+    color: var(--c-texto-2);
+    margin-top: var(--e-2);
+  }
+  .pie__titulo {
+    font-size: var(--t-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-texto-3);
+    margin-bottom: var(--e-3);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--e-2);
+  }
+  a {
+    color: var(--c-texto-2);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--c-acento);
+    text-decoration: underline;
+  }
+  .pie__legal {
+    border-top: 1px solid var(--c-borde);
+    padding-block: var(--e-4) var(--e-5);
+    color: var(--c-texto-3);
+    font-size: var(--t-xs);
+  }
+</style>

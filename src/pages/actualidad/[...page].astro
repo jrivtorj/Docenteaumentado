@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Listado from '@/components/Listado.astro';
+import { getArticulos } from '@/utils/contenido';
+import { POR_PAGINA, conPagina } from '@/utils/paginas';
+
+export const getStaticPaths = (async ({ paginate }) =>
+  paginate(await getArticulos('actualidad'), { pageSize: POR_PAGINA })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const titulo = conPagina('Actualidad de la IA educativa', page.currentPage);
+const vacia = page.total === 0;
+---
+
+<Base
+  titulo={titulo}
+  descripcion="Noticias y análisis sobre IA en educación: modelos, herramientas y normativa, con fecha, fuentes enlazadas y separación clara entre hechos, opinión y previsiones."
+  migas={[{ nombre: 'Actualidad', href: '/actualidad/' }]}
+  noindex={vacia}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo={titulo}
+      antetitulo="Actualidad"
+      entradilla="Solo novedades con repercusión real en el aula. Cada pieza indica su fecha, enlaza a la fuente original y separa los hechos comprobados de la opinión y las previsiones."
+    />
+    {
+      vacia ? (
+        <p class="aviso">Todavía no hay piezas de actualidad publicadas.</p>
+      ) : (
+        <Listado page={page} />
+      )
+    }
+  </div>
+</Base>

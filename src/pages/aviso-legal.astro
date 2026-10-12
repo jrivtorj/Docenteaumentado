@@ -1,0 +1,72 @@
+---
+import Pagina from '@/layouts/Pagina.astro';
+import { SITIO } from '@/data/sitio';
+/*
+ * PLANTILLA. Complete los datos marcados como pendientes y haga revisar el texto si el
+ * sitio incorpora actividad económica (publicidad, afiliación, venta, servicios).
+ * No constituye asesoramiento jurídico.
+ */
+---
+
+<Pagina
+  titulo="Aviso legal"
+  descripcion={`Información sobre el titular de ${SITIO.nombre}, condiciones de uso y propiedad intelectual del sitio.`}
+  ruta="/aviso-legal/"
+  actualizado={new Date('2026-10-12')}
+  noindex
+>
+  <p class="aviso aviso--pendiente"><strong>Plantilla pendiente de completar.</strong> Los datos marcados deben rellenarse antes de publicar el sitio.</p>
+
+  <h2>1. Titular del sitio</h2>
+  <p>
+    En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y
+    de comercio electrónico (LSSI-CE), se informa de que este sitio web es titularidad de:
+  </p>
+  <ul>
+    <li>Titular: <span class="pendiente">[Nombre y apellidos]</span></li>
+    <li>NIF: <span class="pendiente">[NIF, si procede]</span></li>
+    <li>Domicilio a efectos de notificaciones: <span class="pendiente">[Dirección o apartado]</span></li>
+    <li>Correo electrónico de contacto: <span class="pendiente">[correo]</span></li>
+  </ul>
+
+  <h2>2. Objeto</h2>
+  <p>
+    {SITIO.nombre} es un proyecto divulgativo e independiente sobre el uso de la inteligencia artificial en educación.
+    Sus contenidos tienen carácter informativo y formativo y no sustituyen las instrucciones de la administración
+    educativa competente ni el criterio profesional de cada docente.
+  </p>
+
+  <h2>3. Condiciones de uso</h2>
+  <p>
+    El acceso al sitio es gratuito y no requiere registro. La persona usuaria se compromete a hacer un uso adecuado de
+    los contenidos y a no emplearlos para actividades ilícitas.
+  </p>
+
+  <h2>4. Propiedad intelectual</h2>
+  <p>
+    Los textos, la estructura y el diseño del sitio son obra de su titular salvo indicación en contrario. Los prompts de
+    la biblioteca pueden copiarse y adaptarse libremente para uso docente. Para otros usos, como la reproducción total o
+    parcial de artículos, se requiere autorización previa.
+    <span class="pendiente">[Opcional: si prefieres una licencia abierta (por ejemplo, Creative Commons BY-SA 4.0), indícala aquí y en el pie.]</span>
+  </p>
+  <p>
+    Las marcas y nombres de productos citados pertenecen a sus respectivos titulares y se mencionan con fines
+    informativos.
+  </p>
+
+  <h2>5. Enlaces externos</h2>
+  <p>
+    El sitio enlaza a webs de terceros como fuente o referencia. El titular no se responsabiliza de sus contenidos ni de
+    sus políticas, que pueden cambiar sin previo aviso.
+  </p>
+
+  <h2>6. Responsabilidad sobre la información</h2>
+  <p>
+    Se procura que la información sea exacta y esté actualizada, con fechas visibles de publicación y verificación. Aun
+    así, las herramientas de IA cambian con frecuencia sus funciones, condiciones y precios; compruebe siempre la
+    información en la fuente oficial antes de tomar decisiones.
+  </p>
+
+  <h2>7. Legislación aplicable</h2>
+  <p>Este aviso legal se rige por la legislación española.</p>
+</Pagina>

@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Listado from '@/components/Listado.astro';
+import { getArticulos } from '@/utils/contenido';
+import { POR_PAGINA, conPagina } from '@/utils/paginas';
+
+export const getStaticPaths = (async ({ paginate }) =>
+  paginate(await getArticulos('opinion'), { pageSize: POR_PAGINA })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const titulo = conPagina('Opinión sobre IA y educación', page.currentPage);
+---
+
+<Base
+  titulo={titulo}
+  descripcion="Artículos de opinión sobre evaluación, pensamiento crítico, privacidad, autoría, integridad académica y transformación del trabajo docente ante la IA."
+  migas={[{ nombre: 'Opinión', href: '/opinion/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo={titulo}
+      antetitulo="Opinión"
+      entradilla="Textos argumentativos firmados por el autor. Son opiniones, no guías normativas: se identifican como tales y se apoyan en fuentes cuando afirman hechos."
+    />
+    <Listado page={page} />
+  </div>
+</Base>

@@ -1,0 +1,51 @@
+---
+import type { Miga } from '@/utils/jsonld';
+interface Props {
+  migas: Miga[];
+}
+const { migas } = Astro.props;
+---
+
+<nav aria-label="Ruta de navegación" class="migas">
+  <ol>
+    {
+      migas.map((m, i) => (
+        <li>
+          {i < migas.length - 1 ? <a href={m.href}>{m.nombre}</a> : <span aria-current="page">{m.nombre}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .migas {
+    font-size: var(--t-xs);
+    color: var(--c-texto-3);
+    padding-top: var(--e-5);
+  }
+  ol {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-1);
+  }
+  li:not(:last-child)::after {
+    content: '/';
+    margin-left: var(--e-1);
+    color: var(--c-borde-fuerte);
+  }
+  a {
+    color: var(--c-texto-3);
+  }
+  span[aria-current] {
+    color: var(--c-texto-2);
+    display: inline-block;
+    max-width: 40ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+</style>

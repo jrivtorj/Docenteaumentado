@@ -1,0 +1,4 @@
+# Redirecciones 301 para Netlify y Cloudflare Pages. Una por línea:
+#   /ruta-antigua/   /ruta-nueva/   301
+# Añade aquí cualquier URL publicada que cambie. Mantén también la entrada
+# equivalente en `redirects` de astro.config.mjs para el entorno local.

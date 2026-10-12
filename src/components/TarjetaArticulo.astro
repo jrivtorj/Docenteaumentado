@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { TIPOS_ARTICULO } from '@/data/taxonomias';
+import { tiempoLectura, urlArticulo, type Articulo } from '@/utils/contenido';
+import { fechaLarga, fechaISO } from '@/utils/fechas';
+
+interface Props {
+  articulo: Articulo;
+  /** Nivel de encabezado del título según el contexto de la página. */
+  nivel?: 2 | 3;
+  variante?: 'normal' | 'destacada';
+}
+const { articulo, nivel = 3, variante = 'normal' } = Astro.props;
+const { data } = articulo;
+const H = `h${nivel}` as 'h2' | 'h3';
+---
+
+<article class:list={['tarjeta', `tarjeta--${variante}`]}>
+  {
+    data.imagen && (
+      <Image
+        src={data.imagen.src}
+        alt={data.imagen.alt}
+        widths={[480, 800]}
+        sizes="(min-width: 64rem) 30rem, 100vw"
+        class="tarjeta__imagen"
+        loading="lazy"
+      />
+    )
+  }
+  <p class="antetitulo">{TIPOS_ARTICULO[data.tipo].nombre}</p>
+  <H class="tarjeta__titulo">
+    <a href={urlArticulo(articulo)}>{data.titulo}</a>
+  </H>
+  <p class="tarjeta__resumen">{data.descripcion}</p>
+  <p class="meta">
+    <time datetime={fechaISO(data.fechaPublicacion)}>{fechaLarga(data.fechaPublicacion)}</time>
+    · {tiempoLectura(articulo)} min de lectura
+  </p>
+</article>
+
+<style>
+  .tarjeta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-2);
+    padding: var(--e-5);
+    background: var(--c-superficie);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    transition:
+      border-color var(--transicion),
+      box-shadow var(--transicion);
+  }
+  .tarjeta:hover {
+    border-color: var(--c-borde-fuerte);
+    box-shadow: var(--sombra-hover);
+  }
+  .tarjeta:focus-within {
+    border-color: var(--c-acento);
+  }
+  .tarjeta__imagen {
+    border-radius: var(--radio-sm);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: var(--e-2);
+  }
+  .tarjeta__titulo {
+    font-size: var(--t-lg);
+    line-height: 1.3;
+  }
+  .tarjeta--destacada .tarjeta__titulo {
+    font-family: var(--f-serif);
+    font-size: var(--t-xl);
+  }
+  .tarjeta__titulo a {
+    color: var(--c-texto);
+    text-decoration: none;
+  }
+  /* Toda la tarjeta es clicable sin anidar enlaces. */
+  .tarjeta__titulo a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radio);
+  }
+  .tarjeta__titulo a:hover {
+    color: var(--c-acento);
+  }
+  .tarjeta__titulo a:focus-visible {
+    outline: none;
+  }
+  .tarjeta__titulo a:focus-visible::after {
+    outline: 3px solid var(--c-foco);
+    outline-offset: 2px;
+  }
+  .tarjeta__resumen {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+    flex: 1;
+  }
+</style>

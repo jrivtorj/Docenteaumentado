@@ -1,0 +1,92 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
+import { getArticulos } from '@/utils/contenido';
+
+const experimentos = await getArticulos('laboratorio');
+---
+
+<Base
+  titulo="Laboratorio de IA educativa"
+  descripcion="Experimentos, comparativas y pequeños recursos interactivos sobre inteligencia artificial y educación, como el constructor de prompts para docentes."
+  migas={[{ nombre: 'Laboratorio', href: '/laboratorio/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Laboratorio"
+      antetitulo="Experimentos"
+      entradilla="Pruebas, comparativas y recursos interactivos. Todo lo que hay aquí funciona en tu navegador, sin cuentas ni envío de datos."
+    />
+
+    <section aria-labelledby="t-recursos">
+      <h2 id="t-recursos" class="titulo-bloque">Recursos interactivos</h2>
+      <div class="rejilla">
+        <article class="recurso">
+          <p class="antetitulo">Herramienta</p>
+          <h3><a href="/laboratorio/constructor-de-prompts/">Constructor de prompts para docentes</a></h3>
+          <p>
+            Rellena rol, contexto, tarea, formato y criterios de calidad y obtén un prompt estructurado listo para copiar.
+            Aplica la estructura que explicamos en la guía de prompts.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="t-exp" class="bloque">
+      <h2 id="t-exp" class="titulo-bloque">Experimentos y comparativas</h2>
+      {
+        experimentos.length ? (
+          <div class="rejilla">
+            {experimentos.map((a) => (
+              <TarjetaArticulo articulo={a} />
+            ))}
+          </div>
+        ) : (
+          <p class="meta">
+            Próximamente: comparativas documentadas de asistentes con las mismas tareas docentes, con los prompts y las
+            respuestas completas para que puedas reproducirlas.
+          </p>
+        )
+      }
+    </section>
+  </div>
+</Base>
+
+<style>
+  .titulo-bloque {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-4);
+  }
+  .bloque {
+    margin-top: var(--e-7);
+  }
+  .recurso {
+    position: relative;
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    display: grid;
+    gap: var(--e-2);
+  }
+  .recurso:hover {
+    border-color: var(--c-borde-fuerte);
+    box-shadow: var(--sombra-hover);
+  }
+  .recurso h3 a {
+    color: var(--c-texto);
+    text-decoration: none;
+  }
+  .recurso h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .recurso h3 a:hover {
+    color: var(--c-acento);
+  }
+  .recurso p:not(.antetitulo) {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+  }
+</style>

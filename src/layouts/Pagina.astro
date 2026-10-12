@@ -1,0 +1,45 @@
+---
+/** Página institucional de texto (legales, autor, contacto). */
+import Base from './Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import { fechaLarga, fechaISO } from '@/utils/fechas';
+
+interface Props {
+  titulo: string;
+  tituloSeo?: string;
+  descripcion: string;
+  ruta: string;
+  antetitulo?: string;
+  entradilla?: string;
+  actualizado?: Date;
+  noindex?: boolean;
+}
+const { titulo, tituloSeo, descripcion, ruta, antetitulo, entradilla, actualizado, noindex } = Astro.props;
+---
+
+<Base titulo={tituloSeo ?? titulo} descripcion={descripcion} noindex={noindex} migas={[{ nombre: titulo, href: ruta }]}>
+  <div class="contenedor contenedor--texto">
+    <CabeceraPagina titulo={titulo} antetitulo={antetitulo} entradilla={entradilla}>
+      {
+        actualizado && (
+          <p class="meta">
+            Última revisión: <time datetime={fechaISO(actualizado)}>{fechaLarga(actualizado)}</time>
+          </p>
+        )
+      }
+    </CabeceraPagina>
+    <div class="prosa">
+      <slot />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .prosa :global(.pendiente) {
+    background: var(--c-aviso-fondo);
+    color: var(--c-aviso);
+    font-weight: 600;
+    padding: 0 0.25em;
+    border-radius: 3px;
+  }
+</style>

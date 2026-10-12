@@ -1,0 +1,10 @@
+# Cabeceras HTTP para Netlify y Cloudflare Pages (Vercel: ver README).
+# La Content-Security-Policy la genera Astro como <meta> en cada página.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

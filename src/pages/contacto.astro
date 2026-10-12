@@ -1,0 +1,98 @@
+---
+import { PUBLIC_CONTACT_FORM_ACTION, PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
+import Pagina from '@/layouts/Pagina.astro';
+
+const activo = Boolean(PUBLIC_CONTACT_FORM_ACTION);
+---
+
+<Pagina
+  titulo="Contacto"
+  descripcion="Escribe al autor de El docente aumentado para comunicar errores, proponer temas o compartir experiencias de uso de la IA en el aula."
+  ruta="/contacto/"
+  entradilla="Errores, propuestas de temas o experiencias de aula: todo es bienvenido. Respondo personalmente, aunque no siempre de inmediato."
+>
+  {
+    PUBLIC_CONTACT_EMAIL && (
+      <p>
+        También puedes escribir directamente a <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>{PUBLIC_CONTACT_EMAIL}</a>.
+      </p>
+    )
+  }
+
+  <form class="contacto" method="post" action={activo ? PUBLIC_CONTACT_FORM_ACTION : undefined} aria-describedby="nota-contacto">
+    {
+      !activo && (
+        <p id="nota-contacto" class="aviso aviso--pendiente" role="note">
+          <strong>Formulario pendiente de configurar.</strong> Todavía no tiene un destino de envío, así que está
+          desactivado y no recoge ningún dato.
+        </p>
+      )
+    }
+    <fieldset disabled={!activo} class="contacto__campos">
+      <legend class="visualmente-oculto">Datos del mensaje</legend>
+      <div class="campo">
+        <label for="c-nombre">Nombre</label>
+        <input id="c-nombre" class="entrada" name="nombre" autocomplete="name" required />
+      </div>
+      <div class="campo">
+        <label for="c-email">Correo electrónico</label>
+        <input id="c-email" class="entrada" type="email" name="email" autocomplete="email" required aria-describedby="c-email-ayuda" />
+        <span id="c-email-ayuda" class="ayuda">Solo para responderte. No se usa para nada más.</span>
+      </div>
+      <div class="campo">
+        <label for="c-asunto">Motivo</label>
+        <select id="c-asunto" class="entrada" name="motivo">
+          <option>Corrección o error</option>
+          <option>Propuesta de tema</option>
+          <option>Experiencia de aula</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="c-mensaje">Mensaje</label>
+        <textarea id="c-mensaje" class="entrada" name="mensaje" required minlength="10"></textarea>
+        <span class="ayuda">No incluyas datos personales de alumnado ni de terceros.</span>
+      </div>
+      <!-- Campo trampa contra spam: los humanos no lo ven. Formspree/Netlify lo reconocen con estos nombres. -->
+      <div hidden aria-hidden="true">
+        <label>No rellenar <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <label class="consentimiento">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído la <a href="/privacidad/">política de privacidad</a>.</span>
+      </label>
+      <button class="boton" type="submit">Enviar mensaje</button>
+    </fieldset>
+    {activo && <p id="nota-contacto" class="meta">El envío se procesa a través del servicio de formularios indicado en la política de privacidad.</p>}
+  </form>
+</Pagina>
+
+<style>
+  .contacto {
+    margin-top: var(--e-5);
+    font-size: var(--t-base);
+  }
+  .contacto__campos {
+    border: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--e-4);
+    margin-top: var(--e-4);
+  }
+  .contacto__campos:disabled {
+    opacity: 0.6;
+  }
+  .consentimiento {
+    display: flex;
+    gap: var(--e-2);
+    align-items: flex-start;
+    font-size: var(--t-sm);
+  }
+  .consentimiento input {
+    margin-top: 0.3em;
+    accent-color: var(--c-acento);
+  }
+  .contacto .boton {
+    justify-self: start;
+  }
+</style>

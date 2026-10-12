@@ -1,0 +1,61 @@
+---
+import '@/styles/global.css';
+import { PUBLIC_ANALYTICS_SCRIPT, PUBLIC_ANALYTICS_DOMAIN } from 'astro:env/server';
+import Seo, { type SeoProps } from '@/components/Seo.astro';
+import Cabecera from '@/components/Cabecera.astro';
+import Pie from '@/components/Pie.astro';
+import Migas from '@/components/Migas.astro';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import serifLatin from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
+import { SITIO } from '@/data/sitio';
+import { migasDePan, type Miga } from '@/utils/jsonld';
+
+interface Props extends SeoProps {
+  /** Migas sin incluir «Inicio» (se añade automáticamente). */
+  migas?: Miga[];
+}
+
+const { migas, jsonLd = [], ...seo } = Astro.props;
+const site = Astro.site!;
+const rutaMigas = migas ? [{ nombre: 'Inicio', href: '/' }, ...migas] : undefined;
+const datos = rutaMigas ? [...jsonLd, migasDePan(rutaMigas, site)] : jsonLd;
+---
+
+<!doctype html>
+<html lang={SITIO.idioma}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Marca que JS está disponible antes del primer pintado: evita saltos de maquetación. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifLatin} as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111417" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITIO.nombre} (RSS)`} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {...seo} jsonLd={datos} />
+    {
+      PUBLIC_ANALYTICS_SCRIPT && PUBLIC_ANALYTICS_DOMAIN && (
+        <script is:inline defer data-domain={PUBLIC_ANALYTICS_DOMAIN} src={PUBLIC_ANALYTICS_SCRIPT} />
+      )
+    }
+  </head>
+  <body>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+    <Cabecera />
+    <main id="contenido" tabindex="-1">
+      {
+        rutaMigas && (
+          <div class="contenedor">
+            <Migas migas={rutaMigas} />
+          </div>
+        )
+      }
+      <slot />
+    </main>
+    <Pie />
+  </body>
+</html>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  titulo: string;
+  antetitulo?: string;
+  entradilla?: string;
+}
+const { titulo, antetitulo, entradilla } = Astro.props;
+---
+
+<header class="cabecera-pagina">
+  {antetitulo && <p class="antetitulo">{antetitulo}</p>}
+  <h1>{titulo}</h1>
+  {entradilla && <p class="entradilla">{entradilla}</p>}
+  <slot />
+</header>

@@ -1,0 +1,93 @@
+---
+/** Barra de búsqueda y filtros. Sin JS se oculta (data-listo) y se muestra el listado completo. */
+interface Grupo {
+  nombre: string;
+  etiqueta: string;
+  atributo: string;
+  modo?: 'exacto' | 'token';
+  comodin?: string;
+  opciones: { valor: string; texto: string }[];
+}
+interface Props {
+  objetivo: string;
+  grupos: Grupo[];
+  placeholder: string;
+}
+const { objetivo, grupos, placeholder } = Astro.props;
+---
+
+<form class="filtros no-imprimir" data-filtros={objetivo} role="search" aria-label="Filtrar resultados">
+  <div class="campo filtros__texto">
+    <label for="filtro-q">Buscar</label>
+    <input id="filtro-q" class="entrada" type="search" name="q" placeholder={placeholder} autocomplete="off" />
+  </div>
+  {
+    grupos.map((g) => (
+      <div class="campo">
+        <label for={`filtro-${g.nombre}`}>{g.etiqueta}</label>
+        <select
+          id={`filtro-${g.nombre}`}
+          class="entrada"
+          name={g.nombre}
+          data-atributo={g.atributo}
+          data-modo={g.modo ?? 'exacto'}
+          data-comodin={g.comodin}
+        >
+          <option value="">Todas</option>
+          {g.opciones.map((o) => (
+            <option value={o.valor}>{o.texto}</option>
+          ))}
+        </select>
+      </div>
+    ))
+  }
+  <div class="filtros__acciones">
+    <button type="reset" class="boton boton--secundario">Limpiar</button>
+  </div>
+</form>
+<p class="meta filtros__contador" data-contador aria-live="polite"></p>
+
+<script>
+  import '@/scripts/filtros';
+</script>
+
+<style>
+  .filtros {
+    display: none;
+    gap: var(--e-3);
+    grid-template-columns: 1fr;
+    padding: var(--e-4);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    background: var(--c-fondo-suave);
+  }
+  /* Visible desde el primer pintado si hay JS (clase .js en <html>); sin JS no sirve y se oculta. */
+  :global(.js) .filtros {
+    display: grid;
+  }
+  @media (min-width: 48rem) {
+    .filtros {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .filtros__texto {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 64rem) {
+    .filtros {
+      grid-template-columns: 2fr repeat(var(--n, 3), 1fr) auto;
+      align-items: end;
+    }
+    .filtros__texto {
+      grid-column: auto;
+    }
+  }
+  .filtros__acciones {
+    display: flex;
+    align-items: end;
+  }
+  .filtros__contador {
+    margin-block: var(--e-4);
+    min-height: 1.5em;
+  }
+</style>

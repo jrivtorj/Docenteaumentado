@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  autor: CollectionEntry<'autores'>;
+}
+const { autor } = Astro.props;
+---
+
+<aside class="autor" aria-label="Sobre el autor">
+  <p class="antetitulo">Escrito por</p>
+  <p class="autor__nombre">
+    {autor.data.url ? <a href={autor.data.url}>{autor.data.nombre}</a> : autor.data.nombre}
+  </p>
+  <p class="meta">{autor.data.cargo}</p>
+  <p class="autor__bio">{autor.data.bio}</p>
+</aside>
+
+<style>
+  .autor {
+    margin-top: var(--e-6);
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    background: var(--c-fondo-suave);
+  }
+  .autor__nombre {
+    font-family: var(--f-serif);
+    font-size: var(--t-lg);
+    font-weight: 700;
+    margin-top: var(--e-1);
+  }
+  .autor__nombre a {
+    color: var(--c-texto);
+  }
+  .autor__bio {
+    margin-top: var(--e-3);
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
+  }
+</style>

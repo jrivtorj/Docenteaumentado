@@ -1,0 +1,89 @@
+---
+import Pagina from '@/layouts/Pagina.astro';
+import { SITIO } from '@/data/sitio';
+import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/server';
+/*
+ * PLANTILLA conforme al art. 13 del RGPD. Actualízala cada vez que se active un servicio
+ * que trate datos (formulario, newsletter, analítica, alojamiento). No es asesoramiento jurídico.
+ */
+---
+
+<Pagina
+  titulo="Política de privacidad"
+  descripcion={`Cómo trata ${SITIO.nombre} los datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos.`}
+  ruta="/privacidad/"
+  actualizado={new Date('2026-10-12')}
+  noindex
+>
+  <p class="aviso aviso--pendiente"><strong>Plantilla pendiente de completar.</strong> Revise los datos marcados y los proveedores antes de publicar.</p>
+
+  <h2>Principio general: mínimos datos</h2>
+  <p>
+    Este sitio se ha diseñado para funcionar sin recoger datos personales: no requiere registro, no usa cookies y no
+    carga servicios de terceros al visitar las páginas. Solo se tratan datos cuando usted decide escribir por el
+    formulario de contacto o suscribirse a la newsletter.
+  </p>
+
+  <h2>Responsable del tratamiento</h2>
+  <ul>
+    <li>Responsable: <span class="pendiente">[Nombre y apellidos]</span></li>
+    <li>NIF: <span class="pendiente">[NIF]</span></li>
+    <li>Contacto para asuntos de privacidad: <span class="pendiente">[correo]</span></li>
+  </ul>
+
+  <h2>Qué datos se tratan, para qué y con qué base jurídica</h2>
+  <table>
+    <thead>
+      <tr><th>Tratamiento</th><th>Datos</th><th>Finalidad</th><th>Base jurídica</th><th>Conservación</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Formulario de contacto</td>
+        <td>Nombre, correo y mensaje</td>
+        <td>Responder a su consulta</td>
+        <td>Consentimiento (art. 6.1.a RGPD)</td>
+        <td>El tiempo necesario para atender la consulta y, como máximo, <span class="pendiente">[plazo, p. ej. 12 meses]</span></td>
+      </tr>
+      <tr>
+        <td>Newsletter</td>
+        <td>Correo electrónico</td>
+        <td>Enviar la newsletter</td>
+        <td>Consentimiento (art. 6.1.a RGPD)</td>
+        <td>Hasta que se dé de baja</td>
+      </tr>
+      <tr>
+        <td>Estadísticas de uso</td>
+        <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Datos agregados y anónimos de navegación, sin cookies' : 'Ninguno: actualmente no hay analítica activa'}</td>
+        <td>Conocer qué contenidos resultan útiles</td>
+        <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Interés legítimo (art. 6.1.f RGPD)' : 'No aplica'}</td>
+        <td>{PUBLIC_ANALYTICS_SCRIPT ? <span class="pendiente">[según proveedor]</span> : 'No aplica'}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Destinatarios y encargados del tratamiento</h2>
+  <p>No se ceden datos a terceros salvo obligación legal. Para prestar el servicio intervienen como encargados:</p>
+  <ul>
+    <li>Alojamiento web: <span class="pendiente">[proveedor de hosting y país]</span></li>
+    <li>Formulario de contacto: <span class="pendiente">[servicio de formularios, si se usa]</span></li>
+    <li>Newsletter: {PUBLIC_NEWSLETTER_PROVIDER ?? <span class="pendiente">[proveedor de newsletter]</span>}</li>
+  </ul>
+  <p>
+    Si alguno de ellos realiza transferencias internacionales de datos, se indicará aquí la garantía aplicable.
+    <span class="pendiente">[Completar según los proveedores elegidos.]</span>
+  </p>
+
+  <h2>Sus derechos</h2>
+  <p>
+    Puede ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad,
+    así como retirar su consentimiento en cualquier momento, escribiendo al contacto indicado. Si considera que sus datos
+    no se tratan correctamente, puede presentar una reclamación ante la
+    <a href="https://www.aepd.es/" rel="noopener">Agencia Española de Protección de Datos</a>.
+  </p>
+
+  <h2>Menores de edad</h2>
+  <p>
+    Este sitio se dirige a profesionales de la educación. Los formularios no están pensados para menores de 14 años,
+    edad mínima para consentir el tratamiento de datos según el artículo 7 de la Ley Orgánica 3/2018 (LOPDGDD).
+  </p>
+</Pagina>

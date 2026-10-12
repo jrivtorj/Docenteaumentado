@@ -1,0 +1,72 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Filtros from '@/components/Filtros.astro';
+import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
+import { ETAPAS, TAREAS_DOCENTES } from '@/data/taxonomias';
+import { getHerramientas, getPrompts } from '@/utils/contenido';
+
+const prompts = await getPrompts();
+const herramientas = await getHerramientas();
+const usadas = new Set(prompts.flatMap((p) => p.data.herramientas.map((h) => h.id)));
+const tareasUsadas = new Set(prompts.map((p) => p.data.tarea));
+---
+
+<Base
+  titulo="Biblioteca de prompts para docentes"
+  descripcion={`${prompts.length} prompts completos para profesorado de ESO, Bachillerato y FP: situaciones de aprendizaje, rúbricas, cuestionarios, adaptaciones y más, con variables editables.`}
+  migas={[{ nombre: 'Prompts', href: '/prompts/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Biblioteca de prompts para docentes"
+      antetitulo="Biblioteca"
+      entradilla="Prompts completos y reutilizables, con objetivo, variables que puedes rellenar en la propia página y un ejemplo de aplicación. Funcionan con cualquier asistente conversacional salvo que se indique lo contrario."
+    >
+      <p class="meta">
+        ¿Primera vez? Lee antes <a href="/articulos/como-escribir-prompts-para-docentes/">cómo escribir prompts eficaces</a>
+        o crea el tuyo en el <a href="/laboratorio/constructor-de-prompts/">constructor de prompts</a>.
+      </p>
+    </CabeceraPagina>
+
+    <Filtros
+      objetivo="#lista-prompts"
+      placeholder="rúbrica, química, diversidad…"
+      grupos={[
+        {
+          nombre: 'tarea',
+          etiqueta: 'Tarea docente',
+          atributo: 'tarea',
+          opciones: Object.entries(TAREAS_DOCENTES)
+            .filter(([k]) => tareasUsadas.has(k as keyof typeof TAREAS_DOCENTES))
+            .map(([valor, texto]) => ({ valor, texto })),
+        },
+        {
+          nombre: 'etapa',
+          etiqueta: 'Etapa',
+          atributo: 'etapas',
+          modo: 'token',
+          comodin: 'todas',
+          opciones: Object.entries(ETAPAS)
+            .filter(([k]) => k !== 'todas')
+            .map(([valor, texto]) => ({ valor, texto })),
+        },
+        {
+          nombre: 'herramienta',
+          etiqueta: 'Herramienta',
+          atributo: 'herramientas',
+          modo: 'token',
+          comodin: 'cualquiera',
+          opciones: herramientas.filter((h) => usadas.has(h.id) || h.data.categorias.includes('asistentes')).map((h) => ({ valor: h.id, texto: h.data.nombre })),
+        },
+      ]}
+    />
+
+    <div id="lista-prompts" class="rejilla">
+      {prompts.map((p) => <TarjetaPrompt prompt={p} nivel={2} />)}
+    </div>
+    <p class="aviso" data-sin-resultados hidden>
+      No hay prompts con esa combinación de filtros. Prueba a quitar alguno o <a href="/buscar/">busca en todo el sitio</a>.
+    </p>
+  </div>
+</Base>

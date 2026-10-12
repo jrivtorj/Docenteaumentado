@@ -1,0 +1,38 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Newsletter from '@/components/Newsletter.astro';
+---
+
+<Base
+  titulo="Newsletter para docentes sobre IA"
+  descripcion="Newsletter quincenal de El docente aumentado: un tutorial aplicado, un prompt probado y una lectura crítica sobre inteligencia artificial en educación."
+  migas={[{ nombre: 'Newsletter', href: '/newsletter/' }]}
+>
+  <div class="contenedor contenedor--texto">
+    <CabeceraPagina
+      titulo="Newsletter"
+      antetitulo="Suscripción"
+      entradilla="Cada quince días, en tu correo: lo que merece la pena probar en clase y lo que conviene mirar con lupa."
+    />
+    <Newsletter id="nl-pagina" compacto />
+    <div class="prosa detalles">
+      <h2>Qué recibirás</h2>
+      <ul>
+        <li>Un tutorial o caso de uso aplicado a una tarea docente concreta.</li>
+        <li>Un prompt de la biblioteca, con notas sobre cómo adaptarlo.</li>
+        <li>Una lectura comentada sobre IA y educación, con su fuente original.</li>
+      </ul>
+      <p>
+        Sin publicidad, sin cesión de datos y con enlace de baja en cada envío. La periodicidad es orientativa: si no hay
+        nada que valga la pena contar, no se envía.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .detalles {
+    margin-top: var(--e-6);
+  }
+</style>
