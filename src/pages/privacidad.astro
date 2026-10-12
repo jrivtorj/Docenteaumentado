@@ -1,11 +1,31 @@
 ---
 import Pagina from '@/layouts/Pagina.astro';
 import { SITIO } from '@/data/sitio';
-import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/server';
+import { getEntry } from 'astro:content';
+import {
+  PUBLIC_CONTACT_EMAIL,
+  PUBLIC_CONTACT_FORM_ACTION,
+  PUBLIC_NEWSLETTER_ACTION,
+  PUBLIC_NEWSLETTER_PROVIDER,
+  PUBLIC_ANALYTICS_SCRIPT,
+} from 'astro:env/server';
 /*
- * PLANTILLA conforme al art. 13 del RGPD. Actualízala cada vez que se active un servicio
- * que trate datos (formulario, newsletter, analítica, alojamiento). No es asesoramiento jurídico.
+ * Información del art. 13 del RGPD. Las filas de formulario, newsletter y analítica se
+ * adaptan solas a las variables de entorno: lo que no está activo se declara como tal.
+ * Revísala cada vez que se active un servicio nuevo. No es asesoramiento jurídico.
  */
+const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
+const dominio = (url?: string) => {
+  try {
+    return url ? new URL(url).hostname : undefined;
+  } catch {
+    return undefined;
+  }
+};
+const servicioFormulario = dominio(PUBLIC_CONTACT_FORM_ACTION);
+const servicioNewsletter = PUBLIC_NEWSLETTER_PROVIDER ?? dominio(PUBLIC_NEWSLETTER_ACTION);
+const servicioAnalitica = dominio(PUBLIC_ANALYTICS_SCRIPT);
+const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_ACTION);
 ---
 
 <Pagina
@@ -15,20 +35,27 @@ import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/s
   actualizado={new Date('2026-10-12')}
   noindex
 >
-  <p class="aviso aviso--pendiente"><strong>Plantilla pendiente de completar.</strong> Revise los datos marcados y los proveedores antes de publicar.</p>
-
   <h2>Principio general: mínimos datos</h2>
   <p>
     Este sitio se ha diseñado para funcionar sin recoger datos personales: no requiere registro, no usa cookies y no
     carga servicios de terceros al visitar las páginas. Solo se tratan datos cuando usted decide escribir por el
     formulario de contacto o suscribirse a la newsletter.
+    {!hayFormularios && <>{' '}En este momento ninguno de los dos formularios está activo, así que el sitio no recoge datos personales.</>}
   </p>
 
   <h2>Responsable del tratamiento</h2>
   <ul>
-    <li>Responsable: <span class="pendiente">[Nombre y apellidos]</span></li>
-    <li>NIF: <span class="pendiente">[NIF]</span></li>
-    <li>Contacto para asuntos de privacidad: <span class="pendiente">[correo]</span></li>
+    <li>Responsable: {autor.data.nombre}</li>
+    <li>
+      Contacto para asuntos de privacidad:
+      {
+        PUBLIC_CONTACT_EMAIL ? (
+          <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>{PUBLIC_CONTACT_EMAIL}</a>
+        ) : (
+          <a href="/contacto/">página de contacto</a>
+        )
+      }
+    </li>
   </ul>
 
   <h2>Qué datos se tratan, para qué y con qué base jurídica</h2>
@@ -42,7 +69,7 @@ import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/s
         <td>Nombre, correo y mensaje</td>
         <td>Responder a su consulta</td>
         <td>Consentimiento (art. 6.1.a RGPD)</td>
-        <td>El tiempo necesario para atender la consulta y, como máximo, <span class="pendiente">[plazo, p. ej. 12 meses]</span></td>
+        <td>El tiempo necesario para atender la consulta y, como máximo, 12 meses</td>
       </tr>
       <tr>
         <td>Newsletter</td>
@@ -56,7 +83,7 @@ import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/s
         <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Datos agregados y anónimos de navegación, sin cookies' : 'Ninguno: actualmente no hay analítica activa'}</td>
         <td>Conocer qué contenidos resultan útiles</td>
         <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Interés legítimo (art. 6.1.f RGPD)' : 'No aplica'}</td>
-        <td>{PUBLIC_ANALYTICS_SCRIPT ? <span class="pendiente">[según proveedor]</span> : 'No aplica'}</td>
+        <td>{PUBLIC_ANALYTICS_SCRIPT ? `Según la política de ${servicioAnalitica ?? 'su proveedor'}` : 'No aplica'}</td>
       </tr>
     </tbody>
   </table>
@@ -64,13 +91,17 @@ import { PUBLIC_NEWSLETTER_PROVIDER, PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/s
   <h2>Destinatarios y encargados del tratamiento</h2>
   <p>No se ceden datos a terceros salvo obligación legal. Para prestar el servicio intervienen como encargados:</p>
   <ul>
-    <li>Alojamiento web: <span class="pendiente">[proveedor de hosting y país]</span></li>
-    <li>Formulario de contacto: <span class="pendiente">[servicio de formularios, si se usa]</span></li>
-    <li>Newsletter: {PUBLIC_NEWSLETTER_PROVIDER ?? <span class="pendiente">[proveedor de newsletter]</span>}</li>
+    <li>
+      Alojamiento web: Cloudflare, Inc. (Estados Unidos). Como cualquier servidor, registra datos técnicos de conexión,
+      como la dirección IP, por motivos de seguridad y funcionamiento.
+    </li>
+    <li>Formulario de contacto: {servicioFormulario ?? 'ninguno; el formulario no está activo'}.</li>
+    <li>Newsletter: {servicioNewsletter ?? 'ninguno; la suscripción no está activa'}.</li>
   </ul>
   <p>
-    Si alguno de ellos realiza transferencias internacionales de datos, se indicará aquí la garantía aplicable.
-    <span class="pendiente">[Completar según los proveedores elegidos.]</span>
+    Cloudflare realiza transferencias internacionales de datos amparadas en su certificación en el Marco de Privacidad de
+    Datos UE-EE. UU. y, subsidiariamente, en las cláusulas contractuales tipo de la Comisión Europea. Cuando se active
+    un servicio de formularios o de newsletter, se indicará aquí su ubicación y la garantía que aplique.
   </p>
 
   <h2>Sus derechos</h2>

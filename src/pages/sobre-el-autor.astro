@@ -4,8 +4,8 @@ import Pagina from '@/layouts/Pagina.astro';
 import { SITIO } from '@/data/sitio';
 
 /*
- * PÁGINA EDITABLE. Solo contiene datos facilitados por el autor. Antes de publicar,
- * revisa cada párrafo y completa lo marcado como [Completar] o bórralo.
+ * PÁGINA EDITABLE. Solo contiene datos facilitados por el autor. Si quieres añadir
+ * centro, años de experiencia o proyectos concretos, hazlo en «Quién escribe».
  * No añadas méritos, premios, publicaciones ni cifras que no puedas acreditar.
  */
 const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
@@ -31,7 +31,6 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
     ciencias, donde un error de cálculo o de unidades no es un detalle, y su encaje en la programación didáctica que
     exige la LOMLOE.
   </p>
-  <p class="pendiente">[Completar si se desea: centro o isla, años de experiencia, materias que impartes, proyectos concretos que quieras mencionar. Elimina este párrafo si no lo usas.]</p>
 
   <h2 id="por-que">Por qué existe esta web</h2>
   <p>

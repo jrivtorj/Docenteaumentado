@@ -23,6 +23,11 @@ fuentes:
     url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
     editor: Diario Oficial de la Unión Europea
     consultado: 2026-10-12
+  - titulo: Reglamento (UE) 2026/1744 («ómnibus digital sobre IA»)
+    url: https://eur-lex.europa.eu/eli/reg/2026/1744/oj
+    editor: Diario Oficial de la Unión Europea
+    fecha: 8 de julio de 2026
+    consultado: 2026-10-12
   - titulo: Guía para centros educativos
     url: https://www.aepd.es/guias/guia-centros-educativos.pdf
     editor: Agencia Española de Protección de Datos
@@ -54,9 +59,9 @@ La pregunta que más se repite en los claustros es sencilla: *¿puedo pegar esto
 - Están **prohibidos** los sistemas de reconocimiento de emociones en centros educativos, salvo por motivos médicos o de seguridad (artículo 5).
 - Algunos usos en educación se consideran de **alto riesgo** (anexo III): sistemas para decidir el acceso o la admisión, evaluar resultados de aprendizaje, determinar el nivel educativo adecuado o vigilar comportamientos prohibidos durante los exámenes.
 
-<div class="nota nota--verificar">
+<div class="nota nota--hecho">
 
-El calendario de aplicación de las obligaciones para sistemas de alto riesgo ha sido objeto de una modificación en 2026 (conocida como «ómnibus digital»). Según la información disponible en la fecha de esta guía, las obligaciones del anexo III se aplazarían hasta diciembre de 2027, pero **no hemos podido verificar el texto definitivo en el Diario Oficial de la UE**. Consulta la versión consolidada en EUR-Lex antes de tomar decisiones basadas en esas fechas.
+El **Reglamento (UE) 2026/1744**, conocido como «ómnibus digital sobre IA», modificó en 2026 el calendario del Reglamento de IA. Se adoptó el 8 de julio, se publicó en el Diario Oficial el 24 de julio y está en vigor desde el 27 de julio de 2026. Las obligaciones para los sistemas de alto riesgo del anexo III, entre ellos los educativos, **pasan del 2 de agosto de 2026 al 2 de diciembre de 2027**. Las prohibiciones del artículo 5, incluida la del reconocimiento de emociones en centros educativos, no se aplazan. Lo explicamos en [esta noticia](/articulos/omnibus-ia-aplaza-alto-riesgo-educacion/).
 
 </div>
 

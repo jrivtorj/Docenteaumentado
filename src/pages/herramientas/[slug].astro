@@ -63,7 +63,7 @@ const dominio = new URL(data.urlOficial).hostname.replace(/^www\./, '');
           <strong>{MODALIDADES_PRECIO[data.precio.modalidad]}.</strong>
           {data.precio.resumen}
           <span class="meta">
-            Verificado el <time datetime={fechaISO(data.precio.verificadoEl)}>{fechaLarga(data.precio.verificadoEl)}</time> en
+            Verificado el <time datetime={fechaISO(data.precio.verificadoEl)}>{fechaLarga(data.precio.verificadoEl)}</time>{' '}en{' '}
             <a href={data.precio.fuente} rel="noopener" target="_blank">la página oficial de precios</a>.
           </span>
           {data.precio.notas && <span class="meta">{data.precio.notas}</span>}

@@ -1,11 +1,15 @@
 ---
 import Pagina from '@/layouts/Pagina.astro';
+import { getEntry } from 'astro:content';
 import { SITIO } from '@/data/sitio';
+import { PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
 /*
- * PLANTILLA. Complete los datos marcados como pendientes y haga revisar el texto si el
- * sitio incorpora actividad económica (publicidad, afiliación, venta, servicios).
+ * Sitio personal sin actividad económica. Si se incorpora publicidad, afiliación, venta o
+ * servicios de pago, habrá que añadir NIF y domicilio (art. 10 LSSI-CE) y revisar este texto.
+ * El correo de contacto se publica si se define PUBLIC_CONTACT_EMAIL.
  * No constituye asesoramiento jurídico.
  */
+const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
 ---
 
 <Pagina
@@ -15,19 +19,21 @@ import { SITIO } from '@/data/sitio';
   actualizado={new Date('2026-10-12')}
   noindex
 >
-  <p class="aviso aviso--pendiente"><strong>Plantilla pendiente de completar.</strong> Los datos marcados deben rellenarse antes de publicar el sitio.</p>
-
   <h2>1. Titular del sitio</h2>
   <p>
-    En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y
-    de comercio electrónico (LSSI-CE), se informa de que este sitio web es titularidad de:
+    {SITIO.nombre} es un sitio web personal, sin actividad económica, publicidad ni enlaces de afiliación, cuyo titular
+    y autor es <strong>{autor.data.nombre}</strong>.
   </p>
-  <ul>
-    <li>Titular: <span class="pendiente">[Nombre y apellidos]</span></li>
-    <li>NIF: <span class="pendiente">[NIF, si procede]</span></li>
-    <li>Domicilio a efectos de notificaciones: <span class="pendiente">[Dirección o apartado]</span></li>
-    <li>Correo electrónico de contacto: <span class="pendiente">[correo]</span></li>
-  </ul>
+  <p>
+    Contacto:
+    {
+      PUBLIC_CONTACT_EMAIL ? (
+        <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>{PUBLIC_CONTACT_EMAIL}</a>
+      ) : (
+        <a href="/contacto/">página de contacto</a>
+      )
+    }.
+  </p>
 
   <h2>2. Objeto</h2>
   <p>
@@ -47,7 +53,6 @@ import { SITIO } from '@/data/sitio';
     Los textos, la estructura y el diseño del sitio son obra de su titular salvo indicación en contrario. Los prompts de
     la biblioteca pueden copiarse y adaptarse libremente para uso docente. Para otros usos, como la reproducción total o
     parcial de artículos, se requiere autorización previa.
-    <span class="pendiente">[Opcional: si prefieres una licencia abierta (por ejemplo, Creative Commons BY-SA 4.0), indícala aquí y en el pie.]</span>
   </p>
   <p>
     Las marcas y nombres de productos citados pertenecen a sus respectivos titulares y se mencionan con fines

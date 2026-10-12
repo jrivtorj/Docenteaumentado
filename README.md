@@ -303,10 +303,11 @@ Limitaciones conocidas de la verificación:
 
 **Imprescindibles**
 
-- [ ] Elegir dominio y configurar `SITE_URL`. Hasta entonces, el dominio `.example` es provisional y no existe.
+- [x] `SITE_URL` usa por defecto la URL pública de Cloudflare Workers. Al contratar dominio propio, definir `SITE_URL` en las variables de compilación de Cloudflare.
 - [ ] Configurar `SITE_ENV=production` solo en producción.
-- [ ] Completar los datos marcados como pendientes en **Aviso legal** y **Política de privacidad** (titular, NIF si procede, contacto, proveedores) y revisarlos. Son plantillas, no asesoramiento jurídico.
-- [ ] Revisar y completar **Sobre el autor** (`src/pages/sobre-el-autor.astro`) y `src/content/autores.json`. Hay un párrafo marcado para completar o borrar.
+- [x] **Aviso legal** y **Política de privacidad** completados para un sitio personal sin actividad económica (sin NIF ni domicilio). Si se añade publicidad, afiliación o venta, añadir NIF y domicilio (art. 10 LSSI-CE).
+- [ ] Definir `PUBLIC_CONTACT_EMAIL` (mejor una dirección dedicada al proyecto) para que el aviso legal y la política de privacidad muestren un correo; mientras tanto remiten a la página de contacto.
+- [x] Eliminado el párrafo marcador de **Sobre el autor**. Si se quieren añadir centro, años de experiencia o proyectos, hacerlo en `src/pages/sobre-el-autor.astro`.
 - [ ] Revisar todos los contenidos como autor: el texto inicial se redactó con apoyo de IA y debe asumirlo quien firma. La página «Sobre el autor» lo declara en los criterios editoriales.
 - [ ] Decidir si se mantiene el compromiso «sin enlaces de afiliación ni contenido patrocinado» de la portada y los criterios editoriales.
 - [ ] Revisar las fechas de publicación (todas son 12/10/2026) y ajustarlas al día real de publicación.
@@ -320,7 +321,7 @@ Limitaciones conocidas de la verificación:
 
 **Verificaciones de contenido señaladas**
 
-- [ ] El calendario del Reglamento europeo de IA tras el «ómnibus digital» de 2026 no se ha podido confirmar en el Diario Oficial de la UE; el artículo de protección de datos lo marca como pendiente de comprobación.
+- [x] Calendario del Reglamento europeo de IA tras el «ómnibus digital»: confirmado el Reglamento (UE) 2026/1744 en EUR-Lex (adoptado el 8/7/2026, en vigor el 27/7/2026). Actualizada la guía de protección de datos y añadida la noticia correspondiente.
 - [ ] El INTEF publicó en septiembre de 2026 una actualización de su guía sobre IA; no se ha podido leer. Los artículos citan la edición de 2024.
 - [ ] El enlace al PDF de la guía del INTEF (2024) procede de una fuente secundaria y no se pudo abrir desde el entorno de desarrollo: compruébalo.
 - [ ] El enlace del Decreto 30/2023 apunta a la reproducción del INAP; sustitúyelo por el enlace del BOC cuando lo localices.
