@@ -1,7 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
 import Pagina from '@/layouts/Pagina.astro';
 import { SITIO } from '@/data/sitio';
+import fotoAutor from '@/assets/autor/jose-david-rivero.jpg';
 
 /*
  * PÁGINA EDITABLE. Solo contiene datos facilitados por el autor. Si quieres añadir
@@ -20,6 +22,16 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
   entradilla="Quién escribe esta web, por qué y con qué reglas."
 >
   <h2 id="quien-escribe">Quién escribe</h2>
+  <Picture
+    src={fotoAutor}
+    formats={['avif', 'webp']}
+    widths={[200, 400]}
+    sizes="(min-width: 40rem) 200px, 160px"
+    alt={`Retrato en blanco y negro de ${autor.data.nombre}`}
+    class="foto-autor"
+    loading="eager"
+    fetchpriority="high"
+  />
   <p>
     Soy <strong>{autor.data.nombre}</strong>, licenciado en Ciencias Químicas y profesor de Educación Secundaria en
     Canarias. He dado clase en ESO, Bachillerato y Formación Profesional, y buena parte de mi trabajo fuera del aula ha
@@ -84,3 +96,24 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
     <a href="/contacto/">contacto</a>.
   </p>
 </Pagina>
+
+<style>
+  :global(.foto-autor) {
+    display: block;
+    width: 160px;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0 auto var(--e-4);
+    border-radius: 50%;
+  }
+  #por-que {
+    clear: both;
+  }
+  @media (min-width: 40rem) {
+    :global(.foto-autor) {
+      float: right;
+      width: 200px;
+      margin: 0 0 var(--e-4) var(--e-5);
+    }
+  }
+</style>
