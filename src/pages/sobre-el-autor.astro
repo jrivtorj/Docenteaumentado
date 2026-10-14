@@ -22,16 +22,19 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
   entradilla="Quién escribe esta web, por qué y con qué reglas."
 >
   <h2 id="quien-escribe">Quién escribe</h2>
-  <Picture
-    src={fotoAutor}
-    formats={['avif', 'webp']}
-    widths={[200, 400]}
-    sizes="(min-width: 40rem) 200px, 160px"
-    alt={`Retrato en blanco y negro de ${autor.data.nombre}`}
-    class="foto-autor"
-    loading="eager"
-    fetchpriority="high"
-  />
+  <figure class="retrato">
+    <Picture
+      src={fotoAutor}
+      formats={['avif', 'webp']}
+      widths={[200, 400]}
+      sizes="(min-width: 40rem) 200px, 160px"
+      alt={`Retrato en blanco y negro de ${autor.data.nombre}`}
+      class="foto-autor"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <figcaption>Retrato generado con IA</figcaption>
+  </figure>
   <p>
     Soy <strong>{autor.data.nombre}</strong>, licenciado en Ciencias Químicas y profesor de Educación Secundaria en
     Canarias. He dado clase en ESO, Bachillerato y Formación Profesional, y buena parte de mi trabajo fuera del aula ha
@@ -98,22 +101,34 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
 </Pagina>
 
 <style>
+  .retrato {
+    width: max-content;
+    margin: 0 auto var(--e-4);
+    text-align: center;
+  }
   :global(.foto-autor) {
     display: block;
     width: 160px;
+    margin: 0 auto;
     height: auto;
     aspect-ratio: 1;
-    margin: 0 auto var(--e-4);
     border-radius: 50%;
+  }
+  .retrato figcaption {
+    margin-top: var(--e-2);
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
   }
   #por-que {
     clear: both;
   }
   @media (min-width: 40rem) {
-    :global(.foto-autor) {
+    .retrato {
       float: right;
-      width: 200px;
       margin: 0 0 var(--e-4) var(--e-5);
+    }
+    :global(.foto-autor) {
+      width: 200px;
     }
   }
 </style>
