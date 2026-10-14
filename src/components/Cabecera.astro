@@ -148,11 +148,11 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
       border-top: 1px solid var(--c-borde);
     }
   }
-  .menu-boton__cerrar,
-  .menu-boton[aria-expanded='true'] .menu-boton__abrir {
+  .menu-boton :global(.menu-boton__cerrar),
+  .menu-boton[aria-expanded='true'] :global(.menu-boton__abrir) {
     display: none;
   }
-  .menu-boton[aria-expanded='true'] .menu-boton__cerrar {
+  .menu-boton[aria-expanded='true'] :global(.menu-boton__cerrar) {
     display: block;
   }
   .nav {
