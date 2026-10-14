@@ -7,15 +7,15 @@ import sitemapSinNoindex from './integraciones/sitemap-sin-noindex.mjs';
 /**
  * Configuración central del sitio.
  *
- * SITE_URL: dominio canónico. Mientras no exista dominio definitivo se usa un
- * valor PROVISIONAL bajo el TLD reservado `.example`, que nunca resolverá en
- * Internet. Debe sustituirse antes de publicar (ver README › Pendientes).
+ * SITE_URL: dominio canónico. Mientras no exista dominio propio se usa la URL
+ * pública de Cloudflare Workers. Al contratar dominio, define SITE_URL en las
+ * variables de compilación de Cloudflare (ver README › Pendientes).
  *
  * SITE_ENV (se lee en astro:env): solo con `production` el sitio es indexable. Cualquier
  * otro valor (development, preview, staging…) genera `noindex` y un robots.txt restrictivo.
  */
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
-const SITE_URL = env.SITE_URL || 'https://eldocenteaumentado.example';
+const SITE_URL = env.SITE_URL || 'https://docenteaumentado.jdavidrivero.workers.dev';
 // Origen del script de analítica (si se configura) para permitirlo en la CSP.
 const ORIGEN_ANALITICA = env.PUBLIC_ANALYTICS_SCRIPT ? new URL(env.PUBLIC_ANALYTICS_SCRIPT).origin : null;
 

@@ -1,0 +1,12 @@
+// Configuración de Cloudflare Workers: sirve la web estática generada por Astro en ./dist.
+// El nombre debe coincidir con el del Worker en el panel de Cloudflare.
+{
+  "name": "docenteaumentado",
+  "compatibility_date": "2026-10-12",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  // Necesario para las vistas previas de las ramas distintas de main (npx wrangler preview).
+  "previews": {}
+}

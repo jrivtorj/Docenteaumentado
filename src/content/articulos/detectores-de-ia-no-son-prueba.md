@@ -15,8 +15,8 @@ fuentes:
     fecha: "2023"
     consultado: 2026-10-12
   - titulo: GPT detectors are biased against non-native English writers
-    url: https://arxiv.org/abs/2304.02819
-    editor: Liang, W.; Yuksekgonul, M.; Mao, Y.; Wu, E.; Zou, J. (publicado en Patterns, 2023)
+    url: https://doi.org/10.1016/j.patter.2023.100779
+    editor: Liang, W.; Yuksekgonul, M.; Mao, Y.; Wu, E.; Zou, J. Revista Patterns
     fecha: "2023"
     consultado: 2026-10-12
 ---

@@ -62,8 +62,12 @@ test.describe('Menú móvil', () => {
     const nav = page.locator('#nav-principal');
     await expect(boton).toBeVisible();
     await expect(nav).toBeHidden();
+    await expect(boton.locator('.menu-boton__abrir')).toBeVisible();
+    await expect(boton.locator('.menu-boton__cerrar')).toBeHidden();
     await boton.click();
     await expect(boton).toHaveAttribute('aria-expanded', 'true');
+    await expect(boton.locator('.menu-boton__abrir')).toBeHidden();
+    await expect(boton.locator('.menu-boton__cerrar')).toBeVisible();
     await expect(nav.getByRole('link', { name: 'Prompts' })).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(nav).toBeHidden();
