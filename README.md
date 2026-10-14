@@ -216,7 +216,7 @@ Ver `.env.example`. Todas son **públicas** (acaban en el HTML); no hay secretos
 
 | Variable | Uso |
 |---|---|
-| `SITE_URL` | Dominio canónico, sin barra final. **Provisional:** `https://eldocenteaumentado.example` (dominio reservado que no existe). |
+| `SITE_URL` | Dominio canónico, sin barra final. Por defecto, `https://eldocenteaumentado.com`. |
 | `SITE_ENV` | `production` hace el sitio indexable. Cualquier otro valor añade `noindex` a todas las páginas y genera un `robots.txt` que bloquea el rastreo. |
 | `PUBLIC_CONTACT_FORM_ACTION` | URL de envío del formulario de contacto (Formspree, Getform, Netlify Forms…). Vacía = formulario desactivado y marcado como pendiente. |
 | `PUBLIC_CONTACT_EMAIL` | Correo de contacto visible (opcional). |
@@ -303,7 +303,8 @@ Limitaciones conocidas de la verificación:
 
 **Imprescindibles**
 
-- [x] `SITE_URL` usa por defecto la URL pública de Cloudflare Workers. Al contratar dominio propio, definir `SITE_URL` en las variables de compilación de Cloudflare.
+- [x] `SITE_URL` usa por defecto el dominio propio `https://eldocenteaumentado.com`.
+- [ ] Añadir `eldocenteaumentado.com` como *Custom domain* del Worker en Cloudflare y redirigir `www` al dominio raíz.
 - [ ] Configurar `SITE_ENV=production` solo en producción.
 - [x] **Aviso legal** y **Política de privacidad** completados para un sitio personal sin actividad económica (sin NIF ni domicilio). Si se añade publicidad, afiliación o venta, añadir NIF y domicilio (art. 10 LSSI-CE).
 - [ ] Definir `PUBLIC_CONTACT_EMAIL` (mejor una dirección dedicada al proyecto) para que el aviso legal y la política de privacidad muestren un correo; mientras tanto remiten a la página de contacto.
