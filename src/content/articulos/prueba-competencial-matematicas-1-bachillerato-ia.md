@@ -74,6 +74,10 @@ El resultado fue útil desde la primera respuesta porque el modelo tenía el con
 
 El documento y el cuaderno de evaluación funcionaron sin retoques. La limitación apareció en el aula: la IA dimensionó la prueba para 55 minutos y no bastaron, y el nivel de los apartados de argumentación resultó alto para el grupo. Un modelo no conoce a tu alumnado: la duración y la dificultad hay que ajustarlas con el criterio docente antes de imprimir.
 
+## Material descargable
+
+- [Cuaderno de evaluación por criterios (hoja de cálculo, vacío)](/descargas/cuaderno-evaluacion-prueba-numeros-reales-1-bachillerato.xlsx). Calcula la nota de la prueba y la de cada criterio a partir de la puntuación de cada apartado. La asignación de apartados a criterios se puede cambiar en la hoja «Configuración».
+
 <div class="nota nota--verificar">
 
 Si reproduces esta experiencia, resuelve tú la prueba antes de usarla y comprueba los datos de contexto: los modelos de IA pueden equivocarse en cálculos, unidades y datos científicos aunque el resultado parezca impecable. Nunca subas a la IA el cuaderno de evaluación con nombres o notas del alumnado.
