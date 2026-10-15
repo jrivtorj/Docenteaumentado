@@ -59,7 +59,8 @@ export default defineConfig({
         default: 'development',
       }),
       PUBLIC_CONTACT_FORM_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),
-      PUBLIC_CONTACT_EMAIL: envField.string({ context: 'server', access: 'public', optional: true }),
+      // Correo de contacto del proyecto. Se publica en contacto, aviso legal y privacidad.
+      PUBLIC_CONTACT_EMAIL: envField.string({ context: 'server', access: 'public', default: 'eldocenteaumentado@gmail.com' }),
       PUBLIC_NEWSLETTER_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_NEWSLETTER_EMAIL_FIELD: envField.string({ context: 'server', access: 'public', default: 'email' }),
       PUBLIC_NEWSLETTER_PROVIDER: envField.string({ context: 'server', access: 'public', optional: true }),

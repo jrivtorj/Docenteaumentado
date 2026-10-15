@@ -22,7 +22,18 @@ const dominio = (url?: string) => {
     return undefined;
   }
 };
-const servicioFormulario = dominio(PUBLIC_CONTACT_FORM_ACTION);
+// Proveedores de formularios conocidos: nombre, ubicación y garantía de la transferencia.
+// Fuente de Formspree: https://formspree.io/security/ (consultada el 15/10/2026).
+const PROVEEDORES: Record<string, { nombre: string; garantia: string }> = {
+  'formspree.io': {
+    nombre: 'Formspree, Inc. (Estados Unidos; servidores de Amazon Web Services en EE. UU.)',
+    garantia: 'Formspree declara amparar las transferencias en las cláusulas contractuales tipo de la Comisión Europea.',
+  },
+};
+const dominioFormulario = dominio(PUBLIC_CONTACT_FORM_ACTION);
+const proveedorFormulario = dominioFormulario ? PROVEEDORES[dominioFormulario] : undefined;
+const servicioFormulario = proveedorFormulario?.nombre ?? dominioFormulario;
+const correoGmail = PUBLIC_CONTACT_EMAIL?.toLowerCase().endsWith('@gmail.com');
 const servicioNewsletter = PUBLIC_NEWSLETTER_PROVIDER ?? dominio(PUBLIC_NEWSLETTER_ACTION);
 const servicioAnalitica = dominio(PUBLIC_ANALYTICS_SCRIPT);
 const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_ACTION);
@@ -32,7 +43,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   titulo="Política de privacidad"
   descripcion={`Cómo trata ${SITIO.nombre} los datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos.`}
   ruta="/privacidad/"
-  actualizado={new Date('2026-10-12')}
+  actualizado={new Date('2026-10-15')}
   noindex
 >
   <h2>Principio general: mínimos datos</h2>
@@ -95,13 +106,23 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
       Alojamiento web: Cloudflare, Inc. (Estados Unidos). Como cualquier servidor, registra datos técnicos de conexión,
       como la dirección IP, por motivos de seguridad y funcionamiento.
     </li>
-    <li>Formulario de contacto: {servicioFormulario ?? 'ninguno; el formulario no está activo'}.</li>
+    <li>
+      Formulario de contacto: {servicioFormulario ?? 'ninguno; el formulario no está activo'}.
+      {servicioFormulario && <>{' '}El mensaje se reenvía al correo de contacto.</>}
+    </li>
+    {correoGmail && <li>Correo de contacto: Google (servicio Gmail), que aloja los mensajes recibidos.</li>}
     <li>Newsletter: {servicioNewsletter ?? 'ninguno; la suscripción no está activa'}.</li>
   </ul>
   <p>
     Cloudflare realiza transferencias internacionales de datos amparadas en su certificación en el Marco de Privacidad de
-    Datos UE-EE. UU. y, subsidiariamente, en las cláusulas contractuales tipo de la Comisión Europea. Cuando se active
-    un servicio de formularios o de newsletter, se indicará aquí su ubicación y la garantía que aplique.
+    Datos UE-EE. UU. y, subsidiariamente, en las cláusulas contractuales tipo de la Comisión Europea.
+    {correoGmail && <>{' '}Google está certificada en el mismo Marco de Privacidad de Datos UE-EE. UU.</>}
+    {proveedorFormulario && <>{' '}{proveedorFormulario.garantia}</>}
+    {
+      (!proveedorFormulario || !PUBLIC_NEWSLETTER_ACTION) && (
+        <>{' '}Cuando se active otro servicio de formularios o de newsletter, se indicará aquí su ubicación y la garantía que aplique.</>
+      )
+    }
   </p>
 
   <h2>Sus derechos</h2>
