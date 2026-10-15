@@ -9,6 +9,7 @@ const PRINCIPALES = [
   '/herramientas/',
   '/laboratorio/',
   '/opinion/',
+  '/desde-mi-aula/',
   '/sobre-el-autor/',
   '/articulos/',
   '/temas/',

@@ -33,6 +33,7 @@ const seccion = {
   opinion: { nombre: 'Opinión', href: '/opinion/' },
   actualidad: { nombre: 'Actualidad', href: '/actualidad/' },
   laboratorio: { nombre: 'Laboratorio', href: '/laboratorio/' },
+  experiencia: { nombre: 'Desde mi aula', href: '/desde-mi-aula/' },
 }[data.tipo];
 const vecinos = relacionados(articulo, todos);
 const prompts = (await getPrompts()).filter((p) => p.data.relacionados.some((r) => r.id === articulo.id)).slice(0, 3);
