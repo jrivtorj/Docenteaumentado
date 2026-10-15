@@ -1,0 +1,235 @@
+---
+import { PUBLIC_CONTACT_FORM_ACTION, PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
+import Pagina from '@/layouts/Pagina.astro';
+/*
+ * Oferta de formación para centros. Modalidades, duraciones y resultados son una propuesta
+ * del autor: revisarlos antes de cada curso. No se publican precios ni se promete
+ * certificación oficial: la certificación depende de la vía por la que se organice.
+ * El formulario usa el mismo endpoint que el de contacto, con un asunto propio.
+ */
+const activo = Boolean(PUBLIC_CONTACT_FORM_ACTION);
+const modalidades = [
+  {
+    nombre: 'Sesión introductoria',
+    duracion: '2 horas, en una sesión',
+    formato: 'Presencial u online',
+    para: 'Claustros completos o CCP que quieren una primera visión común.',
+    contenido:
+      'Qué es y qué no es la IA generativa, usos razonables en el trabajo docente, límites y riesgos, y pautas básicas de protección de datos.',
+  },
+  {
+    nombre: 'Taller práctico',
+    duracion: '6 a 8 horas, en 2 o 3 sesiones',
+    formato: 'Presencial (recomendado) u online',
+    para: 'Grupos de hasta 25 docentes que quieren salir con materiales hechos.',
+    contenido:
+      'Prompts para tareas docentes, revisión crítica de lo que genera la IA y elaboración guiada de actividades, rúbricas e instrumentos de evaluación de sus propias materias.',
+  },
+  {
+    nombre: 'Formación en centro con acompañamiento',
+    duracion: '12 a 20 horas, a lo largo de un trimestre',
+    formato: 'Sesiones presenciales y seguimiento online',
+    para: 'Centros o departamentos que quieren integrar la IA en su práctica y acordar criterios comunes.',
+    contenido:
+      'Diseño y aplicación en el aula de situaciones de aprendizaje con IA, puesta en común de resultados y redacción de unas pautas de centro sobre el uso de la IA por el alumnado y el profesorado.',
+  },
+];
+---
+
+<Pagina
+  titulo="Formación para centros"
+  descripcion="Formación sobre inteligencia artificial para claustros y departamentos de Secundaria, Bachillerato y FP: modalidades, duración, destinatarios y resultados de aprendizaje."
+  ruta="/formacion/"
+  entradilla="Formación práctica sobre IA para el profesorado, impartida por un docente en activo. Se adapta a las materias, la etapa y el punto de partida de cada centro."
+>
+  <h2 id="enfoque">Enfoque</h2>
+  <p>
+    La formación parte del trabajo real del aula, no de la herramienta de moda. Cada sesión combina una explicación breve
+    con práctica sobre materiales de los propios participantes. El criterio es el mismo que guía esta web: la IA amplía
+    lo que hace un buen docente, pero no sustituye su juicio, y todo lo que genera se revisa antes de usarlo.
+  </p>
+
+  <h2 id="destinatarios">Destinatarios</h2>
+  <ul>
+    <li>Claustros de centros de Educación Secundaria, Bachillerato y Formación Profesional.</li>
+    <li>Departamentos didácticos y equipos de ciclo que quieren trabajar sobre sus materias.</li>
+    <li>Equipos directivos que necesitan definir criterios de centro sobre el uso de la IA.</li>
+    <li>Centros del profesorado y otras entidades que organizan formación docente.</li>
+  </ul>
+  <p>No hace falta experiencia previa con IA. Sí conviene traer un portátil y materiales propios para el taller.</p>
+
+  <h2 id="modalidades">Modalidades y duración</h2>
+  <div class="modalidades">
+    {
+      modalidades.map((m, i) => (
+        <section class="modalidad" aria-labelledby={`modalidad-${i + 1}`}>
+          <h3 id={`modalidad-${i + 1}`}>{m.nombre}</h3>
+          <dl>
+            <dt>Duración</dt>
+            <dd>{m.duracion}</dd>
+            <dt>Formato</dt>
+            <dd>{m.formato}</dd>
+            <dt>Para quién</dt>
+            <dd>{m.para}</dd>
+          </dl>
+          <p>{m.contenido}</p>
+        </section>
+      ))
+    }
+  </div>
+  <p>Las duraciones son orientativas. El programa concreto se acuerda con el centro antes de empezar.</p>
+
+  <h2 id="resultados">Resultados de aprendizaje</h2>
+  <p>Al terminar, según la modalidad, las personas participantes podrán:</p>
+  <ol>
+    <li>Explicar cómo funciona la IA generativa y por qué produce errores, para decidir cuándo conviene usarla.</li>
+    <li>Redactar instrucciones (prompts) eficaces para preparar materiales, adaptar textos y diseñar actividades.</li>
+    <li>Revisar de forma crítica lo que genera la IA y detectar errores, sesgos y datos inventados.</li>
+    <li>Diseñar actividades y situaciones de aprendizaje en las que la IA apoye el razonamiento del alumnado en lugar de sustituirlo.</li>
+    <li>Elaborar rúbricas e instrumentos de evaluación con apoyo de la IA, revisándolos y ajustándolos a los criterios de evaluación.</li>
+    <li>Aplicar criterios de protección de datos y del Reglamento europeo de IA al uso de estas herramientas en el centro.</li>
+  </ol>
+  <p>
+    Si quieres ver el enfoque antes de pedir información, puedes leer la guía para
+    <a href="/articulos/como-escribir-prompts-para-docentes/">escribir prompts para docentes</a> o la de
+    <a href="/articulos/proteccion-datos-ia-centros-educativos/">protección de datos e IA en los centros</a>.
+  </p>
+
+  <h2 id="organizacion">Organización y condiciones</h2>
+  <ul>
+    <li>
+      Fechas, horario y formato se acuerdan con el centro. La formación online se imparte por videoconferencia con la
+      plataforma que use el centro.
+    </li>
+    <li>
+      La certificación de horas, cuando procede, depende de la vía por la que se organice la actividad. Por ejemplo, el
+      plan de formación del centro gestionado con su centro del profesorado. Esta web no emite certificados oficiales.
+    </li>
+    <li>Las condiciones se concretan en cada propuesta, según la modalidad, el número de horas y la forma de organización.</li>
+  </ul>
+
+  <h2 id="solicitar">Solicitar información</h2>
+  <p>
+    Cuéntame qué necesita tu centro y te respondo con una propuesta. Si lo prefieres, escribe a
+    {PUBLIC_CONTACT_EMAIL ? <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>{PUBLIC_CONTACT_EMAIL}</a> : <a href="/contacto/">la página de contacto</a>}.
+  </p>
+
+  <form class="solicitud" method="post" action={activo ? PUBLIC_CONTACT_FORM_ACTION : undefined} aria-describedby="nota-solicitud">
+    {
+      !activo && (
+        <p id="nota-solicitud" class="aviso aviso--pendiente" role="note">
+          <strong>Formulario pendiente de configurar.</strong> Todavía no tiene un destino de envío, así que está
+          desactivado y no recoge ningún dato.
+        </p>
+      )
+    }
+    <fieldset disabled={!activo} class="solicitud__campos">
+      <legend class="visualmente-oculto">Datos de la solicitud</legend>
+      <input type="hidden" name="_subject" value="Solicitud de formación (El docente aumentado)" />
+      <input type="hidden" name="origen" value="Formación para centros" />
+      <div class="campo">
+        <label for="f-nombre">Nombre y apellidos</label>
+        <input id="f-nombre" class="entrada" name="nombre" autocomplete="name" required />
+      </div>
+      <div class="campo">
+        <label for="f-email">Correo electrónico</label>
+        <input id="f-email" class="entrada" type="email" name="email" autocomplete="email" required />
+      </div>
+      <div class="campo">
+        <label for="f-centro">Centro o entidad y localidad</label>
+        <input id="f-centro" class="entrada" name="centro" autocomplete="organization" required />
+      </div>
+      <div class="campo">
+        <label for="f-cargo">Tu función</label>
+        <select id="f-cargo" class="entrada" name="cargo">
+          <option>Equipo directivo</option>
+          <option>Coordinación de formación o TIC</option>
+          <option>Jefatura de departamento</option>
+          <option>Profesorado</option>
+          <option>Centro del profesorado u otra entidad</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="f-modalidad">Modalidad que te interesa</label>
+        <select id="f-modalidad" class="entrada" name="modalidad">
+          {modalidades.map((m) => <option>{m.nombre}</option>)}
+          <option>Aún no lo sé</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="f-participantes">Número aproximado de participantes</label>
+        <input id="f-participantes" class="entrada" type="number" name="participantes" min="1" max="300" inputmode="numeric" />
+      </div>
+      <div class="campo">
+        <label for="f-mensaje">¿Qué necesitáis?</label>
+        <textarea id="f-mensaje" class="entrada" name="mensaje" required minlength="10" aria-describedby="f-mensaje-ayuda"></textarea>
+        <span id="f-mensaje-ayuda" class="ayuda">Etapas y materias, fechas orientativas y lo que esperáis de la formación.</span>
+      </div>
+      <div hidden aria-hidden="true">
+        <label>No rellenar <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <label class="consentimiento">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído la <a href="/privacidad/">política de privacidad</a>.</span>
+      </label>
+      <button class="boton" type="submit">Solicitar información</button>
+    </fieldset>
+    {activo && <p id="nota-solicitud" class="meta">El envío se procesa a través del servicio de formularios indicado en la política de privacidad.</p>}
+  </form>
+</Pagina>
+
+<style>
+  .modalidades {
+    display: grid;
+    gap: var(--e-4);
+    margin-block: var(--e-4);
+  }
+  .modalidad {
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    padding: var(--e-4);
+  }
+  .modalidad h3 {
+    margin-top: 0;
+  }
+  .modalidad dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--e-1) var(--e-3);
+    margin: var(--e-2) 0;
+    font-size: var(--t-sm);
+  }
+  .modalidad dt {
+    font-weight: 600;
+  }
+  .modalidad dd {
+    margin: 0;
+  }
+  .solicitud {
+    margin-top: var(--e-4);
+    font-size: var(--t-base);
+  }
+  .solicitud__campos {
+    border: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--e-4);
+    margin-top: var(--e-4);
+  }
+  .solicitud__campos:disabled {
+    opacity: 0.6;
+  }
+  .consentimiento {
+    display: flex;
+    gap: var(--e-2);
+    align-items: flex-start;
+    font-size: var(--t-sm);
+  }
+  .consentimiento input {
+    margin-top: 0.3em;
+    accent-color: var(--c-acento);
+  }
+  .solicitud .boton {
+    justify-self: start;
+  }
+</style>

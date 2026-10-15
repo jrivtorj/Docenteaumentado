@@ -14,6 +14,7 @@ const PRINCIPALES = [
   '/temas/',
   '/buscar/',
   '/contacto/',
+  '/formacion/',
   '/newsletter/',
   '/privacidad/',
   '/cookies/',
@@ -179,10 +180,19 @@ test.describe('Formularios', () => {
     await page.goto('/privacidad/');
     await expect(page.getByText(/Formspree, Inc\./)).toBeVisible();
   });
+
+  test('la solicitud de formación está activa y lleva un asunto propio', async ({ page }) => {
+    await page.goto('/formacion/');
+    await expect(page.getByRole('button', { name: 'Solicitar información' })).toBeEnabled();
+    await expect(page.locator('form.solicitud')).toHaveAttribute('action', /^https:\/\/formspree\.io\/f\//);
+    await expect(page.locator('form.solicitud input[name="_subject"]')).toHaveValue(/Solicitud de formación/);
+    // En móvil el menú está cerrado: se comprueba el enlace en el DOM, no en el árbol accesible.
+    await expect(page.locator('#nav-principal a[href="/formacion/"]')).toHaveText('Formación');
+  });
 });
 
 test.describe('Accesibilidad automática (axe)', () => {
-  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/laboratorio/constructor-de-prompts/']) {
+  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/laboratorio/constructor-de-prompts/']) {
     test(`${ruta} sin infracciones graves`, async ({ page }) => {
       await page.goto(ruta);
       const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
