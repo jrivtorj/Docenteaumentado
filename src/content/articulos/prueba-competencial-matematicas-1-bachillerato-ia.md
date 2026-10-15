@@ -1,5 +1,5 @@
 ---
-titulo: "He usado IA para diseñar una prueba competencial de Matemáticas I: qué funcionó y qué revisé"
+titulo: "He usado IA para diseñar una prueba competencial de Matemáticas I: qué funcionó y qué no"
 descripcion: "Experiencia real en 1.º de Bachillerato: el prompt, la prueba que generó Claude, cómo la revisé, cómo funcionó en clase y el tiempo que llevó de verdad."
 fechaPublicacion: 2026-10-15
 autor: jose-david-rivero
@@ -7,9 +7,7 @@ tipo: experiencia
 temas: [evaluacion-rubricas-ia, ia-matematicas-ciencias, claude-en-educacion]
 etiquetas: [Bachillerato, Matemáticas I, prueba competencial, evaluación, Claude]
 necesidad: "¿Puede la IA diseñar una prueba competencial de Bachillerato que se pueda usar en clase?"
-# Borrador: completa los marcadores [COMPLETAR] y cambia a «publicado».
-# La comprobación del build falla si queda algún [COMPLETAR] en una página publicada.
-estado: borrador
+estado: publicado
 ---
 
 <div class="nota nota--clave">
@@ -51,25 +49,30 @@ Cada ejercicio indicaba los criterios de evaluación que trabaja (1.1, 1.2, 2.1,
 
 ## Cómo la revisé
 
-Al revisarla no detecté errores matemáticos ni didácticos y la utilicé sin modificaciones.
+Resolví yo mismo todos los ejercicios y comparé mis resultados con el solucionario: coincidían. También comprobé que los criterios asignados a cada ejercicio eran los de mi programación. No encontré errores de cálculo y utilicé la prueba sin modificaciones.
 
-[COMPLETAR: qué comprobaste exactamente. Por ejemplo, si resolviste tú los ejercicios y cotejaste el solucionario; si los códigos de los criterios coinciden con los de tu programación; si los datos de contexto (distancia Tierra-Luna, valores de pH, escala de Richter) son correctos; y si la puntuación y la duración son realistas para 55 minutos.]
+Hay un matiz que conviene aclarar al alumnado en el ejercicio de Richter. Dentro del modelo que da el enunciado, M = log(I/I₀), la conclusión del solucionario es correcta: tres grados de diferencia equivalen a un cociente de 10³. Pero en sismología la magnitud de Richter se calcula a partir de la amplitud de las ondas registradas, no de la energía liberada, y la energía crece bastante más deprisa que la amplitud. La frase del divulgador («libera una intensidad 1000 veces mayor») mezcla las dos ideas.
 
 ## Cómo funcionó en el aula
 
-[COMPLETAR: si el alumnado terminó en 55 minutos, qué ejercicios resultaron más difíciles, resultados del grupo solo en términos agregados (por ejemplo, porcentaje que superó cada criterio) y qué cambiarías para el próximo curso.]
+Los 55 minutos no fueron suficientes. Se presentaron 13 alumnos y alumnas y los resultados fueron bajos: la nota media fue de 4,1 y la mediana de 3,5, y solo tres superaron el 5.
+
+El reparto por apartados dice más que la nota media:
+
+- **Lo que mejor salió** fue el cálculo directo: el error absoluto (98 % de los puntos posibles, de media), la notación científica (77 %) y el error relativo (73 %).
+- **Lo que peor salió** fueron los apartados que piden argumentar o justificar: la investigación sobre la escala de Richter (10 %; solo una persona la resolvió completa), el razonamiento sobre errores absoluto y relativo (15 %) y la inecuación con valor absoluto (20 %). También costaron la simplificación de radicales (15 %) y la racionalización (19 %).
+
+Aun así, la valoración del alumnado fue positiva: percibieron que la prueba les exigía más que un examen de ejercicios tipo.
 
 ## Tiempo empleado
 
-La generación de la prueba, el solucionario, la rúbrica y el cuaderno de evaluación llevó unos 10 minutos.
-
-[COMPLETAR: tiempo de revisión y de ajuste del formato, y comparación aproximada con lo que te habría llevado hacerla sin IA.]
+La generación de la prueba, el solucionario, la rúbrica y el cuaderno de evaluación llevó unos 10 minutos. A eso hay que sumar el tiempo de resolver la prueba completa para revisarla. Sin IA, el diseño, el formato y el reparto de la puntuación me habrían llevado alrededor de una hora, sin contar el cuaderno de evaluación.
 
 ## Valoración y limitaciones
 
 El resultado fue útil desde la primera respuesta porque el modelo tenía el contexto completo: la programación, la unidad, la duración y el formato de entrega. Después aprendí a usar los proyectos del asistente, en los que se guarda ese contexto (programación, rúbricas, criterios) una vez y se reutiliza en cada petición. Así no hay que repetirlo y los resultados son más coherentes.
 
-[COMPLETAR: limitaciones que viste. Por ejemplo, si el formato docx necesitó retoques, si el cuaderno de evaluación funcionaba sin ajustes o si algún contexto resultaba artificial para tu alumnado.]
+El documento y el cuaderno de evaluación funcionaron sin retoques. La limitación apareció en el aula: la IA dimensionó la prueba para 55 minutos y no bastaron, y el nivel de los apartados de argumentación resultó alto para el grupo. Un modelo no conoce a tu alumnado: la duración y la dificultad hay que ajustarlas con el criterio docente antes de imprimir.
 
 <div class="nota nota--verificar">
 
