@@ -218,7 +218,7 @@ Ver `.env.example`. Todas son **públicas** (acaban en el HTML); no hay secretos
 |---|---|
 | `SITE_URL` | Dominio canónico, sin barra final. Por defecto, `https://eldocenteaumentado.com`. |
 | `SITE_ENV` | `production` hace el sitio indexable. Cualquier otro valor añade `noindex` a todas las páginas y genera un `robots.txt` que bloquea el rastreo. |
-| `PUBLIC_CONTACT_FORM_ACTION` | URL de envío del formulario de contacto (Formspree, Getform, Netlify Forms…). Vacía = formulario desactivado y marcado como pendiente. |
+| `PUBLIC_CONTACT_FORM_ACTION` | URL de envío del formulario de contacto. Por defecto, el endpoint de Formspree del proyecto. |
 | `PUBLIC_CONTACT_EMAIL` | Correo de contacto visible. Por defecto, `eldocenteaumentado@gmail.com`. |
 | `PUBLIC_NEWSLETTER_ACTION` | URL `action` del formulario embebible del proveedor de newsletter. Vacía = suscripción desactivada y marcada como pendiente. |
 | `PUBLIC_NEWSLETTER_EMAIL_FIELD` | Nombre del campo de correo que espera el proveedor (por defecto `email`). |
@@ -315,7 +315,7 @@ Limitaciones conocidas de la verificación:
 
 **Cuando se quieran activar**
 
-- [ ] Formulario de contacto: servicio elegido, Formspree (plan gratuito, 50 envíos al mes). Falta crear el formulario en formspree.io con `eldocenteaumentado@gmail.com` y poner su URL en `PUBLIC_CONTACT_FORM_ACTION`. La política de privacidad ya reconoce `formspree.io` y muestra el proveedor y la garantía.
+- [x] Formulario de contacto activo con Formspree (plan gratuito, 50 envíos al mes; endpoint `https://formspree.io/f/xqpewezl`, que reenvía a `eldocenteaumentado@gmail.com`). La política de privacidad muestra el proveedor y la garantía.
 - [ ] Newsletter: elegir proveedor (Buttondown, MailerLite, Brevo…), configurar `PUBLIC_NEWSLETTER_*` y añadirlo a la política de privacidad.
 - [ ] Analítica sin cookies (opcional): configurar `PUBLIC_ANALYTICS_*` y actualizar privacidad.
 - [ ] Google Search Console: verificar la propiedad y enviar el sitemap.

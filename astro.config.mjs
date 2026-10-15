@@ -58,7 +58,8 @@ export default defineConfig({
         values: ['development', 'preview', 'staging', 'production'],
         default: 'development',
       }),
-      PUBLIC_CONTACT_FORM_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),
+      // Endpoint de Formspree del formulario de contacto (público: aparece en el HTML).
+      PUBLIC_CONTACT_FORM_ACTION: envField.string({ context: 'server', access: 'public', default: 'https://formspree.io/f/xqpewezl' }),
       // Correo de contacto del proyecto. Se publica en contacto, aviso legal y privacidad.
       PUBLIC_CONTACT_EMAIL: envField.string({ context: 'server', access: 'public', default: 'eldocenteaumentado@gmail.com' }),
       PUBLIC_NEWSLETTER_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),

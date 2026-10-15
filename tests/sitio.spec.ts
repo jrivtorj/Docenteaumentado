@@ -164,14 +164,20 @@ test.describe('Constructor de prompts', () => {
   });
 });
 
-test.describe('Formularios sin servicio configurado', () => {
-  test('la newsletter y el contacto aparecen desactivados y lo explican', async ({ page }) => {
+test.describe('Formularios', () => {
+  test('la newsletter sin servicio aparece desactivada y lo explica', async ({ page }) => {
     await page.goto('/newsletter/');
     await expect(page.getByRole('button', { name: 'Suscribirme' })).toBeDisabled();
     await expect(page.getByText('Suscripción aún no disponible')).toBeVisible();
+  });
+
+  test('el contacto está activo, envía a Formspree y la privacidad lo declara', async ({ page }) => {
     await page.goto('/contacto/');
-    await expect(page.getByRole('button', { name: 'Enviar mensaje' })).toBeDisabled();
-    await expect(page.getByText('Formulario pendiente de configurar')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Enviar mensaje' })).toBeEnabled();
+    await expect(page.getByText('Formulario pendiente de configurar')).toHaveCount(0);
+    await expect(page.locator('form.contacto')).toHaveAttribute('action', /^https:\/\/formspree\.io\/f\//);
+    await page.goto('/privacidad/');
+    await expect(page.getByText(/Formspree, Inc\./)).toBeVisible();
   });
 });
 
