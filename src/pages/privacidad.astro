@@ -50,8 +50,8 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   <p>
     Este sitio se ha diseñado para funcionar sin recoger datos personales: no requiere registro, no usa cookies y no
     carga servicios de terceros al visitar las páginas. Solo se tratan datos cuando usted decide escribir por el
-    formulario de contacto o suscribirse a la newsletter.
-    {!hayFormularios && <>{' '}En este momento ninguno de los dos formularios está activo, así que el sitio no recoge datos personales.</>}
+    formulario de contacto o el de solicitud de formación, o suscribirse a la newsletter.
+    {!hayFormularios && <>{' '}En este momento ninguno de los formularios está activo, así que el sitio no recoge datos personales.</>}
   </p>
 
   <h2>Responsable del tratamiento</h2>
@@ -83,6 +83,13 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
         <td>El tiempo necesario para atender la consulta y, como máximo, 12 meses</td>
       </tr>
       <tr>
+        <td>Solicitud de formación</td>
+        <td>Nombre, correo, centro, función y mensaje</td>
+        <td>Responder a la solicitud y preparar una propuesta de formación</td>
+        <td>Aplicación de medidas precontractuales a petición de la persona interesada (art. 6.1.b RGPD)</td>
+        <td>El tiempo necesario para atender la solicitud y, si no se contrata, como máximo 12 meses</td>
+      </tr>
+      <tr>
         <td>Newsletter</td>
         <td>Correo electrónico</td>
         <td>Enviar la newsletter</td>
@@ -107,7 +114,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
       como la dirección IP, por motivos de seguridad y funcionamiento.
     </li>
     <li>
-      Formulario de contacto: {servicioFormulario ?? 'ninguno; el formulario no está activo'}.
+      Formularios de contacto y de solicitud de formación: {servicioFormulario ?? 'ninguno; no están activos'}.
       {servicioFormulario && <>{' '}El mensaje se reenvía al correo de contacto.</>}
     </li>
     {correoGmail && <li>Correo de contacto: Google (servicio Gmail), que aloja los mensajes recibidos.</li>}
