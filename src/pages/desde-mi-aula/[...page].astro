@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Listado from '@/components/Listado.astro';
+import { getArticulos } from '@/utils/contenido';
+import { POR_PAGINA, conPagina } from '@/utils/paginas';
+
+export const getStaticPaths = (async ({ paginate }) =>
+  paginate(await getArticulos('experiencia'), { pageSize: POR_PAGINA })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const titulo = conPagina('Desde mi aula', page.currentPage);
+---
+
+<Base
+  titulo={titulo}
+  descripcion="Experiencias reales de uso de la IA en mis clases de Secundaria y Bachillerato: el prompt, lo que generó la IA, lo que revisé y cambié y cómo funcionó con el alumnado."
+  migas={[{ nombre: 'Desde mi aula', href: '/desde-mi-aula/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo={titulo}
+      antetitulo="Experiencias de aula"
+      entradilla="Casos reales de mi práctica docente con IA. Cada uno cuenta el contexto, el prompt, lo que generó la IA, lo que revisé y cambié, cómo funcionó en clase y el tiempo que llevó de verdad. Sin datos del alumnado."
+    />
+    {
+      page.data.length ? (
+        <Listado page={page} />
+      ) : (
+        <p class="aviso">Todavía no hay experiencias publicadas. La primera está en preparación.</p>
+      )
+    }
+  </div>
+</Base>

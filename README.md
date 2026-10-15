@@ -127,7 +127,7 @@ descripcion: "Entre 50 y 170 caracteres. Se usa como metadescripción y en las t
 fechaPublicacion: 2026-10-20
 fechaActualizacion: 2026-11-02     # opcional, solo si hay cambios sustanciales
 autor: jose-david-rivero            # id de src/content/autores.json
-tipo: guia                          # guia | tutorial | opinion | actualidad | laboratorio
+tipo: guia                          # guia | tutorial | opinion | actualidad | laboratorio | experiencia
 temas: [ia-para-docentes]           # ids de src/content/temas.json (mínimo 1)
 etiquetas: [rúbricas, evaluación]
 destacado: false                    # true = aparece en «Para empezar» en la portada

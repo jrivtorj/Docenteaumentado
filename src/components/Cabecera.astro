@@ -189,10 +189,17 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     }
     .nav ul {
       padding: 0;
-      gap: var(--e-5);
+      gap: var(--e-4);
     }
     .cabecera__acciones {
       order: 2;
+    }
+  }
+  /* Hasta que caben marca, menú y buscador en una sola fila, la marca ocupa la primera
+     y el menú baja con el buscador, para que el buscador nunca quede solo en otra línea. */
+  @media (min-width: 64rem) and (max-width: 84.99rem) {
+    .marca {
+      flex-basis: 100%;
     }
   }
 </style>

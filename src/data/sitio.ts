@@ -23,6 +23,7 @@ export const NAV_PRINCIPAL: EnlaceNav[] = [
   { href: '/prompts/', texto: 'Prompts' },
   { href: '/herramientas/', texto: 'Herramientas' },
   { href: '/laboratorio/', texto: 'Laboratorio' },
+  { href: '/desde-mi-aula/', texto: 'Desde mi aula' },
   { href: '/opinion/', texto: 'Opinión' },
   { href: '/formacion/', texto: 'Formación' },
   { href: '/sobre-el-autor/', texto: 'Sobre el autor' },
@@ -44,6 +45,7 @@ export const NAV_PIE: { titulo: string; enlaces: EnlaceNav[] }[] = [
     enlaces: [
       { href: '/sobre-el-autor/', texto: 'Sobre el autor' },
       { href: '/sobre-el-autor/#criterios-editoriales', texto: 'Criterios editoriales' },
+      { href: '/desde-mi-aula/', texto: 'Desde mi aula' },
       { href: '/formacion/', texto: 'Formación para centros' },
       { href: '/newsletter/', texto: 'Newsletter' },
       { href: '/contacto/', texto: 'Contacto' },

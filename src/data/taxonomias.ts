@@ -6,6 +6,7 @@ export const TIPOS_ARTICULO = {
   opinion: { nombre: 'Opinión', plural: 'Opinión' },
   actualidad: { nombre: 'Actualidad', plural: 'Actualidad' },
   laboratorio: { nombre: 'Laboratorio', plural: 'Laboratorio' },
+  experiencia: { nombre: 'Experiencia de aula', plural: 'Desde mi aula' },
 } as const;
 
 export const CATEGORIAS_HERRAMIENTA = {

@@ -1,7 +1,8 @@
 // Verificación estática del sitio compilado (dist/). Sin dependencias.
 // Uso: npm run build && npm run verificar
 // Comprueba: un único H1, title y description presentes y únicos, canonical absoluto,
-// enlaces internos y anclas existentes, imágenes con alt, JSON-LD válido y sitemap coherente.
+// enlaces internos y anclas existentes, imágenes con alt, JSON-LD válido, sitemap coherente
+// y que no quede ningún marcador [COMPLETAR] en lo publicado.
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -43,6 +44,8 @@ for (const f of htmls) {
   const ruta = rutaDe(f);
   idsPorRuta.set(ruta, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
   paginas.push({ ruta, html });
+  // Marcadores de texto por completar que no deben llegar a una página publicada.
+  if (html.includes('[COMPLETAR')) errores.push(`${ruta}: contiene un marcador [COMPLETAR] sin rellenar`);
 }
 
 const titulos = new Map();
