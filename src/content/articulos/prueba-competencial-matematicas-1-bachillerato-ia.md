@@ -76,6 +76,7 @@ El documento y el cuaderno de evaluación funcionaron sin retoques. La limitaci�
 
 ## Material descargable
 
+- [Prueba competencial completa (PDF, 7 páginas)](/descargas/prueba-competencial-numeros-reales-1-bachillerato.pdf). Incluye al final el anexo para el profesorado con el solucionario y los criterios de corrección.
 - [Cuaderno de evaluación por criterios (hoja de cálculo, vacío)](/descargas/cuaderno-evaluacion-prueba-numeros-reales-1-bachillerato.xlsx). Calcula la nota de la prueba y la de cada criterio a partir de la puntuación de cada apartado. La asignación de apartados a criterios se puede cambiar en la hoja «Configuración».
 
 <div class="nota nota--verificar">
