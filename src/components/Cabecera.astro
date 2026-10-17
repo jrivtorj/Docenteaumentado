@@ -9,6 +9,11 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
 <header role="banner" class="cabecera">
   <div class="contenedor cabecera__fila">
     <a href="/" class="marca" aria-label={`${SITIO.nombre}, ir a la página de inicio`}>
+      <svg class="marca__logo" viewBox="0 0 64 64" width="32" height="32" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="14" fill="#0b5f70"></rect>
+        <text x="32" y="44" text-anchor="middle" fill="#fff">da</text>
+        <circle cx="49" cy="17" r="5" fill="#9fe0ea"></circle>
+      </svg>
       <span class="marca__el">El docente</span><span class="marca__aum">aumentado</span>
     </a>
 
@@ -89,7 +94,7 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   }
   .marca {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.3em;
     font-family: var(--f-serif);
     font-size: 1.3rem;
@@ -97,6 +102,16 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     color: var(--c-texto);
     text-decoration: none;
     padding-block: var(--e-2);
+  }
+  /* Isotipo: el mismo dibujo que public/favicon.svg, con la tipografía de la web. */
+  .marca__logo {
+    flex: none;
+    margin-right: 0.2em;
+  }
+  .marca__logo text {
+    font-family: var(--f-serif);
+    font-size: 31px;
+    font-weight: 700;
   }
   .marca__el {
     font-weight: 500;
@@ -130,6 +145,19 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   }
   .menu-boton {
     display: none;
+  }
+  /* En móvil, marca más compacta para que quepa en la misma fila que los botones. */
+  @media (max-width: 63.99rem) {
+    .cabecera__fila {
+      column-gap: var(--e-2);
+    }
+    .marca {
+      font-size: clamp(0.9rem, 4.2vw, 1.3rem);
+    }
+    .marca__logo {
+      width: 1.5em;
+      height: 1.5em;
+    }
   }
   @media (max-width: 63.99rem) {
     :global(.js) .menu-boton {
@@ -200,6 +228,15 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   @media (min-width: 64rem) and (max-width: 84.99rem) {
     .marca {
       flex-basis: 100%;
+    }
+  }
+  /* En una sola fila el ancho va muy justo con el isotipo: se estrechan los huecos. */
+  @media (min-width: 85rem) {
+    .cabecera__fila {
+      column-gap: var(--e-4);
+    }
+    .nav ul {
+      gap: var(--e-3);
     }
   }
 </style>
