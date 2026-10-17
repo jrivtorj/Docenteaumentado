@@ -207,8 +207,12 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
     }
     .hero__rejilla {
       grid-template-columns: 1.7fr 1fr;
-      align-items: end;
+      align-items: center;
       gap: var(--e-8);
+    }
+    .hero__principios {
+      border-left: 3px solid var(--c-acento);
+      padding-left: var(--e-5);
     }
   }
   .hero__titulo {
