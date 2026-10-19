@@ -2,6 +2,7 @@
 titulo: "He usado IA para diseñar una prueba competencial de Matemáticas I: qué funcionó y qué no"
 descripcion: "Experiencia real en 1.º de Bachillerato: el prompt, la prueba que generó Claude, cómo la revisé, cómo funcionó en clase y el tiempo que llevó de verdad."
 fechaPublicacion: 2026-10-15
+fechaActualizacion: 2026-10-19
 autor: jose-david-rivero
 tipo: experiencia
 temas: [evaluacion-rubricas-ia, ia-matematicas-ciencias, claude-en-educacion]
@@ -78,6 +79,12 @@ El documento y el cuaderno de evaluación funcionaron sin retoques. La limitaci�
 
 - [Prueba competencial completa (PDF, 7 páginas)](/descargas/prueba-competencial-numeros-reales-1-bachillerato.pdf). Incluye al final el anexo para el profesorado con el solucionario y los criterios de corrección.
 - [Cuaderno de evaluación por criterios (hoja de cálculo, vacío)](/descargas/cuaderno-evaluacion-prueba-numeros-reales-1-bachillerato.xlsx). Calcula la nota de la prueba y la de cada criterio a partir de la puntuación de cada apartado. La asignación de apartados a criterios se puede cambiar en la hoja «Configuración».
+
+<div class="nota nota--verificar">
+
+**Actualización del 19 de octubre de 2026.** Las [instrucciones de evaluación y calificación de Canarias para el curso 2026/2027](/articulos/instrucciones-evaluacion-canarias-2026-27-ia/) establecen que la calificación de un criterio no puede ser el resultado de cálculos aritméticos sobre las notas de los instrumentos (instrucción segunda.10). En Bachillerato, además, las calificaciones van de 0 a 10 sin decimales (segunda.6). El cuaderno sigue sirviendo para registrar lo que cada alumno o alumna resuelve en cada apartado y ver qué criterios necesitan refuerzo. Pero la nota por criterio que calcula no debe trasladarse tal cual a la calificación: el nivel de logro de cada criterio se decide contrastando las evidencias con las rúbricas LOMLOE Canarias.
+
+</div>
 
 <div class="nota nota--verificar">
 
