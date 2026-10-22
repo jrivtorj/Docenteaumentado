@@ -3,6 +3,7 @@ import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { loadEnv } from 'vite';
 import sitemapSinNoindex from './integraciones/sitemap-sin-noindex.mjs';
+import accesibilidadProsa from './integraciones/accesibilidad-prosa.mjs';
 
 /**
  * Configuración central del sitio.
@@ -31,6 +32,7 @@ export default defineConfig({
     // producción robots.txt bloquea el rastreo y todas las páginas llevan noindex.
     sitemap({ filter: (page) => !page.includes('/buscar/') }),
     sitemapSinNoindex(),
+    accesibilidadProsa(),
   ],
   // Sin resaltado de sintaxis: los bloques de código son prompts en texto plano y así
   // no se generan estilos en línea (compatibles con la CSP y con el modo oscuro).
