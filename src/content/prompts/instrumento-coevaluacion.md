@@ -76,4 +76,6 @@ No incluyas nombres ni datos del alumnado, y no subas a la IA las coevaluaciones
 
 Con los valores de ejemplo, una lista de cotejo razonable incluiría indicadores como «Muestra los cálculos de porcentajes de forma que se pueden seguir» o «Justifica la conclusión con los resultados obtenidos». Cada uno llevaría las opciones «Sí», «En parte» y «Todavía no», y un espacio para anotar la evidencia. Antes de usarlo, **pruébalo con un trabajo de muestra**: si dos estudiantes marcan opciones muy distintas sobre lo mismo, el indicador necesita más precisión.
 
+Si prefieres escribir tú los indicadores y obtener directamente la versión para imprimir, usa el [generador de instrumentos de coevaluación](/laboratorio/generador-coevaluacion/).
+
 El método completo, con un instrumento de ejemplo y la lista de comprobación, está en [Coevaluación con IA: instrumentos basados en evidencias](/articulos/coevaluacion-con-ia-instrumentos-basados-en-evidencias/).

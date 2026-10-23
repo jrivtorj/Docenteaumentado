@@ -47,7 +47,7 @@ Indica curso, materia, actividad, producto que se observará, criterios de evalu
 
 ### Paso 3. Genera una primera versión
 
-Usa el prompt [Instrumento de coevaluación basado en evidencias](/prompts/instrumento-coevaluacion/). Puedes rellenar sus variables en la propia página y copiarlo ya completo. Pide indicadores observables, vinculados a cada criterio, y descriptores que expliquen qué distingue un nivel de otro.
+Usa el prompt [Instrumento de coevaluación basado en evidencias](/prompts/instrumento-coevaluacion/). Puedes rellenar sus variables en la propia página y copiarlo ya completo. Si ya tienes los indicadores, el [generador de instrumentos de coevaluación](/laboratorio/generador-coevaluacion/) te devuelve la lista de cotejo, la escala o la diana lista para imprimir. Pide indicadores observables, vinculados a cada criterio, y descriptores que expliquen qué distingue un nivel de otro.
 
 ### Paso 4. Revisa con criterio
 

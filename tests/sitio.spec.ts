@@ -21,6 +21,7 @@ const PRINCIPALES = [
   '/cookies/',
   '/aviso-legal/',
   '/laboratorio/constructor-de-prompts/',
+  '/laboratorio/generador-coevaluacion/',
   '/prompts/rubrica-analitica-criterios-evaluacion/',
   '/herramientas/gemini-notebook/',
   '/articulos/como-escribir-prompts-para-docentes/',
@@ -166,6 +167,27 @@ test.describe('Constructor de prompts', () => {
   });
 });
 
+test.describe('Generador de coevaluación', () => {
+  test('genera el instrumento y el prompt a partir de los campos', async ({ page }) => {
+    await page.goto('/laboratorio/generador-coevaluacion/');
+    await page.fill('#g-ind-1', 'Cita al menos dos fuentes fiables');
+    await expect(page.locator('[data-instrumento] tbody th').first()).toHaveText('1. Cita al menos dos fuentes fiables');
+    await expect(page.locator('[data-instrumento] thead th')).toContainText(['Indicador', 'Sí', 'En parte', 'Todavía no']);
+    await page.getByLabel(/Diana:/).check();
+    await expect(page.locator('[data-instrumento] svg[role="img"]')).toBeVisible();
+    await page.fill('#g-criterios', 'Criterio de prueba');
+    await expect(page.locator('#g-salida-prompt')).toContainText('Criterio de prueba');
+    await expect(page.locator('#g-salida-prompt')).toContainText('No asignes puntos, porcentajes ni notas.');
+  });
+
+  test('pide al menos tres indicadores', async ({ page }) => {
+    await page.goto('/laboratorio/generador-coevaluacion/');
+    for (const i of [3, 4, 5, 6]) await page.fill(`#g-ind-${i}`, '');
+    await expect(page.getByText('Escribe al menos tres indicadores')).toBeVisible();
+    await expect(page.locator('[data-instrumento] table')).toHaveCount(0);
+  });
+});
+
 test.describe('Formularios', () => {
   test('la newsletter sin servicio aparece desactivada y lo explica', async ({ page }) => {
     await page.goto('/newsletter/');
@@ -193,7 +215,7 @@ test.describe('Formularios', () => {
 });
 
 test.describe('Accesibilidad automática (axe)', () => {
-  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/laboratorio/constructor-de-prompts/']) {
+  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/laboratorio/constructor-de-prompts/', '/laboratorio/generador-coevaluacion/']) {
     test(`${ruta} sin infracciones graves`, async ({ page }) => {
       await page.goto(ruta);
       const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();

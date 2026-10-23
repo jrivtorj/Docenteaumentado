@@ -9,7 +9,7 @@ const experimentos = await getArticulos('laboratorio');
 
 <Base
   titulo="Laboratorio de IA educativa"
-  descripcion="Experimentos, comparativas y pequeños recursos interactivos sobre inteligencia artificial y educación, como el constructor de prompts para docentes."
+  descripcion="Experimentos, comparativas y pequeños recursos interactivos sobre inteligencia artificial y educación, como el constructor de prompts y el generador de coevaluación."
   migas={[{ nombre: 'Laboratorio', href: '/laboratorio/' }]}
 >
   <div class="contenedor">
@@ -28,6 +28,14 @@ const experimentos = await getArticulos('laboratorio');
           <p>
             Rellena rol, contexto, tarea, formato y criterios de calidad y obtén un prompt estructurado listo para copiar.
             Aplica la estructura que explicamos en la guía de prompts.
+          </p>
+        </article>
+        <article class="recurso">
+          <p class="antetitulo">Herramienta</p>
+          <h3><a href="/laboratorio/generador-coevaluacion/">Generador de instrumentos de coevaluación</a></h3>
+          <p>
+            Escribe la actividad y sus indicadores, elige lista de cotejo, escala o diana e imprime el instrumento. Incluye
+            el prompt para pedir a la IA indicadores vinculados a tus criterios de evaluación.
           </p>
         </article>
       </div>
