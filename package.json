@@ -26,7 +26,8 @@
     "verificar": "node scripts/verificar-dist.mjs",
     "test:e2e": "playwright test",
     "test": "astro check && astro build && node scripts/verificar-dist.mjs && playwright test",
-    "og": "node scripts/generar-og.mjs"
+    "og": "node scripts/generar-og.mjs",
+    "pdf": "node scripts/pdf-articulo.mjs"
   },
   "engines": {
     "node": ">=22.12.0"
