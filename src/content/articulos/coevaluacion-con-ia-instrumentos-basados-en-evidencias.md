@@ -2,6 +2,7 @@
 titulo: "Coevaluación con IA: instrumentos basados en evidencias, no en impresiones"
 descripcion: "Método en cinco pasos para preparar con IA listas de cotejo, escalas, rúbricas breves y dianas de coevaluación, con un ejemplo de 4.º de ESO listo para el aula."
 fechaPublicacion: 2026-10-22
+fechaActualizacion: 2026-10-23
 autor: jose-david-rivero
 tipo: tutorial
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
@@ -10,6 +11,12 @@ necesidad: "¿Cómo preparo con IA un instrumento para que el alumnado evalúe e
 estado: publicado
 seo:
   titulo: "Coevaluación con IA: listas de cotejo, rúbricas y dianas"
+fuentes:
+  - titulo: Instrucciones de la Dirección General de Ordenación de las Enseñanzas, Inclusión e Innovación para la evaluación y calificación del alumnado (curso 2026/2027)
+    url: https://www.gobiernodecanarias.org/cmsgob1/export/sites/educacion/web/_galerias/descargas/normativa-internas/20261006-instrucciones-evaluacion-calificacion-lomloe-26-27.pdf
+    editor: Consejería de Educación, Formación Profesional, Actividad Física y Deportes del Gobierno de Canarias
+    fecha: 6 de octubre de 2026
+    consultado: 2026-10-23
 ---
 
 La coevaluación permite que el alumnado analice el trabajo de sus compañeros con criterios explícitos. Sin una estructura clara, se queda en impresiones: «está bien», «se entiende», «ha trabajado mucho». Son opiniones, pero no dicen qué se ha conseguido ni cómo mejorar.
@@ -17,6 +24,8 @@ La coevaluación permite que el alumnado analice el trabajo de sus compañeros c
 La IA ayuda a convertir los criterios de evaluación en indicadores observables, a redactar descriptores que el alumnado entienda y a preparar instrumentos breves. No decide qué se evalúa: el instrumento hay que revisarlo para que mida lo que realmente se quiere enseñar.
 
 **Necesitas:** los criterios de evaluación literales de la actividad, una descripción del producto que se va a observar y unos 20 minutos.
+
+<p class="no-imprimir"><a class="boton" href="/descargas/guia-coevaluacion-con-ia.pdf" download>Descargar la guía práctica en PDF</a> <span class="meta">(esta misma guía, preparada para imprimir)</span></p>
 
 <div class="nota nota--clave">
 
@@ -61,6 +70,12 @@ Si no hay una respuesta clara, el indicador necesita reformularse.
 
 Prueba el instrumento con un trabajo de muestra o un ejemplo ficticio. Si dos estudiantes lo interpretan de formas muy distintas, aclara los descriptores. Explica al grupo que la coevaluación sirve para mejorar el trabajo, no para etiquetar a los compañeros.
 
+## El generador: qué escribes y qué obtienes
+
+Si ya tienes los indicadores, no necesitas la IA para dar forma al instrumento. En el [generador de instrumentos de coevaluación](/laboratorio/generador-coevaluacion/) escribes la actividad, el curso y de tres a seis indicadores, y eliges el formato: lista de cotejo, escala de cuatro niveles o diana. A la derecha aparece el instrumento completo, con las preguntas de reflexión y el espacio para la propuesta de mejora, listo para imprimir o guardar en PDF. Con los mismos datos compone el prompt para pedir a la IA los indicadores, si aún no los tienes. Todo ocurre en tu navegador: no se envía nada.
+
+![Captura del generador. A la izquierda, los campos rellenados: la actividad «Exposición por equipos: comparación de dos ofertas comerciales», el curso «4.º ESO · Matemáticas» y seis indicadores. A la derecha, la lista de cotejo resultante, con las columnas Sí, En parte, Todavía no y Evidencia o comentario, seguida de dos preguntas de reflexión y la propuesta de mejora.](../../assets/articulos/generador-coevaluacion-ejemplo.png)
+
 ## Ejemplo: exposición matemática en 4.º de ESO
 
 **Situación:** los equipos presentan una comparación de ofertas comerciales con porcentajes, cálculos y una conclusión justificada. Los compañeros usan esta lista de cotejo para darles retroalimentación.
@@ -91,7 +106,13 @@ Pide que quien evalúa anote al menos una evidencia en cada valoración «En par
 
 <div class="nota nota--verificar">
 
-**Si das clase en Canarias.** Las [instrucciones de evaluación y calificación del curso 2026/2027](/articulos/instrucciones-evaluacion-canarias-2026-27-ia/) no permiten ponderar los instrumentos de evaluación en la programación didáctica, y la calificación de un criterio no puede salir de un cálculo aritmético sobre ellos (instrucción segunda.10). La coevaluación aporta evidencias que tú contrastas con las rúbricas LOMLOE Canarias, que según las propias instrucciones también favorecen la autoevaluación y la coevaluación (tercera.3). No le des un peso fijo en la nota. Estas instrucciones se aplican a Infantil, Primaria, ESO y Bachillerato. En FP, consulta la normativa de evaluación de tu ciclo.
+**Si das clase en Canarias.** Las [instrucciones de evaluación y calificación](https://www.gobiernodecanarias.org/cmsgob1/export/sites/educacion/web/_galerias/descargas/normativa-internas/20261006-instrucciones-evaluacion-calificacion-lomloe-26-27.pdf) firmadas el 6 de octubre de 2026 por la Dirección General de Ordenación de las Enseñanzas, Inclusión e Innovación se aplican desde el curso 2026/2027 en Infantil, Primaria, ESO y Bachillerato. No regulan la coevaluación de forma específica, pero fijan tres límites que la afectan:
+
+- La programación didáctica no puede otorgar «una puntuación o ponderación a los instrumentos de evaluación» (instrucción segunda.10). Por tanto, la coevaluación no puede tener un peso fijo en la nota.
+- La calificación de un criterio sale del análisis de la información recogida con técnicas e instrumentos diversos, contrastada con las rúbricas LOMLOE Canarias, y no del «resultado de cálculos aritméticos» sobre esos instrumentos (segunda.10).
+- Si emites una calificación informativa de un instrumento, debe reflejar el nivel de logro, no el producto, y usar los calificadores de la etapa (segunda.8 y segunda.6).
+
+Las propias instrucciones señalan que las rúbricas LOMLOE Canarias «favorecen, asimismo, la autoevaluación y la coevaluación del alumnado» (tercera.3). Tienes el resumen completo en [nuevas instrucciones de evaluación en Canarias](/articulos/instrucciones-evaluacion-canarias-2026-27-ia/). En FP no se aplican: consulta la normativa de evaluación de tu ciclo.
 
 </div>
 
