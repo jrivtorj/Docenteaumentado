@@ -1,0 +1,561 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import Icono from '@/components/Icono.astro';
+
+/*
+ * Generador de instrumentos de coevaluación. Todo ocurre en el navegador: no hay envío
+ * de datos ni conexión con ninguna IA. Produce dos cosas a partir de los mismos campos:
+ * el instrumento listo para imprimir (lista de cotejo, escala o diana) y un prompt para
+ * pedir a la IA indicadores vinculados a los criterios de evaluación.
+ * Sin puntos ni notas: coherente con las instrucciones de evaluación de Canarias 2026/27.
+ */
+const ejemplo = [
+  'Identifica los datos relevantes de las ofertas.',
+  'Muestra los cálculos de porcentajes de forma que se pueden seguir.',
+  'Explica los pasos seguidos, no solo el resultado.',
+  'Usa correctamente cantidades, porcentajes y unidades.',
+  'Justifica la conclusión con los resultados obtenidos.',
+  'La presentación permite seguir el razonamiento.',
+];
+---
+
+<Base
+  titulo="Generador de instrumentos de coevaluación"
+  descripcion="Crea en el navegador una lista de cotejo, una escala o una diana de coevaluación lista para imprimir, y el prompt para pedir a la IA indicadores observables."
+  migas={[
+    { nombre: 'Laboratorio', href: '/laboratorio/' },
+    { nombre: 'Generador de coevaluación', href: '/laboratorio/generador-coevaluacion/' },
+  ]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Generador de instrumentos de coevaluación"
+      antetitulo="Laboratorio"
+      entradilla="Escribe la actividad y sus indicadores, elige el formato y obtén el instrumento listo para imprimir. Si aún no tienes indicadores, copia el prompt y pídeselos a la IA. Nada se envía a ningún servidor."
+    >
+      <p class="meta">
+        Método y ejemplo comentado:
+        <a href="/articulos/coevaluacion-con-ia-instrumentos-basados-en-evidencias/">coevaluación con IA, instrumentos basados en evidencias</a>.
+      </p>
+    </CabeceraPagina>
+
+    <noscript><p class="aviso">Esta herramienta necesita JavaScript.</p></noscript>
+
+    <div class="generador" data-generador>
+      <form class="generador__form" aria-label="Datos del instrumento">
+        <div class="campo">
+          <label for="g-actividad">1. Actividad que se coevalúa</label>
+          <input
+            id="g-actividad"
+            class="entrada"
+            name="actividad"
+            value="Exposición por equipos: comparación de dos ofertas comerciales"
+          />
+        </div>
+        <div class="campo">
+          <label for="g-curso">2. Curso y materia</label>
+          <input id="g-curso" class="entrada" name="curso" value="4.º ESO · Matemáticas" />
+        </div>
+        <div class="campo">
+          <label for="g-criterios">3. Criterios de evaluación (literales, para el prompt)</label>
+          <textarea
+            id="g-criterios"
+            class="entrada"
+            name="criterios"
+            rows="3"
+            placeholder="Pega aquí los criterios de evaluación de tu currículo que se trabajan en la actividad."
+          ></textarea>
+          <span class="ayuda">Solo se usan en el prompt para la IA. No incluyas datos del alumnado.</span>
+        </div>
+
+        <fieldset class="grupo">
+          <legend>4. Indicadores observables (de 3 a 6)</legend>
+          <p class="ayuda">
+            Cada uno debe describir algo que se ve en el trabajo y proceder de un criterio de evaluación. Los vacíos no
+            aparecen en el instrumento.
+          </p>
+          {
+            ejemplo.map((texto, i) => (
+              <div class="campo campo--indicador">
+                <label for={`g-ind-${i + 1}`}>Indicador {i + 1}</label>
+                <input id={`g-ind-${i + 1}`} class="entrada" name="indicador" value={texto} />
+              </div>
+            ))
+          }
+        </fieldset>
+
+        <fieldset class="grupo">
+          <legend>5. Formato</legend>
+          <label class="casilla">
+            <input type="radio" name="formato" value="lista" checked />
+            <span><strong>Lista de cotejo:</strong> Sí, En parte, Todavía no. La opción más sencilla para empezar.</span>
+          </label>
+          <label class="casilla">
+            <input type="radio" name="formato" value="escala" />
+            <span><strong>Escala de valoración:</strong> cuatro niveles, de «Todavía no» a «Lo supera».</span>
+          </label>
+          <label class="casilla">
+            <input type="radio" name="formato" value="diana" />
+            <span><strong>Diana:</strong> visual, para pocos indicadores y una reflexión rápida.</span>
+          </label>
+          <label class="casilla">
+            <input type="checkbox" name="evidencia" checked />
+            <span>Incluir una columna para anotar la evidencia de cada valoración</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="grupo">
+          <legend>6. Reflexión y mejora</legend>
+          <div class="campo">
+            <label for="g-p1">Primera pregunta de reflexión</label>
+            <input
+              id="g-p1"
+              class="entrada"
+              name="pregunta1"
+              value="¿Qué parte de la explicación te ha ayudado más a entender la comparación?"
+            />
+          </div>
+          <div class="campo">
+            <label for="g-p2">Segunda pregunta de reflexión</label>
+            <input
+              id="g-p2"
+              class="entrada"
+              name="pregunta2"
+              value="¿Qué mejora concreta recomendarías para que el razonamiento sea más claro o esté mejor justificado?"
+            />
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="generador__salidas">
+        <section class="bloque-salida" aria-labelledby="t-instrumento">
+          <div class="bloque-salida__cabecera">
+            <h2 id="t-instrumento">Instrumento</h2>
+            <button type="button" class="boton" data-imprimir hidden>
+              <span>Imprimir o guardar en PDF</span>
+            </button>
+          </div>
+          <p class="meta" data-aviso-indicadores aria-live="polite"></p>
+          <div class="instrumento" data-instrumento tabindex="0" role="region" aria-label="Vista previa del instrumento"></div>
+        </section>
+
+        <section class="bloque-salida" aria-labelledby="t-prompt" data-copiar-zona>
+          <div class="bloque-salida__cabecera">
+            <h2 id="t-prompt">Prompt para pedir indicadores a la IA</h2>
+            <button type="button" class="boton boton--secundario" data-copiar="#g-salida-prompt" hidden>
+              <Icono nombre="copiar" /><span data-etiqueta>Copiar prompt</span>
+            </button>
+          </div>
+          <pre id="g-salida-prompt" class="salida" tabindex="0" aria-live="off"></pre>
+          <p class="visualmente-oculto" data-copiar-estado aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+
+    <aside class="nota nota--verificar no-imprimir">
+      <p>
+        El instrumento no lleva puntos ni notas: sirve para recoger evidencias y orientar la mejora. Si das clase en
+        Canarias, las <a href="/articulos/instrucciones-evaluacion-canarias-2026-27-ia/">instrucciones de evaluación del curso 2026/2027</a>
+        no permiten ponderar los instrumentos ni calcular la calificación del criterio a partir de ellos. No subas a la IA las
+        coevaluaciones rellenadas por el alumnado.
+      </p>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import '@/scripts/copiar';
+
+  const form = document.querySelector<HTMLFormElement>('[data-generador] form')!;
+  const destino = document.querySelector<HTMLElement>('[data-instrumento]')!;
+  const aviso = document.querySelector<HTMLElement>('[data-aviso-indicadores]')!;
+  const salidaPrompt = document.querySelector<HTMLElement>('#g-salida-prompt')!;
+  const botonImprimir = document.querySelector<HTMLButtonElement>('[data-imprimir]')!;
+  const SVG = 'http://www.w3.org/2000/svg';
+
+  const NIVELES = {
+    lista: ['Sí', 'En parte', 'Todavía no'],
+    escala: ['Todavía no', 'En proceso', 'Lo consigue', 'Lo supera'],
+  } as const;
+
+  /** Crea un elemento con texto (nunca HTML a partir de lo que se escribe). */
+  function el<K extends keyof HTMLElementTagNameMap>(etiqueta: K, texto?: string, clase?: string) {
+    const n = document.createElement(etiqueta);
+    if (texto !== undefined) n.textContent = texto;
+    if (clase) n.className = clase;
+    return n;
+  }
+
+  function tabla(indicadores: string[], niveles: readonly string[], conEvidencia: boolean) {
+    const t = el('table', undefined, 'instrumento__tabla');
+    const cab = t.createTHead().insertRow();
+    for (const c of ['Indicador', ...niveles, ...(conEvidencia ? ['Evidencia o comentario'] : [])]) {
+      const th = el('th', c);
+      th.scope = 'col';
+      cab.append(th);
+    }
+    const cuerpo = t.createTBody();
+    indicadores.forEach((texto, i) => {
+      const fila = cuerpo.insertRow();
+      const th = el('th', `${i + 1}. ${texto}`);
+      th.scope = 'row';
+      fila.append(th);
+      for (let k = 0; k < niveles.length; k++) {
+        fila.append(el('td', '☐', 'instrumento__casilla'));
+      }
+      if (conEvidencia) fila.append(el('td', '', 'instrumento__evidencia'));
+    });
+    return t;
+  }
+
+  function diana(indicadores: string[]) {
+    const n = indicadores.length;
+    const tam = 320;
+    const c = tam / 2;
+    const radio = 120;
+    const svg = document.createElementNS(SVG, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${tam} ${tam}`);
+    svg.setAttribute('class', 'instrumento__diana');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute(
+      'aria-label',
+      `Diana de coevaluación con ${n} ejes, uno por indicador, y cuatro anillos: del centro hacia fuera, Todavía no, En proceso, Lo consigue y Lo supera.`,
+    );
+    const punto = (i: number, r: number) => {
+      const a = -Math.PI / 2 + (2 * Math.PI * i) / n;
+      return [c + r * Math.cos(a), c + r * Math.sin(a)];
+    };
+    for (let k = 1; k <= 4; k++) {
+      const circulo = document.createElementNS(SVG, 'circle');
+      circulo.setAttribute('cx', String(c));
+      circulo.setAttribute('cy', String(c));
+      circulo.setAttribute('r', String((radio * k) / 4));
+      circulo.setAttribute('class', 'diana__anillo');
+      svg.append(circulo);
+    }
+    for (let i = 0; i < n; i++) {
+      const [x, y] = punto(i, radio);
+      const eje = document.createElementNS(SVG, 'line');
+      eje.setAttribute('x1', String(c));
+      eje.setAttribute('y1', String(c));
+      eje.setAttribute('x2', String(x));
+      eje.setAttribute('y2', String(y));
+      eje.setAttribute('class', 'diana__eje');
+      svg.append(eje);
+      const [lx, ly] = punto(i, radio + 18);
+      const etiqueta = document.createElementNS(SVG, 'text');
+      etiqueta.setAttribute('x', String(lx));
+      etiqueta.setAttribute('y', String(ly));
+      etiqueta.setAttribute('text-anchor', 'middle');
+      etiqueta.setAttribute('dominant-baseline', 'middle');
+      etiqueta.setAttribute('class', 'diana__numero');
+      etiqueta.textContent = String(i + 1);
+      svg.append(etiqueta);
+    }
+    const figura = el('div', undefined, 'instrumento__diana-bloque');
+    figura.append(svg);
+    const leyenda = el('div', undefined, 'instrumento__leyenda');
+    leyenda.append(el('p', 'Marca un punto en cada eje y únelos. Anillos, del centro hacia fuera:', 'instrumento__nota'));
+    leyenda.append(el('p', '1 Todavía no · 2 En proceso · 3 Lo consigue · 4 Lo supera', 'instrumento__niveles'));
+    const ol = el('ol');
+    for (const texto of indicadores) ol.append(el('li', texto));
+    leyenda.append(ol);
+    figura.append(leyenda);
+    return figura;
+  }
+
+  function lineas(numero: number) {
+    const bloque = el('div', undefined, 'instrumento__lineas');
+    for (let i = 0; i < numero; i++) bloque.append(el('span'));
+    return bloque;
+  }
+
+  function componer() {
+    const d = new FormData(form);
+    const v = (k: string) => String(d.get(k) ?? '').trim();
+    const indicadores = d
+      .getAll('indicador')
+      .map((x) => String(x).trim())
+      .filter(Boolean);
+    const formato = v('formato') as 'lista' | 'escala' | 'diana';
+    const conEvidencia = Boolean(d.get('evidencia'));
+
+    destino.replaceChildren();
+    if (indicadores.length < 3) {
+      aviso.textContent = 'Escribe al menos tres indicadores para generar el instrumento.';
+      botonImprimir.hidden = true;
+    } else {
+      aviso.textContent = '';
+      botonImprimir.hidden = false;
+      destino.append(el('p', 'Coevaluación', 'instrumento__antetitulo'));
+      destino.append(el('h3', v('actividad') || 'Actividad', 'instrumento__titulo'));
+      if (v('curso')) destino.append(el('p', v('curso'), 'instrumento__curso'));
+      const datos = el('p', undefined, 'instrumento__datos');
+      datos.append(el('span', 'Trabajo o equipo evaluado: '), el('span', '', 'instrumento__hueco'));
+      destino.append(datos);
+      destino.append(
+        el(
+          'p',
+          'Valora el trabajo, no a las personas. En cada valoración «En parte» o «Todavía no», anota qué has visto que lo justifica.',
+          'instrumento__nota',
+        ),
+      );
+      destino.append(formato === 'diana' ? diana(indicadores) : tabla(indicadores, NIVELES[formato], conEvidencia));
+      destino.append(el('h4', 'Reflexión', 'instrumento__subtitulo'));
+      for (const p of [v('pregunta1'), v('pregunta2')].filter(Boolean)) {
+        destino.append(el('p', p, 'instrumento__pregunta'), lineas(2));
+      }
+      destino.append(el('h4', 'Una propuesta de mejora', 'instrumento__subtitulo'));
+      destino.append(el('p', '«Una fortaleza de vuestro trabajo es… Para mejorarlo, os propongo… porque…»', 'instrumento__nota'));
+      destino.append(lineas(3));
+    }
+
+    const partes = [
+      'Actúa como especialista en evaluación formativa y en diseño de instrumentos de coevaluación.',
+      `CONTEXTO\n- Curso y materia: ${v('curso') || '[indicar]'}\n- Actividad que se coevalúa: ${v('actividad') || '[describir]'}`,
+      `CRITERIOS DE EVALUACIÓN (literales, no los modifiques):\n${v('criterios') || '[pega aquí los criterios de evaluación]'}`,
+      'TAREA\nPropón entre cuatro y seis indicadores observables para que el alumnado coevalúe este trabajo.',
+      [
+        'CONDICIONES',
+        '- Cada indicador procede de uno de los criterios anteriores: indica de cuál.',
+        '- Cada indicador describe algo que se ve en el producto o en el proceso, en una frase y con lenguaje comprensible para el alumnado.',
+        '- No uses «bien», «regular» o «mal» como descriptor.',
+        '- Excluye simpatía, popularidad, personalidad, actitud y esfuerzo no observable.',
+        '- No asignes puntos, porcentajes ni notas.',
+        '- Al final, señala qué indicadores pueden resultar ambiguos y cómo precisarlos.',
+      ].join('\n'),
+      'Si falta información imprescindible, pregúntame antes de responder.',
+    ];
+    salidaPrompt.textContent = partes.join('\n\n');
+  }
+
+  botonImprimir.addEventListener('click', () => window.print());
+  form.addEventListener('input', componer);
+  form.addEventListener('change', componer);
+  componer();
+</script>
+
+<style>
+  .generador {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-6);
+  }
+  @media (min-width: 64rem) {
+    .generador {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      align-items: start;
+    }
+  }
+  .generador__form,
+  .grupo {
+    display: grid;
+    gap: var(--e-4);
+  }
+  .grupo {
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    padding: var(--e-4);
+    margin: 0;
+  }
+  .grupo legend {
+    font-weight: 600;
+    padding-inline: var(--e-2);
+  }
+  .grupo .ayuda {
+    margin: 0;
+  }
+  .casilla {
+    display: flex;
+    gap: var(--e-2);
+    font-size: var(--t-sm);
+    align-items: flex-start;
+  }
+  .casilla input {
+    margin-top: 0.3em;
+    accent-color: var(--c-acento);
+  }
+  .generador__salidas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-6);
+    min-width: 0;
+  }
+  .bloque-salida__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--e-3);
+    margin-bottom: var(--e-3);
+  }
+  .bloque-salida__cabecera h2 {
+    font-size: var(--t-xl);
+  }
+  .salida {
+    font-family: var(--f-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: var(--e-5);
+    border: 1px solid var(--c-borde-fuerte);
+    border-radius: var(--radio);
+    background: var(--c-fondo-suave);
+    max-height: 60vh;
+    overflow: auto;
+  }
+  [data-copiar][data-estado='copiado'] {
+    background: var(--c-ok);
+    border-color: var(--c-ok);
+  }
+
+  /* Instrumento: se pinta con colores de papel también en modo oscuro, para que la vista
+     previa coincida con lo que se imprime. */
+  .instrumento {
+    background: #ffffff;
+    color: #16191d;
+    border: 1px solid var(--c-borde-fuerte);
+    border-radius: var(--radio);
+    padding: var(--e-5);
+    font-size: var(--t-sm);
+    overflow-x: auto;
+  }
+  .instrumento:empty {
+    display: none;
+  }
+  .instrumento :global(.instrumento__antetitulo) {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: #0b5f70;
+    margin: 0;
+  }
+  .instrumento :global(.instrumento__titulo) {
+    font-family: var(--f-serif);
+    font-size: var(--t-lg);
+    margin: var(--e-1) 0 0;
+    color: #16191d;
+  }
+  .instrumento :global(.instrumento__curso) {
+    color: #4a525c;
+    margin: var(--e-1) 0 0;
+  }
+  .instrumento :global(.instrumento__datos) {
+    display: flex;
+    gap: var(--e-2);
+    align-items: flex-end;
+    margin: var(--e-4) 0 var(--e-2);
+  }
+  .instrumento :global(.instrumento__hueco) {
+    flex: 1;
+    border-bottom: 1px solid #4a525c;
+    min-height: 1.4em;
+  }
+  .instrumento :global(.instrumento__nota) {
+    color: #4a525c;
+    margin: var(--e-2) 0;
+  }
+  .instrumento :global(.instrumento__tabla) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: var(--e-3);
+  }
+  .instrumento :global(.instrumento__tabla th),
+  .instrumento :global(.instrumento__tabla td) {
+    border: 1px solid #c9ced5;
+    padding: var(--e-2);
+    vertical-align: top;
+    text-align: left;
+  }
+  .instrumento :global(.instrumento__tabla thead th) {
+    background: #f6f7f8;
+    font-size: var(--t-xs);
+  }
+  .instrumento :global(.instrumento__tabla tbody th) {
+    font-weight: 500;
+    min-width: 12rem;
+  }
+  .instrumento :global(.instrumento__casilla) {
+    text-align: center;
+    font-size: 1.2rem;
+    width: 4.5rem;
+  }
+  .instrumento :global(.instrumento__evidencia) {
+    min-width: 10rem;
+  }
+  .instrumento :global(.instrumento__diana-bloque) {
+    display: grid;
+    gap: var(--e-4);
+    margin-block: var(--e-3);
+  }
+  @media (min-width: 40rem) {
+    .instrumento :global(.instrumento__diana-bloque) {
+      grid-template-columns: minmax(12rem, 20rem) 1fr;
+      align-items: center;
+    }
+  }
+  .instrumento :global(.instrumento__diana) {
+    width: 100%;
+    height: auto;
+  }
+  .instrumento :global(.diana__anillo) {
+    fill: none;
+    stroke: #c9ced5;
+  }
+  .instrumento :global(.diana__eje) {
+    stroke: #4a525c;
+  }
+  .instrumento :global(.diana__numero) {
+    font-size: 15px;
+    font-weight: 600;
+    fill: #0b5f70;
+  }
+  .instrumento :global(.instrumento__niveles) {
+    font-weight: 600;
+    margin: 0 0 var(--e-2);
+  }
+  .instrumento :global(.instrumento__subtitulo) {
+    font-size: var(--t-base);
+    margin: var(--e-4) 0 var(--e-1);
+    color: #16191d;
+  }
+  .instrumento :global(.instrumento__pregunta) {
+    margin: var(--e-2) 0 0;
+  }
+  .instrumento :global(.instrumento__lineas) {
+    display: grid;
+    gap: var(--e-5);
+    margin-top: var(--e-4);
+  }
+  .instrumento :global(.instrumento__lineas span) {
+    border-bottom: 1px solid #c9ced5;
+  }
+
+  /* Al imprimir solo sale el instrumento: se retira todo lo demás del flujo para que no
+     queden páginas en blanco. */
+  @media print {
+    :global(header[role='banner']),
+    :global(footer[role='contentinfo']),
+    :global(.migas),
+    :global(.salto),
+    :global(.cabecera-pagina),
+    .generador__form,
+    .bloque-salida__cabecera,
+    .bloque-salida [data-aviso-indicadores],
+    [data-copiar-zona],
+    .nota {
+      display: none !important;
+    }
+    .generador {
+      display: block;
+    }
+    .instrumento {
+      border: 0;
+      padding: 0;
+      overflow: visible;
+    }
+  }
+</style>
