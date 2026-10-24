@@ -16,6 +16,7 @@ const PRINCIPALES = [
   '/buscar/',
   '/contacto/',
   '/formacion/',
+  '/colabora/',
   '/newsletter/',
   '/privacidad/',
   '/cookies/',
@@ -212,10 +213,22 @@ test.describe('Formularios', () => {
     // En móvil el menú está cerrado: se comprueba el enlace en el DOM, no en el árbol accesible.
     await expect(page.locator('#nav-principal a[href="/formacion/"]')).toHaveText('Formación');
   });
+
+  test('la propuesta de colaboración está activa, lleva asunto propio y se enlaza desde el pie y la privacidad', async ({ page }) => {
+    await page.goto('/colabora/');
+    await expect(page.getByRole('button', { name: 'Quiero colaborar' })).toBeEnabled();
+    await expect(page.locator('form.colabora')).toHaveAttribute('action', /^https:\/\/formspree\.io\/f\//);
+    await expect(page.locator('form.colabora input[name="_subject"]')).toHaveValue(/Propuesta de colaboración/);
+    await expect(page.locator('footer a[href="/colabora/"]')).toHaveText('Colabora');
+    // El dossier se envía por correo: la página no enlaza ningún PDF.
+    await expect(page.locator('main a[href$=".pdf"]')).toHaveCount(0);
+    await page.goto('/privacidad/');
+    await expect(page.getByRole('cell', { name: 'Propuesta de colaboración' })).toBeVisible();
+  });
 });
 
 test.describe('Accesibilidad automática (axe)', () => {
-  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/laboratorio/constructor-de-prompts/', '/laboratorio/generador-coevaluacion/']) {
+  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/colabora/', '/laboratorio/constructor-de-prompts/', '/laboratorio/generador-coevaluacion/']) {
     test(`${ruta} sin infracciones graves`, async ({ page }) => {
       await page.goto(ruta);
       const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();

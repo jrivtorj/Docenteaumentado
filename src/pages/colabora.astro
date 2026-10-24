@@ -1,0 +1,176 @@
+---
+import { PUBLIC_CONTACT_FORM_ACTION, PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
+import Pagina from '@/layouts/Pagina.astro';
+/*
+ * Captación de colaboradores. Perfiles y principios tomados del dossier del proyecto, que no
+ * se publica: el autor lo envía por correo a quien lo pide desde este formulario.
+ * No se prometen remuneración ni condiciones concretas: el aviso legal declara un sitio sin
+ * actividad económica. Si eso cambia, revisar esta página, el aviso legal y la privacidad.
+ * El formulario usa el mismo endpoint que el de contacto, con un asunto propio.
+ */
+const activo = Boolean(PUBLIC_CONTACT_FORM_ACTION);
+const perfiles = [
+  {
+    nombre: 'Docentes en activo',
+    aporte: 'Experiencias de aula con IA, contadas con lo que funcionó y lo que no, y materiales probados con alumnado real.',
+  },
+  {
+    nombre: 'Especialistas en IA y tecnología',
+    aporte: 'Revisión técnica de herramientas y tutoriales, y explicaciones rigurosas de cómo funcionan los modelos.',
+  },
+  {
+    nombre: 'Investigadores y expertos pedagógicos',
+    aporte: 'Fundamentación con evidencia, revisión de enfoques didácticos y de evaluación, y lectura crítica de estudios.',
+  },
+  {
+    nombre: 'Formadores y facilitadores',
+    aporte: 'Diseño e impartición de talleres para claustros y departamentos.',
+  },
+  {
+    nombre: 'Diseñadores y desarrolladores',
+    aporte: 'Herramientas del laboratorio, accesibilidad y mejoras de la web.',
+  },
+  {
+    nombre: 'Autores y divulgadores',
+    aporte: 'Artículos, guías y prompts que expliquen la IA educativa con claridad y sin exageraciones.',
+  },
+];
+---
+
+<Pagina
+  titulo="Colabora con el proyecto"
+  descripcion="Cómo colaborar con El docente aumentado: perfiles que buscamos, formas de empezar, principios de trabajo y formulario para recibir el dossier del proyecto."
+  ruta="/colabora/"
+  antetitulo="El proyecto"
+  entradilla="Busco docentes y profesionales que quieran construir conmigo materiales rigurosos sobre IA en educación. Si te interesa, escríbeme y te envío el dossier del proyecto."
+>
+  <h2 id="perfiles">A quién busco</h2>
+  <ul class="perfiles">
+    {
+      perfiles.map((p) => (
+        <li>
+          <strong>{p.nombre}.</strong> {p.aporte}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2 id="como-empezar">Cómo se empieza</h2>
+  <p>
+    No hace falta un compromiso largo. Una colaboración puede empezar con una sola aportación: un artículo para
+    <a href="/desde-mi-aula/">Desde mi aula</a>, un prompt para la <a href="/prompts/">biblioteca</a>, una herramienta
+    para el <a href="/laboratorio/">laboratorio</a>, la revisión de un contenido ya publicado o un taller piloto de
+    <a href="/formacion/">formación</a>.
+  </p>
+  <p>
+    El dossier explica el proyecto, sus líneas de trabajo y la hoja de ruta. Te lo envío por correo cuando me escribas;
+    no está publicado en la web.
+  </p>
+
+  <h2 id="principios">Principios de trabajo</h2>
+  <ul>
+    <li>
+      <strong>Rigor.</strong> Los contenidos siguen los <a href="/sobre-el-autor/#criterios-editoriales">criterios editoriales</a>
+      de la web: fuentes primarias, hechos separados de opiniones y nada presentado como verificado si no lo está.
+    </li>
+    <li><strong>Transparencia sobre el uso de IA</strong> en la elaboración de cada contenido.</li>
+    <li><strong>Autoría reconocida.</strong> Cada aportación se firma y se atribuye con claridad.</li>
+    <li>
+      <strong>Acuerdos por escrito.</strong> Antes de empezar se acuerdan la autoría, los derechos sobre el material, las
+      responsabilidades de cada parte y el uso del nombre del proyecto.
+    </li>
+    <li>
+      <strong>Privacidad del alumnado.</strong> Ningún material publicado incluye datos que permitan identificar a
+      estudiantes ni a sus centros.
+    </li>
+  </ul>
+
+  <h2 id="escribeme">Escríbeme</h2>
+  <p>
+    Cuéntame quién eres y qué te gustaría aportar. Te respondo personalmente con el dossier. Si lo prefieres, escribe a
+    {PUBLIC_CONTACT_EMAIL ? <a href={`mailto:${PUBLIC_CONTACT_EMAIL}?subject=Colaboración`}>{PUBLIC_CONTACT_EMAIL}</a> : <a href="/contacto/">la página de contacto</a>}.
+  </p>
+
+  <form class="colabora" method="post" action={activo ? PUBLIC_CONTACT_FORM_ACTION : undefined} aria-describedby="nota-colabora">
+    {
+      !activo && (
+        <p id="nota-colabora" class="aviso aviso--pendiente" role="note">
+          <strong>Formulario pendiente de configurar.</strong> Todavía no tiene un destino de envío, así que está
+          desactivado y no recoge ningún dato.
+        </p>
+      )
+    }
+    <fieldset disabled={!activo} class="colabora__campos">
+      <legend class="visualmente-oculto">Datos de la propuesta</legend>
+      <input type="hidden" name="_subject" value="Propuesta de colaboración (El docente aumentado)" />
+      <input type="hidden" name="origen" value="Colabora" />
+      <div class="campo">
+        <label for="k-nombre">Nombre y apellidos</label>
+        <input id="k-nombre" class="entrada" name="nombre" autocomplete="name" required />
+      </div>
+      <div class="campo">
+        <label for="k-email">Correo electrónico</label>
+        <input id="k-email" class="entrada" type="email" name="email" autocomplete="email" required />
+      </div>
+      <div class="campo">
+        <label for="k-perfil">Perfil que mejor te describe</label>
+        <select id="k-perfil" class="entrada" name="perfil">
+          {perfiles.map((p) => <option>{p.nombre}</option>)}
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="k-enlace">Web, perfil profesional o trabajo previo (opcional)</label>
+        <input id="k-enlace" class="entrada" type="url" name="enlace" inputmode="url" placeholder="https://" />
+      </div>
+      <div class="campo">
+        <label for="k-mensaje">¿Qué te gustaría aportar?</label>
+        <textarea id="k-mensaje" class="entrada" name="mensaje" required minlength="10" aria-describedby="k-mensaje-ayuda"></textarea>
+        <span id="k-mensaje-ayuda" class="ayuda">Tu experiencia, la etapa o materia en la que trabajas y una primera idea de aportación.</span>
+      </div>
+      <div hidden aria-hidden="true">
+        <label>No rellenar <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <label class="consentimiento">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído la <a href="/privacidad/">política de privacidad</a>.</span>
+      </label>
+      <button class="boton" type="submit">Quiero colaborar</button>
+    </fieldset>
+    {activo && <p id="nota-colabora" class="meta">El envío se procesa a través del servicio de formularios indicado en la política de privacidad.</p>}
+  </form>
+</Pagina>
+
+<style>
+  .perfiles {
+    display: grid;
+    gap: var(--e-2);
+  }
+  .colabora {
+    margin-top: var(--e-4);
+    font-size: var(--t-base);
+  }
+  .colabora__campos {
+    border: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--e-4);
+    margin-top: var(--e-4);
+  }
+  .colabora__campos:disabled {
+    opacity: 0.6;
+  }
+  .consentimiento {
+    display: flex;
+    gap: var(--e-2);
+    align-items: flex-start;
+    font-size: var(--t-sm);
+  }
+  .consentimiento input {
+    margin-top: 0.3em;
+    accent-color: var(--c-acento);
+  }
+  .colabora .boton {
+    justify-self: start;
+  }
+</style>
