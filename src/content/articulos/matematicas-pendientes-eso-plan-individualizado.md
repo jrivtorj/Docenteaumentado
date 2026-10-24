@@ -80,6 +80,8 @@ En Canarias, una adaptación curricular (AC) exige un referente curricular situa
 
 Si el alumno tiene AC en Matemáticas, se evalúa con los criterios de su referente (Orden de 31 de mayo de 2023, art. 42), y los criterios de la AC siguen la temporalización de la programación del grupo (instrucciones de 2026, primera.11). Cómo se resuelve en ese caso la materia pendiente no está regulado de forma explícita en los textos que he consultado. Consúltalo con jefatura de estudios y orientación antes de la evaluación final.
 
+Cómo trabajar en la misma clase con el grupo, con el alumnado con pendientes y con el que tiene AC lo explico en [Tareas en tres niveles: pendientes y adaptaciones curriculares en la misma situación de aprendizaje](/articulos/tareas-en-tres-niveles-adaptaciones-curriculares/).
+
 ## Dónde ayuda la IA y dónde no
 
 La IA es útil para preparar las tareas de andamiaje de cada situación de aprendizaje y para proponer varias versiones de una misma tarea. Un prompt de partida:
