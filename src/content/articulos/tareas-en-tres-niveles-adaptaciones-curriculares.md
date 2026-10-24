@@ -2,6 +2,7 @@
 titulo: "Tareas en tres niveles: pendientes y adaptaciones curriculares en la misma situación de aprendizaje"
 descripcion: "Cómo diseñar una tarea de Matemáticas en tres niveles para atender en el aula ordinaria a alumnado con pendientes y con AC o ACUS, según la normativa canaria."
 fechaPublicacion: 2026-10-24
+fechaActualizacion: 2026-10-24
 autor: jose-david-rivero
 tipo: tutorial
 temas: [situaciones-de-aprendizaje-ia, ia-matematicas-ciencias]
@@ -44,14 +45,14 @@ La alternativa que propongo es una sola situación de aprendizaje con **tareas e
 <div class="nota nota--hecho">
 
 - **Quién tiene adaptación curricular.** En Canarias, una adaptación curricular (AC) exige un referente curricular dos o más cursos por debajo del curso en que está escolarizado el alumno, y una adaptación curricular significativa (ACUS), cuatro o más en la enseñanza básica, con informe psicopedagógico (Orden de 13 de diciembre de 2010, arts. 7 y 8).
-- **Mismo ritmo que el grupo.** Los criterios de la AC se distribuyen según la temporalización de la programación del grupo de referencia, para trabajar y evaluar las mismas habilidades ajustadas al nivel del alumno (instrucciones de 6 de octubre de 2026, primera.11).
-- **Evaluación con su referente.** El alumnado con AC se evalúa con los criterios de evaluación de su adaptación (Orden de 31 de mayo de 2023, art. 42; instrucciones de 2026, primera.10). Una calificación positiva en la AC no equivale a superar la materia del curso en que está matriculado (Orden de 2010, art. 29).
+- **Mismo calendario que el grupo.** Los criterios de la AC, que son los de su referente, se distribuyen siguiendo la temporalización de la programación del grupo. Así, en cada unidad el alumno trabaja las mismas habilidades que el grupo, ajustadas a su nivel competencial (instrucciones de 6 de octubre de 2026, primera.11). Lo que se comparte es el calendario y el tipo de aprendizaje, no los criterios.
+- **Evaluación con su referente.** El alumnado con AC se evalúa y se califica con los criterios de evaluación de su referente curricular recogidos en la adaptación, no con los del curso en que está matriculado (Orden de 31 de mayo de 2023, art. 42; instrucciones de 2026, primera.10). Una calificación positiva en la AC no equivale a superar la materia de ese curso (Orden de 2010, art. 29).
 - **Instrumentos accesibles.** Los instrumentos deben ser variados y accesibles e incorporar los principios del DUA, en especial las múltiples formas de acción y expresión y de representación (instrucciones de 2026, primera.4).
 - **Tiempo fuera del aula.** En ESO, como máximo cuatro horas semanales fuera del aula ordinaria cuando solo se adapta una materia, Lengua o Matemáticas (Resolución de 9 de febrero de 2011, instrucción cuarta.3).
 
 </div>
 
-La instrucción primera.11 es la que hace viable este modelo: no pide una programación aparte, sino que el alumno con AC avance con su grupo, con criterios de su referente.
+Las dos instrucciones se complementan. La primera.11 fija cuándo se trabaja cada aprendizaje: al mismo tiempo que el grupo. La primera.10 fija con qué se evalúa: con los criterios del referente. Por eso no hace falta una programación aparte: el alumno con AC sigue la secuencia de su grupo con sus propios criterios.
 
 ## Los tres niveles
 
