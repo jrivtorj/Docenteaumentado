@@ -47,6 +47,7 @@ export const NAV_PIE: { titulo: string; enlaces: EnlaceNav[] }[] = [
       { href: '/sobre-el-autor/#criterios-editoriales', texto: 'Criterios editoriales' },
       { href: '/desde-mi-aula/', texto: 'Desde mi aula' },
       { href: '/formacion/', texto: 'Formación para centros' },
+      { href: '/colabora/', texto: 'Colabora' },
       { href: '/newsletter/', texto: 'Newsletter' },
       { href: '/contacto/', texto: 'Contacto' },
       { href: '/rss.xml', texto: 'RSS' },
