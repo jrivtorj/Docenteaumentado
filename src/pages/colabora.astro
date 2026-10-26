@@ -2,10 +2,12 @@
 import { PUBLIC_CONTACT_FORM_ACTION, PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
 import Pagina from '@/layouts/Pagina.astro';
 /*
- * Captación de colaboradores. Perfiles y principios tomados del dossier del proyecto, que no
+ * Captación de colaboraciones. Perfiles y principios tomados del dossier del proyecto, que no
  * se publica: el autor lo envía por correo a quien lo pide desde este formulario.
  * No se prometen remuneración ni condiciones concretas: el aviso legal declara un sitio sin
  * actividad económica. Si eso cambia, revisar esta página, el aviso legal y la privacidad.
+ * Lenguaje inclusivo: nombres de perfil epicenos o de ámbito (sin masculino genérico, @ ni x)
+ * y un único desdoblamiento deliberado en la entradilla para nombrar a las profesoras.
  * El formulario usa el mismo endpoint que el de contacto, con un asunto propio.
  */
 const activo = Boolean(PUBLIC_CONTACT_FORM_ACTION);
@@ -19,19 +21,19 @@ const perfiles = [
     aporte: 'Revisión técnica de herramientas y tutoriales, y explicaciones rigurosas de cómo funcionan los modelos.',
   },
   {
-    nombre: 'Investigadores y expertos pedagógicos',
+    nombre: 'Personas expertas en investigación y pedagogía',
     aporte: 'Fundamentación con evidencia, revisión de enfoques didácticos y de evaluación, y lectura crítica de estudios.',
   },
   {
-    nombre: 'Formadores y facilitadores',
+    nombre: 'Profesionales de la formación docente',
     aporte: 'Diseño e impartición de talleres para claustros y departamentos.',
   },
   {
-    nombre: 'Diseñadores y desarrolladores',
+    nombre: 'Diseño y desarrollo web',
     aporte: 'Herramientas del laboratorio, accesibilidad y mejoras de la web.',
   },
   {
-    nombre: 'Autores y divulgadores',
+    nombre: 'Autoría y divulgación',
     aporte: 'Artículos, guías y prompts que expliquen la IA educativa con claridad y sin exageraciones.',
   },
 ];
@@ -42,7 +44,7 @@ const perfiles = [
   descripcion="Cómo colaborar con El docente aumentado: perfiles que buscamos, formas de empezar, principios de trabajo y formulario para recibir el dossier del proyecto."
   ruta="/colabora/"
   antetitulo="El proyecto"
-  entradilla="Busco docentes y profesionales que quieran construir conmigo materiales rigurosos sobre IA en educación. Si te interesa, escríbeme y te envío el dossier del proyecto."
+  entradilla="Busco profesoras, profesores y profesionales de otros ámbitos que quieran construir conmigo materiales rigurosos sobre IA en educación. Si te interesa, escríbeme y te envío el dossier del proyecto."
 >
   <h2 id="perfiles">A quién busco</h2>
   <ul class="perfiles">
