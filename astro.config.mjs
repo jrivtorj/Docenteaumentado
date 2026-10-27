@@ -15,6 +15,12 @@ import accesibilidadProsa from './integraciones/accesibilidad-prosa.mjs';
  * otro valor (development, preview, staging…) genera `noindex` y un robots.txt restrictivo.
  */
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
+// Cloudflare Workers Builds no separa las variables de compilación de producción y de las
+// ramas, pero informa de la rama en WORKERS_CI_BRANCH. Si no se fija SITE_ENV a mano, la
+// compilación de main es producción (indexable) y la de cualquier otra rama, vista previa.
+if (!env.SITE_ENV && process.env.WORKERS_CI_BRANCH) {
+  process.env.SITE_ENV = process.env.WORKERS_CI_BRANCH === 'main' ? 'production' : 'preview';
+}
 const SITE_URL = env.SITE_URL || 'https://eldocenteaumentado.com';
 // Origen del script de analítica (si se configura) para permitirlo en la CSP.
 const ORIGEN_ANALITICA = env.PUBLIC_ANALYTICS_SCRIPT ? new URL(env.PUBLIC_ANALYTICS_SCRIPT).origin : null;
