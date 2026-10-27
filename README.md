@@ -217,7 +217,7 @@ Ver `.env.example`. Todas son **públicas** (acaban en el HTML); no hay secretos
 | Variable | Uso |
 |---|---|
 | `SITE_URL` | Dominio canónico, sin barra final. Por defecto, `https://eldocenteaumentado.com`. |
-| `SITE_ENV` | `production` hace el sitio indexable. Cualquier otro valor añade `noindex` a todas las páginas y genera un `robots.txt` que bloquea el rastreo. |
+| `SITE_ENV` | `production` hace el sitio indexable. Cualquier otro valor añade `noindex` a todas las páginas y genera un `robots.txt` que bloquea el rastreo. En Cloudflare Workers Builds no hace falta definirla: si falta, la compilación de `main` es `production` y la de cualquier otra rama, `preview` (se deduce de `WORKERS_CI_BRANCH`). |
 | `PUBLIC_CONTACT_FORM_ACTION` | URL de envío del formulario de contacto. Por defecto, el endpoint de Formspree del proyecto. |
 | `PUBLIC_CONTACT_EMAIL` | Correo de contacto visible. Por defecto, `eldocenteaumentado@gmail.com`. |
 | `PUBLIC_NEWSLETTER_ACTION` | URL `action` del formulario embebible del proveedor de newsletter. Vacía = suscripción desactivada y marcada como pendiente. |
