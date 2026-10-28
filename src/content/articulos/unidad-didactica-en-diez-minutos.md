@@ -56,8 +56,6 @@ Haz la prueba con cualquier asistente: pídele una unidad didáctica para tu mat
 4. **¿Sirve para tu grupo?** Tiempo real disponible, recursos del centro y alumnado con adaptaciones. La IA no lo sabe porque nadie se lo ha dicho.
 5. **¿Es correcto lo que enseña?** Datos, ejemplos, cálculos. Es la primera capa del [protocolo de revisión de materiales](/articulos/revisar-materiales-generados-por-ia/).
 
-[COMPLETAR: si has hecho esta prueba con una unidad de tu materia, cuenta aquí qué encontraste y cuánto tardaste en revisarla. Sin datos tuyos, elimina este párrafo.]
-
 Lo que se generó en diez minutos no se revisa en diez minutos. La demostración enseña la parte rápida y se salta la que cuesta.
 
 ## Qué significa, para mí, «aumentado»
