@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+// El aviso de cookies se prueba en consentimiento.spec.ts; aquí se parte de una decisión
+// ya tomada para que no tape elementos de la página.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('eda-consentimiento', JSON.stringify({ analitica: false, fecha: new Date().toISOString() }));
+  });
+});
+
 const PRINCIPALES = [
   '/',
   '/actualidad/',

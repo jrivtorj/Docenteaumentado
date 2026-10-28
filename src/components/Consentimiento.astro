@@ -1,0 +1,182 @@
+---
+/**
+ * Aviso de consentimiento para la analítica (Google Analytics 4).
+ *
+ * Nada de Google se carga antes de que la persona acepte (LSSI-CE art. 22.2): ni el script
+ * gtag.js ni sus cookies. «Aceptar» y «Rechazar» tienen el mismo peso visual, y la elección
+ * puede cambiarse en cualquier momento con cualquier botón [data-abrir-consentimiento]
+ * (pie de página y política de cookies). La decisión se guarda en localStorage durante
+ * VIGENCIA_DIAS; pasado ese plazo se vuelve a preguntar.
+ *
+ * Solo se carga Analytics en el dominio canónico: en local y en las vistas previas el aviso
+ * funciona, pero no se envían datos.
+ */
+import { PUBLIC_GA_ID } from 'astro:env/server';
+
+const idAnalitica = PUBLIC_GA_ID && /^G-[A-Z0-9]+$/.test(PUBLIC_GA_ID) ? PUBLIC_GA_ID : undefined;
+const dominio = Astro.site!.hostname;
+---
+
+{
+  idAnalitica && (
+    <aside class="consentimiento" aria-labelledby="consentimiento-titulo" data-ga-id={idAnalitica} data-dominio={dominio} hidden>
+      <div class="consentimiento__caja">
+        <h2 id="consentimiento-titulo" class="consentimiento__titulo">¿Acepta las cookies de analítica?</h2>
+        <p class="consentimiento__texto">
+          Con su permiso, Google Analytics instala cookies para medir de forma estadística qué páginas se visitan y así
+          mejorar los contenidos. No se usan para publicidad. Si las rechaza, la web funciona igual.{' '}
+          <a href="/cookies/">Más información en la política de cookies</a>.
+        </p>
+        <div class="consentimiento__botones">
+          <button type="button" class="boton" data-consentimiento="aceptar">Aceptar</button>
+          <button type="button" class="boton" data-consentimiento="rechazar">Rechazar</button>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  const CLAVE = 'eda-consentimiento';
+  const VIGENCIA_DIAS = 365;
+
+  type Decision = { analitica: boolean; fecha: string };
+
+  const aviso = document.querySelector<HTMLElement>('.consentimiento');
+  const idAnalitica = aviso?.dataset.gaId;
+
+  function leer(): Decision | null {
+    try {
+      const d = JSON.parse(localStorage.getItem(CLAVE) ?? 'null') as Decision | null;
+      if (!d || typeof d.analitica !== 'boolean') return null;
+      const dias = (Date.now() - new Date(d.fecha).getTime()) / 86_400_000;
+      return dias >= 0 && dias < VIGENCIA_DIAS ? d : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function guardar(analitica: boolean) {
+    try {
+      localStorage.setItem(CLAVE, JSON.stringify({ analitica, fecha: new Date().toISOString() }));
+    } catch {
+      // Sin almacenamiento (modo privado estricto): la decisión vale solo para esta página.
+    }
+  }
+
+  function cargarAnalitica(id: string) {
+    if (location.hostname !== aviso?.dataset.dominio) return;
+    const w = window as unknown as Record<string, unknown> & { dataLayer: unknown[] };
+    w[`ga-disable-${id}`] = false;
+    if (document.getElementById('gtag-js')) return;
+    w.dataLayer = w.dataLayer || [];
+    // gtag.js espera el objeto arguments, no un array.
+    function gtag(..._args: unknown[]) {
+      // eslint-disable-next-line prefer-rest-params
+      w.dataLayer.push(arguments);
+    }
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', id);
+    const s = document.createElement('script');
+    s.id = 'gtag-js';
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+    document.head.append(s);
+  }
+
+  function retirarAnalitica(id: string) {
+    const w = window as unknown as Record<string, unknown>;
+    w[`ga-disable-${id}`] = true;
+    // Borra las cookies _ga y _ga_<ID> en el dominio actual y en sus dominios padre.
+    const partes = location.hostname.split('.');
+    const dominios = [''];
+    for (let i = 0; i < partes.length - 1; i++) dominios.push(`; domain=.${partes.slice(i).join('.')}`);
+    for (const c of document.cookie.split(';')) {
+      const nombre = c.split('=')[0].trim();
+      if (nombre === '_ga' || nombre.startsWith('_ga_')) {
+        for (const d of dominios) document.cookie = `${nombre}=; Max-Age=0; path=/${d}`;
+      }
+    }
+  }
+
+  function mostrar() {
+    if (!aviso) return;
+    aviso.hidden = false;
+  }
+
+  if (aviso && idAnalitica) {
+    const decision = leer();
+    if (decision?.analitica) cargarAnalitica(idAnalitica);
+    else if (!decision) mostrar();
+
+    aviso.addEventListener('click', (e) => {
+      const boton = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-consentimiento]');
+      if (!boton) return;
+      const acepta = boton.dataset.consentimiento === 'aceptar';
+      guardar(acepta);
+      if (acepta) cargarAnalitica(idAnalitica);
+      else retirarAnalitica(idAnalitica);
+      aviso.hidden = true;
+    });
+  }
+
+  for (const b of document.querySelectorAll<HTMLElement>('[data-abrir-consentimiento]')) {
+    if (!aviso) {
+      b.hidden = true;
+      continue;
+    }
+    b.addEventListener('click', () => {
+      mostrar();
+      aviso.querySelector<HTMLButtonElement>('[data-consentimiento="aceptar"]')?.focus();
+    });
+  }
+</script>
+
+<style>
+  .consentimiento {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 50;
+    padding: var(--e-3);
+    pointer-events: none;
+  }
+  .consentimiento[hidden] {
+    display: none;
+  }
+  .consentimiento__caja {
+    pointer-events: auto;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding: var(--e-4) var(--e-5);
+    background: var(--c-fondo-suave);
+    color: var(--c-texto);
+    border: 1px solid var(--c-borde-fuerte);
+    border-radius: var(--radio-sm);
+    box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 0.18);
+    font-size: var(--t-sm);
+  }
+  .consentimiento__titulo {
+    font-size: var(--t-base, 1rem);
+    margin: 0 0 var(--e-2);
+  }
+  .consentimiento__texto {
+    margin: 0;
+    color: var(--c-texto-2);
+  }
+  .consentimiento__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--e-3);
+    margin-top: var(--e-4);
+  }
+  .consentimiento__botones .boton {
+    flex: 1 1 8rem;
+    justify-content: center;
+  }
+</style>

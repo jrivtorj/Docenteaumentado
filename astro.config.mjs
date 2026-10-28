@@ -24,6 +24,18 @@ if (!env.SITE_ENV && process.env.WORKERS_CI_BRANCH) {
 const SITE_URL = env.SITE_URL || 'https://eldocenteaumentado.com';
 // Origen del script de analítica (si se configura) para permitirlo en la CSP.
 const ORIGEN_ANALITICA = env.PUBLIC_ANALYTICS_SCRIPT ? new URL(env.PUBLIC_ANALYTICS_SCRIPT).origin : null;
+// Google Analytics 4: solo se carga tras el consentimiento (src/components/Consentimiento.astro).
+// Orígenes que necesita según https://developers.google.com/tag-platform/security/guides/csp
+const GA_ID = env.PUBLIC_GA_ID ?? 'G-TJ5V8MPE4D';
+const ORIGENES_GA = GA_ID
+  ? {
+      script: ['https://*.googletagmanager.com'],
+      img: ['https://*.google-analytics.com', 'https://*.googletagmanager.com'],
+      connect: ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'],
+    }
+  : { script: [], img: [], connect: [] };
+/** @param {string[]} origenes */
+const anadir = (origenes) => origenes.map((o) => ` ${o}`).join('');
 
 export default defineConfig({
   site: SITE_URL,
@@ -48,13 +60,13 @@ export default defineConfig({
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data:",
+        `img-src 'self' data:${anadir(ORIGENES_GA.img)}`,
         "font-src 'self'",
-        `connect-src 'self'${ORIGEN_ANALITICA ? ` ${ORIGEN_ANALITICA}` : ''}`,
+        `connect-src 'self'${anadir([...(ORIGEN_ANALITICA ? [ORIGEN_ANALITICA] : []), ...ORIGENES_GA.connect])}`,
         "base-uri 'self'",
         "object-src 'none'",
       ],
-      scriptDirective: { resources: ["'self'", ...(ORIGEN_ANALITICA ? [ORIGEN_ANALITICA] : [])] },
+      scriptDirective: { resources: ["'self'", ...(ORIGEN_ANALITICA ? [ORIGEN_ANALITICA] : []), ...ORIGENES_GA.script] },
     },
   },
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
@@ -75,6 +87,8 @@ export default defineConfig({
       PUBLIC_NEWSLETTER_PROVIDER: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_ANALYTICS_SCRIPT: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_ANALYTICS_DOMAIN: envField.string({ context: 'server', access: 'public', optional: true }),
+      // ID de medición de Google Analytics 4. Vacío = sin Analytics ni aviso de cookies.
+      PUBLIC_GA_ID: envField.string({ context: 'server', access: 'public', default: GA_ID }),
       PUBLIC_GSC_VERIFICATION: envField.string({ context: 'server', access: 'public', optional: true }),
     },
   },

@@ -1,41 +1,143 @@
 ---
 import Pagina from '@/layouts/Pagina.astro';
-import { PUBLIC_ANALYTICS_SCRIPT } from 'astro:env/server';
+import { PUBLIC_ANALYTICS_SCRIPT, PUBLIC_GA_ID } from 'astro:env/server';
+/*
+ * Política de cookies (LSSI-CE art. 22.2 y Guía sobre el uso de las cookies de la AEPD).
+ * Las cookies y duraciones de Google Analytics 4 son las que documenta Google para gtag.js;
+ * revísalas si cambia la configuración de la propiedad.
+ * No es asesoramiento jurídico.
+ */
+const ga = PUBLIC_GA_ID && /^G-[A-Z0-9]+$/.test(PUBLIC_GA_ID) ? PUBLIC_GA_ID : undefined;
+const sufijo = ga?.slice(2);
 ---
 
 <Pagina
   titulo="Política de cookies"
-  descripcion="El docente aumentado no utiliza cookies ni almacenamiento local en el navegador. Esta página explica qué se carga al visitar el sitio."
+  descripcion={
+    ga
+      ? 'Qué cookies usa El docente aumentado: solo las de Google Analytics, y únicamente si usted las acepta. Cómo cambiar su elección.'
+      : 'El docente aumentado no utiliza cookies ni almacenamiento local en el navegador. Esta página explica qué se carga al visitar el sitio.'
+  }
   ruta="/cookies/"
-  actualizado={new Date('2026-10-12')}
+  actualizado={new Date(ga ? '2026-10-28' : '2026-10-12')}
   noindex
 >
-  <h2>Este sitio no usa cookies</h2>
-  <p>
-    Las páginas de este sitio no instalan cookies ni guardan información en el almacenamiento local de su navegador. Por
-    eso no verá un banner de consentimiento: no hay nada que aceptar.
-  </p>
-  <ul>
-    <li>Las tipografías se sirven desde el propio dominio, sin llamadas a Google Fonts ni a otros servidores.</li>
-    <li>El buscador, los filtros y el botón de copiar funcionan íntegramente en su navegador.</li>
-    <li>
-      {
-        PUBLIC_ANALYTICS_SCRIPT
-          ? 'La analítica empleada no utiliza cookies ni identificadores persistentes; solo registra datos agregados.'
-          : 'No hay herramientas de analítica activas.'
-      }
-    </li>
-  </ul>
+  {
+    ga ? (
+      <>
+        <h2>Resumen</h2>
+        <p>
+          Este sitio solo usa cookies de analítica (Google Analytics) y únicamente si usted las acepta en el aviso que
+          aparece en su primera visita. Hasta entonces no se carga ningún script de Google ni se instala ninguna cookie. Si
+          las rechaza, la web funciona exactamente igual.
+        </p>
+        <p>
+          <button type="button" class="boton boton--secundario" data-abrir-consentimiento>
+            Cambiar mi elección sobre las cookies
+          </button>
+        </p>
 
-  <h2>Servicios de terceros</h2>
-  <p>
-    Si se suscribe a la newsletter, el formulario se envía al proveedor de correo, que puede usar sus propias cookies en
-    su dominio al mostrarle la página de confirmación. Consulte su política en esa página.
-  </p>
+        <h2>Qué es una cookie</h2>
+        <p>
+          Es un pequeño archivo que un sitio web guarda en su navegador para recordar información entre visitas. La ley
+          trata igual otras técnicas parecidas, como el almacenamiento local del navegador.
+        </p>
 
-  <h2>Si esto cambia</h2>
-  <p>
-    Si en el futuro se incorporara algún servicio que requiera cookies no exentas, se actualizará esta política y se
-    solicitará su consentimiento previo, tal como exige el artículo 22.2 de la LSSI-CE.
-  </p>
+        <h2>Cookies y almacenamiento que se usan</h2>
+        <table>
+          <thead>
+            <tr><th>Nombre</th><th>Titular</th><th>Finalidad</th><th>Duración</th><th>¿Requiere consentimiento?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>eda-consentimiento</code> (almacenamiento local)</td>
+              <td>Propia</td>
+              <td>Recordar si ha aceptado o rechazado la analítica, para no volver a preguntarle en cada página</td>
+              <td>12 meses; después se le vuelve a preguntar</td>
+              <td>No: es necesaria para respetar su decisión</td>
+            </tr>
+            <tr>
+              <td><code>_ga</code></td>
+              <td>Google (Google Analytics)</td>
+              <td>Distinguir visitantes de forma estadística mediante un identificador aleatorio</td>
+              <td>2 años</td>
+              <td>Sí</td>
+            </tr>
+            <tr>
+              <td><code>_ga_{sufijo}</code></td>
+              <td>Google (Google Analytics)</td>
+              <td>Mantener el estado de la sesión de visita</td>
+              <td>2 años</td>
+              <td>Sí</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          La configuración de Google Analytics de este sitio no usa las señales de Google ni ningún fin publicitario: no se
+          comparten datos para anuncios ni para personalización. El tratamiento de los datos que recogen estas cookies se
+          explica en la <a href="/privacidad/">política de privacidad</a>.
+        </p>
+
+        <h2>Cómo aceptar, rechazar o retirar el consentimiento</h2>
+        <ul>
+          <li>
+            En el aviso de su primera visita puede pulsar «Aceptar» o «Rechazar»; ambas opciones tienen el mismo peso.
+          </li>
+          <li>
+            Puede cambiar de opinión en cualquier momento con el botón «Configurar cookies» del pie de página o con el de
+            esta página. Si retira el consentimiento, se eliminan las cookies de Google Analytics de este dominio.
+          </li>
+          <li>
+            También puede bloquear o borrar las cookies desde la configuración de su navegador. Google ofrece además un{' '}
+            <a href="https://tools.google.com/dlpage/gaoptout?hl=es" rel="noopener">complemento de inhabilitación de Google Analytics</a>.
+          </li>
+        </ul>
+
+        <h2>Otros elementos del sitio</h2>
+        <ul>
+          <li>Las tipografías se sirven desde el propio dominio, sin llamadas a Google Fonts ni a otros servidores.</li>
+          <li>El buscador, los filtros y el botón de copiar funcionan íntegramente en su navegador.</li>
+          <li>
+            Si se suscribe a la newsletter o envía un formulario, el proveedor correspondiente puede usar sus propias
+            cookies en su dominio al mostrarle la página de confirmación. Consulte su política en esa página.
+          </li>
+        </ul>
+
+        <h2>Cambios en esta política</h2>
+        <p>
+          Si se incorpora otro servicio que use cookies, se actualizará esta página y se le volverá a pedir el
+          consentimiento cuando sea necesario.
+        </p>
+      </>
+    ) : (
+      <>
+        <h2>Este sitio no usa cookies</h2>
+        <p>
+          Las páginas de este sitio no instalan cookies ni guardan información en el almacenamiento local de su navegador.
+          Por eso no verá un banner de consentimiento: no hay nada que aceptar.
+        </p>
+        <ul>
+          <li>Las tipografías se sirven desde el propio dominio, sin llamadas a Google Fonts ni a otros servidores.</li>
+          <li>El buscador, los filtros y el botón de copiar funcionan íntegramente en su navegador.</li>
+          <li>
+            {PUBLIC_ANALYTICS_SCRIPT
+              ? 'La analítica empleada no utiliza cookies ni identificadores persistentes; solo registra datos agregados.'
+              : 'No hay herramientas de analítica activas.'}
+          </li>
+        </ul>
+
+        <h2>Servicios de terceros</h2>
+        <p>
+          Si se suscribe a la newsletter, el formulario se envía al proveedor de correo, que puede usar sus propias cookies
+          en su dominio al mostrarle la página de confirmación. Consulte su política en esa página.
+        </p>
+
+        <h2>Si esto cambia</h2>
+        <p>
+          Si en el futuro se incorporara algún servicio que requiera cookies no exentas, se actualizará esta política y se
+          solicitará su consentimiento previo, tal como exige el artículo 22.2 de la LSSI-CE.
+        </p>
+      </>
+    )
+  }
 </Pagina>

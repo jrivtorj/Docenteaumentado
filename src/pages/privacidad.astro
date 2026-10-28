@@ -8,6 +8,7 @@ import {
   PUBLIC_NEWSLETTER_ACTION,
   PUBLIC_NEWSLETTER_PROVIDER,
   PUBLIC_ANALYTICS_SCRIPT,
+  PUBLIC_GA_ID,
 } from 'astro:env/server';
 /*
  * Información del art. 13 del RGPD. Las filas de formulario, newsletter y analítica se
@@ -36,6 +37,7 @@ const servicioFormulario = proveedorFormulario?.nombre ?? dominioFormulario;
 const correoGmail = PUBLIC_CONTACT_EMAIL?.toLowerCase().endsWith('@gmail.com');
 const servicioNewsletter = PUBLIC_NEWSLETTER_PROVIDER ?? dominio(PUBLIC_NEWSLETTER_ACTION);
 const servicioAnalitica = dominio(PUBLIC_ANALYTICS_SCRIPT);
+const hayGA = Boolean(PUBLIC_GA_ID && /^G-[A-Z0-9]+$/.test(PUBLIC_GA_ID));
 const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_ACTION);
 ---
 
@@ -43,14 +45,27 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   titulo="Política de privacidad"
   descripcion={`Cómo trata ${SITIO.nombre} los datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos.`}
   ruta="/privacidad/"
-  actualizado={new Date('2026-10-24')}
+  actualizado={new Date(hayGA ? '2026-10-28' : '2026-10-24')}
   noindex
 >
   <h2>Principio general: mínimos datos</h2>
   <p>
-    Este sitio se ha diseñado para funcionar sin recoger datos personales: no requiere registro, no usa cookies y no
-    carga servicios de terceros al visitar las páginas. Solo se tratan datos cuando usted decide escribir por el
-    formulario de contacto, el de solicitud de formación o el de colaboración, o suscribirse a la newsletter.
+    {
+      hayGA ? (
+        <>
+          Este sitio se ha diseñado para recoger los mínimos datos personales: no requiere registro y no carga servicios
+          de terceros al visitar las páginas salvo Google Analytics, y solo si usted lo acepta en el aviso de cookies.
+          Fuera de eso, solo se tratan datos cuando usted decide escribir por el formulario de contacto, el de solicitud
+          de formación o el de colaboración, o suscribirse a la newsletter.
+        </>
+      ) : (
+        <>
+          Este sitio se ha diseñado para funcionar sin recoger datos personales: no requiere registro, no usa cookies y no
+          carga servicios de terceros al visitar las páginas. Solo se tratan datos cuando usted decide escribir por el
+          formulario de contacto, el de solicitud de formación o el de colaboración, o suscribirse a la newsletter.
+        </>
+      )
+    }
     {!hayFormularios && <>{' '}En este momento ninguno de los formularios está activo, así que el sitio no recoge datos personales.</>}
   </p>
 
@@ -103,13 +118,28 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
         <td>Consentimiento (art. 6.1.a RGPD)</td>
         <td>Hasta que se dé de baja</td>
       </tr>
-      <tr>
-        <td>Estadísticas de uso</td>
-        <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Datos agregados y anónimos de navegación, sin cookies' : 'Ninguno: actualmente no hay analítica activa'}</td>
-        <td>Conocer qué contenidos resultan útiles</td>
-        <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Interés legítimo (art. 6.1.f RGPD)' : 'No aplica'}</td>
-        <td>{PUBLIC_ANALYTICS_SCRIPT ? `Según la política de ${servicioAnalitica ?? 'su proveedor'}` : 'No aplica'}</td>
-      </tr>
+      {
+        hayGA ? (
+          <tr>
+            <td>Estadísticas de uso (Google Analytics)</td>
+            <td>
+              Identificador aleatorio de la cookie, páginas visitadas, procedencia de la visita, tipo de dispositivo y
+              navegador, y ubicación aproximada (país o ciudad). Google Analytics 4 no registra ni almacena la dirección IP.
+            </td>
+            <td>Conocer de forma estadística qué contenidos resultan útiles. Sin fines publicitarios</td>
+            <td>Consentimiento (art. 6.1.a RGPD y art. 22.2 LSSI-CE), que puede retirar en cualquier momento desde «Configurar cookies»</td>
+            <td>Los datos asociados a cada visitante se conservan 2 meses en Google Analytics; los informes agregados, de forma indefinida</td>
+          </tr>
+        ) : (
+          <tr>
+            <td>Estadísticas de uso</td>
+            <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Datos agregados y anónimos de navegación, sin cookies' : 'Ninguno: actualmente no hay analítica activa'}</td>
+            <td>Conocer qué contenidos resultan útiles</td>
+            <td>{PUBLIC_ANALYTICS_SCRIPT ? 'Interés legítimo (art. 6.1.f RGPD)' : 'No aplica'}</td>
+            <td>{PUBLIC_ANALYTICS_SCRIPT ? `Según la política de ${servicioAnalitica ?? 'su proveedor'}` : 'No aplica'}</td>
+          </tr>
+        )
+      }
     </tbody>
   </table>
 
@@ -125,12 +155,20 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
       {servicioFormulario && <>{' '}El mensaje se reenvía al correo de contacto.</>}
     </li>
     {correoGmail && <li>Correo de contacto: Google (servicio Gmail), que aloja los mensajes recibidos.</li>}
+    {
+      hayGA && (
+        <li>
+          Estadísticas de uso, solo con su consentimiento: Google Ireland Limited (servicio Google Analytics). Más detalle en
+          la <a href="/cookies/">política de cookies</a>.
+        </li>
+      )
+    }
     <li>Newsletter: {servicioNewsletter ?? 'ninguno; la suscripción no está activa'}.</li>
   </ul>
   <p>
     Cloudflare realiza transferencias internacionales de datos amparadas en su certificación en el Marco de Privacidad de
     Datos UE-EE. UU. y, subsidiariamente, en las cláusulas contractuales tipo de la Comisión Europea.
-    {correoGmail && <>{' '}Google está certificada en el mismo Marco de Privacidad de Datos UE-EE. UU.</>}
+    {(correoGmail || hayGA) && <>{' '}Google puede transferir datos a Google LLC (Estados Unidos), certificada en el mismo Marco de Privacidad de Datos UE-EE. UU.</>}
     {proveedorFormulario && <>{' '}{proveedorFormulario.garantia}</>}
     {
       (!proveedorFormulario || !PUBLIC_NEWSLETTER_ACTION) && (

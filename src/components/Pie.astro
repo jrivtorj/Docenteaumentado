@@ -29,6 +29,9 @@ const anio = new Date().getFullYear();
       © {anio} {SITIO.nombre}. Contenido original del autor salvo indicación. Proyecto independiente, sin relación comercial con las
       herramientas analizadas.
     </p>
+    <p>
+      <button type="button" class="pie__cookies" data-abrir-consentimiento>Configurar cookies</button>
+    </p>
   </div>
 </footer>
 
@@ -87,6 +90,19 @@ const anio = new Date().getFullYear();
   a:hover {
     color: var(--c-acento);
     text-decoration: underline;
+  }
+  .pie__cookies {
+    margin-top: var(--e-2);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--c-texto-2);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .pie__cookies:hover {
+    color: var(--c-acento);
   }
   .pie__legal {
     border-top: 1px solid var(--c-borde);
