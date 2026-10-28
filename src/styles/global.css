@@ -7,28 +7,30 @@
 @import '@fontsource-variable/inter/wght.css';
 
 :root {
-  /* Color · paleta del manual de identidad visual (propuesta de oct. 2026).
-     Base: azul petróleo #172A3A, gris pizarra #52616B, blanco cálido #F2F0EB y blanco.
-     El verde menta #70D6C1 solo da 1,7:1 sobre blanco: en modo claro es decoración
-     (isotipo, filetes, fondos tintados), nunca texto ni indicador único de estado. */
-  --c-fondo: #ffffff;
-  --c-fondo-suave: #f2f0eb; /* blanco cálido */
+  /* Color · guía de identidad visual v2 (oct. 2026).
+     Modo claro: fondo blanco cálido, texto petróleo, texto secundario gris pizarra y menta
+     oscura (#176B5D) para enlaces y controles. La menta de marca (#70D6C1) es solo acento
+     gráfico: sobre fondo claro no llega a 3:1. Los tonos marcados como derivados no están
+     en la guía y se han comprobado con WCAG 2.2 AA. */
+  --c-fondo: #f2f0eb; /* blanco cálido */
+  --c-fondo-suave: #ffffff;
   --c-superficie: #ffffff;
-  --c-texto: #172a3a; /* azul petróleo · 14,7:1 sobre blanco */
-  --c-texto-2: #52616b; /* gris pizarra · 6,4:1 sobre blanco, 5,6:1 sobre blanco cálido */
+  --c-texto: #172a3a; /* petróleo · 12,9:1 sobre blanco cálido */
+  --c-texto-2: #52616b; /* gris pizarra · 5,6:1 sobre blanco cálido */
   --c-texto-3: #52616b;
-  --c-borde: #e2dfd8;
-  --c-borde-fuerte: #8a969e; /* 3:1 sobre blanco: bordes de campos de formulario */
-  --c-acento: #172a3a;
-  --c-acento-hover: #2b4a61; /* derivado del petróleo · 9,3:1 sobre blanco */
-  --c-acento-suave: #e2f5f1; /* tinte de menta */
+  --c-borde: #dcd8cf; /* derivado */
+  --c-borde-fuerte: #7a878f; /* derivado · 3,2:1 sobre blanco cálido: bordes de campos */
+  --c-acento: #176b5d; /* menta oscura · 5,6:1 sobre blanco cálido */
+  --c-acento-hover: #125448; /* derivado */
+  --c-acento-suave: #e2f5f1; /* derivado: tinte de menta */
   --c-acento-texto: #ffffff;
   --c-menta: #70d6c1;
+  --c-logo-marco: #172a3a;
   --c-aviso: #8a5a00;
   --c-aviso-fondo: #fff7e6;
   --c-ok: #1d6b3a;
   --c-ok-fondo: #eaf6ee;
-  --c-foco: #172a3a;
+  --c-foco: #176b5d;
 
   /* Tipografía */
   /* Una sola familia (Inter, licencia SIL OFL), como pide el manual: titulares y texto en sans. */
@@ -64,22 +66,23 @@
   color-scheme: light dark;
 }
 
-/* Modo oscuro: el manual no lo define. Se usa la versión inversa de la marca (fondo petróleo,
-   texto blanco cálido, acento menta) y se derivan los tonos que faltan. */
+/* Modo oscuro (guía v2): fondo petróleo, texto blanco cálido, secundario #D7DEDF y menta
+   como acento (8,5:1 sobre petróleo). Superficies, bordes y texto terciario, derivados. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-fondo: #0f1e2a;
-    --c-fondo-suave: #172a3a;
-    --c-superficie: #172a3a;
+    --c-fondo: #172a3a;
+    --c-fondo-suave: #1e3546; /* derivado */
+    --c-superficie: #1e3546;
     --c-texto: #f2f0eb;
-    --c-texto-2: #aeb9c1;
-    --c-texto-3: #93a2ac;
-    --c-borde: #263d4f;
-    --c-borde-fuerte: #647a8b; /* 3,3:1 sobre petróleo */
-    --c-acento: #70d6c1; /* menta · 9,7:1 sobre el fondo, 8,5:1 sobre petróleo */
+    --c-texto-2: #d7dedf;
+    --c-texto-3: #b5c2c6; /* derivado · 7:1 sobre la superficie */
+    --c-borde: #2c4558;
+    --c-borde-fuerte: #6f8596; /* derivado · 3,3:1 sobre la superficie */
+    --c-acento: #70d6c1;
     --c-acento-hover: #9ae6d6;
-    --c-acento-suave: #1b3d45;
+    --c-acento-suave: #1f4a4d;
     --c-acento-texto: #172a3a;
+    --c-logo-marco: #ffffff;
     --c-aviso: #f1c26b;
     --c-aviso-fondo: #2b2416;
     --c-ok: #7fd39b;
@@ -170,7 +173,7 @@ h2 {
 }
 h3 {
   font-size: var(--t-lg);
-  font-weight: 650;
+  font-weight: 600;
 }
 p {
   text-wrap: pretty;
@@ -479,7 +482,7 @@ textarea.entrada {
   border-bottom: 1px solid var(--c-borde);
 }
 .prosa th {
-  font-weight: 650;
+  font-weight: 600;
   border-bottom-color: var(--c-borde-fuerte);
 }
 .prosa hr {

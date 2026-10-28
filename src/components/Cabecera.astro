@@ -10,10 +10,11 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   <div class="contenedor cabecera__fila">
     <a href="/" class="marca" aria-label={`${SITIO.nombre}, ir a la página de inicio`}>
       <!-- Símbolo del manual de identidad: hexágono (estructura de conocimiento) con un cubo
-           (capacidad que se amplía). Versión principal en petróleo; en oscuro, la inversa. -->
+           (capacidad que se amplía). Mismo dibujo que docs/identidad/simbolo-maestro.svg.
+           Versión principal (petróleo + menta) y, en modo oscuro, inversa color (blanco + menta). -->
       <svg class="marca__logo" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false">
-        <path class="marca__hexagono" d="M32 4 56.2 18v28L32 60 7.8 46V18Z"></path>
-        <path class="marca__cubo" d="M32 20.5 43.3 27v13L32 46.5 20.7 40V27Z M20.7 27 32 33.5 43.3 27 M32 33.5v13"></path>
+        <path class="marca__hexagono" d="M32 4 56.25 18v28L32 60 7.75 46V18Z"></path>
+        <path class="marca__cubo" d="M32 19 43.26 25.5v13L32 45 20.74 38.5V25.5Z M20.74 25.5 32 32 43.26 25.5 M32 32v13"></path>
       </svg>
       <span class="marca__texto"><span>El docente</span> <span>aumentado</span></span>
     </a>
@@ -109,10 +110,10 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     stroke-linecap: round;
   }
   .marca__hexagono {
-    stroke: currentColor;
+    stroke: var(--c-logo-marco);
   }
   .marca__cubo {
-    stroke: var(--c-logo-cubo, currentColor);
+    stroke: var(--c-menta);
   }
   /* Nombre en dos líneas y en mayúsculas, como en el manual. El texto real sigue en minúsculas
      («El docente aumentado») para lectores de pantalla y buscadores. */
@@ -120,18 +121,13 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     display: flex;
     flex-direction: column;
     font-size: 0.95rem;
-    font-weight: 750;
+    font-weight: 700;
     line-height: 1.1;
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
   .marca:hover {
     color: var(--c-texto);
-  }
-  @media (prefers-color-scheme: dark) {
-    .marca {
-      --c-logo-cubo: var(--c-menta);
-    }
   }
   .cabecera__acciones {
     display: flex;
@@ -205,7 +201,7 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     color: var(--c-texto-2);
     text-decoration: none;
     font-size: var(--t-sm);
-    font-weight: 550;
+    font-weight: 500;
   }
   .nav a:hover,
   .nav a[aria-current='page'] {

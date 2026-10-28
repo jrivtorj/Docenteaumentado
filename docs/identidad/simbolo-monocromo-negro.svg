@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>El docente aumentado · monocroma negra</title>
+  <g fill="none" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M32 4 56.25 18v28L32 60 7.75 46V18Z" stroke="#000000"/>
+    <path d="M32 19 43.26 25.5v13L32 45 20.74 38.5V25.5Z M20.74 25.5 32 32 43.26 25.5 M32 32v13" stroke="#000000"/>
+  </g>
+</svg>
