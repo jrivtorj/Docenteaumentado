@@ -5,6 +5,7 @@ import Seo, { type SeoProps } from '@/components/Seo.astro';
 import Cabecera from '@/components/Cabecera.astro';
 import Pie from '@/components/Pie.astro';
 import Migas from '@/components/Migas.astro';
+import Consentimiento from '@/components/Consentimiento.astro';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import { SITIO } from '@/data/sitio';
 import { migasDePan, type Miga } from '@/utils/jsonld';
@@ -55,5 +56,6 @@ const datos = rutaMigas ? [...jsonLd, migasDePan(rutaMigas, site)] : jsonLd;
       <slot />
     </main>
     <Pie />
+    <Consentimiento />
   </body>
 </html>
