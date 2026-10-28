@@ -7,7 +7,7 @@ tipo: opinion
 temas: [ia-para-docentes, situaciones-de-aprendizaje-ia]
 etiquetas: [docente aumentado, criterio pedagógico, situaciones de aprendizaje, Canarias, revisión]
 necesidad: "Si la IA ya genera una unidad didáctica completa, ¿qué aporta el docente?"
-estado: borrador
+estado: publicado
 fuentes:
   - titulo: El valor del docente aumentado con Inteligencia Artificial
     url: https://www.estudioelefante.co/post/el-valor-del-docente-aumentado-con-inteligencia-artificial
