@@ -9,12 +9,13 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
 <header role="banner" class="cabecera">
   <div class="contenedor cabecera__fila">
     <a href="/" class="marca" aria-label={`${SITIO.nombre}, ir a la página de inicio`}>
-      <svg class="marca__logo" viewBox="0 0 64 64" width="32" height="32" aria-hidden="true" focusable="false">
-        <rect width="64" height="64" rx="14" fill="#0b5f70"></rect>
-        <text x="32" y="44" text-anchor="middle" fill="#fff">da</text>
-        <circle cx="49" cy="17" r="5" fill="#9fe0ea"></circle>
+      <!-- Símbolo del manual de identidad: hexágono (estructura de conocimiento) con un cubo
+           (capacidad que se amplía). Versión principal en petróleo; en oscuro, la inversa. -->
+      <svg class="marca__logo" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false">
+        <path class="marca__hexagono" d="M32 4 56.2 18v28L32 60 7.8 46V18Z"></path>
+        <path class="marca__cubo" d="M32 20.5 43.3 27v13L32 46.5 20.7 40V27Z M20.7 27 32 33.5 43.3 27 M32 33.5v13"></path>
       </svg>
-      <span class="marca__el">El docente</span><span class="marca__aum">aumentado</span>
+      <span class="marca__texto"><span>El docente</span> <span>aumentado</span></span>
     </a>
 
     <div class="cabecera__acciones">
@@ -95,33 +96,42 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   .marca {
     display: inline-flex;
     align-items: center;
-    gap: 0.3em;
-    font-family: var(--f-serif);
-    font-size: 1.3rem;
-    letter-spacing: -0.01em;
+    gap: 0.6rem;
     color: var(--c-texto);
     text-decoration: none;
     padding-block: var(--e-2);
   }
-  /* Isotipo: el mismo dibujo que public/favicon.svg, con la tipografía de la web. */
   .marca__logo {
     flex: none;
-    margin-right: 0.2em;
+    fill: none;
+    stroke-width: 3.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
   }
-  .marca__logo text {
-    font-family: var(--f-serif);
-    font-size: 31px;
-    font-weight: 700;
+  .marca__hexagono {
+    stroke: currentColor;
   }
-  .marca__el {
-    font-weight: 500;
+  .marca__cubo {
+    stroke: var(--c-logo-cubo, currentColor);
   }
-  .marca__aum {
-    font-weight: 700;
-    color: var(--c-acento);
+  /* Nombre en dos líneas y en mayúsculas, como en el manual. El texto real sigue en minúsculas
+     («El docente aumentado») para lectores de pantalla y buscadores. */
+  .marca__texto {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    font-weight: 750;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
   .marca:hover {
     color: var(--c-texto);
+  }
+  @media (prefers-color-scheme: dark) {
+    .marca {
+      --c-logo-cubo: var(--c-menta);
+    }
   }
   .cabecera__acciones {
     display: flex;
@@ -151,12 +161,9 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
     .cabecera__fila {
       column-gap: var(--e-2);
     }
-    .marca {
-      font-size: clamp(0.9rem, 4.2vw, 1.3rem);
-    }
     .marca__logo {
-      width: 1.5em;
-      height: 1.5em;
+      width: 2rem;
+      height: 2rem;
     }
   }
   @media (max-width: 63.99rem) {
@@ -228,15 +235,6 @@ const activo = (href: string) => ruta === href || (href !== '/' && ruta.startsWi
   @media (min-width: 64rem) and (max-width: 84.99rem) {
     .marca {
       flex-basis: 100%;
-    }
-  }
-  /* En una sola fila el ancho va muy justo con el isotipo: se estrechan los huecos. */
-  @media (min-width: 85rem) {
-    .cabecera__fila {
-      column-gap: var(--e-4);
-    }
-    .nav ul {
-      gap: var(--e-3);
     }
   }
 </style>
