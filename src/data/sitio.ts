@@ -1,7 +1,7 @@
 /** Datos globales del sitio. Editar aquí cambia cabecera, pie y metadatos. */
 export const SITIO = {
   nombre: 'El docente aumentado',
-  lema: 'La inteligencia artificial no sustituye al docente. Amplía lo que un buen docente puede hacer.',
+  lema: 'Más criterio. Mejor enseñanza.',
   descripcion:
     'Tutoriales, prompts, herramientas y análisis críticos para usar la inteligencia artificial en Secundaria, Bachillerato y FP con criterio pedagógico.',
   idioma: 'es-ES',

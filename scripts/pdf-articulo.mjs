@@ -40,7 +40,7 @@ await pagina.pdf({
   displayHeaderFooter: true,
   headerTemplate: '<span></span>',
   footerTemplate:
-    '<div style="font-size:8px;width:100%;text-align:center;color:#5f6873">El docente aumentado · eldocenteaumentado.com · <span class="pageNumber"></span>/<span class="totalPages"></span></div>',
+    '<div style="font-size:8px;width:100%;text-align:center;color:#52616b">El docente aumentado · eldocenteaumentado.com · <span class="pageNumber"></span>/<span class="totalPages"></span></div>',
 });
 await navegador.close();
 console.log('Generado', destino);

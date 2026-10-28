@@ -6,7 +6,6 @@ import Cabecera from '@/components/Cabecera.astro';
 import Pie from '@/components/Pie.astro';
 import Migas from '@/components/Migas.astro';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import serifLatin from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
 import { SITIO } from '@/data/sitio';
 import { migasDePan, type Miga } from '@/utils/jsonld';
 
@@ -29,9 +28,8 @@ const datos = rutaMigas ? [...jsonLd, migasDePan(rutaMigas, site)] : jsonLd;
     <!-- Marca que JS está disponible antes del primer pintado: evita saltos de maquetación. -->
     <script is:inline>document.documentElement.classList.add('js');</script>
     <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={serifLatin} as="font" type="font/woff2" crossorigin />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111417" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0f1e2a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITIO.nombre} (RSS)`} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />

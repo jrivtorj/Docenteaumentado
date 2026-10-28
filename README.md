@@ -2,7 +2,7 @@
 
 Portal editorial sobre inteligencia artificial aplicada a la enseñanza, para profesorado de Secundaria, Bachillerato y FP.
 
-> La inteligencia artificial no sustituye al docente. Amplía lo que un buen docente puede hacer.
+> Más criterio. Mejor enseñanza.
 
 Sitio estático construido con **Astro 7** y **TypeScript**. Todo el contenido (artículos, prompts, herramientas, temas) vive en archivos Markdown/JSON validados por esquemas; las páginas, el buscador, el sitemap y el RSS se generan a partir de ellos.
 
@@ -60,7 +60,8 @@ npm run dev               # http://localhost:4321
 | **CSS propio con variables, sin Tailwind** | Un único archivo de tokens (`src/styles/global.css`) y estilos acotados por componente. Menos dependencias y un diseño editorial muy controlado; Tailwind no aportaba ventajas claras aquí. |
 | **JavaScript solo donde hace falta** | Menú móvil, filtros, buscador, variables de prompts y botón de copiar. Scripts pequeños sin frameworks. Sin JS, el sitio sigue siendo navegable. |
 | **Buscador propio sobre un índice JSON** (`/buscar.json`) | Funciona en desarrollo y en producción, sin servicios externos. Con cientos de entradas el índice sigue siendo pequeño. Si el archivo crece mucho (miles de entradas), sustituirlo por [Pagefind](https://pagefind.app/). |
-| **Tipografías autoalojadas** (Inter y Source Serif 4, vía Fontsource) | Sin llamadas a Google Fonts: mejor privacidad y sin cookies de terceros. |
+| **Tipografía autoalojada** (solo Inter, vía Fontsource) | Sin llamadas a Google Fonts: mejor privacidad y sin cookies de terceros. Una sola familia sans, como pide el manual de identidad. |
+| **Identidad visual** (manual de oct. 2026, propuesta inicial) | Paleta petróleo `#172A3A`, menta `#70D6C1`, blanco cálido `#F2F0EB`, gris pizarra `#52616B` y blanco, en los tokens de `global.css`. La menta no llega a 3:1 sobre fondos claros: en modo claro solo se usa como decoración. El modo oscuro aplica la versión inversa de la marca y sus tonos intermedios son derivados. El símbolo (hexágono con cubo) está en `Cabecera.astro`, `public/favicon.svg` y `scripts/generar-og.mjs`. |
 | **Modo oscuro automático** | Según la preferencia del sistema (`prefers-color-scheme`), sin conmutador ni almacenamiento local. |
 | **Content-Security-Policy** | Generada por Astro con hashes de scripts y estilos en línea (`security.csp`). |
 | **Sin base de datos, autenticación, pagos ni IA en servidor** | No hay una necesidad real en esta fase. |

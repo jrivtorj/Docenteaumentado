@@ -5,31 +5,34 @@
    ========================================================================== */
 
 @import '@fontsource-variable/inter/wght.css';
-@import '@fontsource-variable/source-serif-4/wght.css';
 
 :root {
-  /* Color */
+  /* Color · paleta del manual de identidad visual (propuesta de oct. 2026).
+     Base: azul petróleo #172A3A, gris pizarra #52616B, blanco cálido #F2F0EB y blanco.
+     El verde menta #70D6C1 solo da 1,7:1 sobre blanco: en modo claro es decoración
+     (isotipo, filetes, fondos tintados), nunca texto ni indicador único de estado. */
   --c-fondo: #ffffff;
-  --c-fondo-suave: #f6f7f8;
+  --c-fondo-suave: #f2f0eb; /* blanco cálido */
   --c-superficie: #ffffff;
-  --c-texto: #16191d;
-  --c-texto-2: #4a525c;
-  --c-texto-3: #5f6873;
-  --c-borde: #e3e6ea;
-  --c-borde-fuerte: #c9ced5;
-  --c-acento: #0b5f70; /* azul petróleo · 7,1:1 sobre blanco */
-  --c-acento-hover: #08495a;
-  --c-acento-suave: #e6f1f3;
+  --c-texto: #172a3a; /* azul petróleo · 14,7:1 sobre blanco */
+  --c-texto-2: #52616b; /* gris pizarra · 6,4:1 sobre blanco, 5,6:1 sobre blanco cálido */
+  --c-texto-3: #52616b;
+  --c-borde: #e2dfd8;
+  --c-borde-fuerte: #8a969e; /* 3:1 sobre blanco: bordes de campos de formulario */
+  --c-acento: #172a3a;
+  --c-acento-hover: #2b4a61; /* derivado del petróleo · 9,3:1 sobre blanco */
+  --c-acento-suave: #e2f5f1; /* tinte de menta */
   --c-acento-texto: #ffffff;
+  --c-menta: #70d6c1;
   --c-aviso: #8a5a00;
   --c-aviso-fondo: #fff7e6;
   --c-ok: #1d6b3a;
   --c-ok-fondo: #eaf6ee;
-  --c-foco: #0b5f70;
+  --c-foco: #172a3a;
 
   /* Tipografía */
+  /* Una sola familia (Inter, licencia SIL OFL), como pide el manual: titulares y texto en sans. */
   --f-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --f-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
   --f-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   --t-xs: 0.8125rem;
@@ -61,25 +64,27 @@
   color-scheme: light dark;
 }
 
+/* Modo oscuro: el manual no lo define. Se usa la versión inversa de la marca (fondo petróleo,
+   texto blanco cálido, acento menta) y se derivan los tonos que faltan. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-fondo: #111417;
-    --c-fondo-suave: #171b1f;
-    --c-superficie: #171b1f;
-    --c-texto: #e9ecef;
-    --c-texto-2: #b6bec7;
-    --c-texto-3: #9aa3ad;
-    --c-borde: #2a3037;
-    --c-borde-fuerte: #3a424b;
-    --c-acento: #6cc4d4;
-    --c-acento-hover: #93d5e1;
-    --c-acento-suave: #15303a;
-    --c-acento-texto: #0b1a1f;
+    --c-fondo: #0f1e2a;
+    --c-fondo-suave: #172a3a;
+    --c-superficie: #172a3a;
+    --c-texto: #f2f0eb;
+    --c-texto-2: #aeb9c1;
+    --c-texto-3: #93a2ac;
+    --c-borde: #263d4f;
+    --c-borde-fuerte: #647a8b; /* 3,3:1 sobre petróleo */
+    --c-acento: #70d6c1; /* menta · 9,7:1 sobre el fondo, 8,5:1 sobre petróleo */
+    --c-acento-hover: #9ae6d6;
+    --c-acento-suave: #1b3d45;
+    --c-acento-texto: #172a3a;
     --c-aviso: #f1c26b;
     --c-aviso-fondo: #2b2416;
     --c-ok: #7fd39b;
     --c-ok-fondo: #15291c;
-    --c-foco: #6cc4d4;
+    --c-foco: #70d6c1;
     --sombra: none;
     --sombra-hover: 0 4px 14px rgb(0 0 0 / 0.35);
   }
@@ -155,10 +160,9 @@ h4 {
   letter-spacing: -0.01em;
 }
 h1 {
-  font-family: var(--f-serif);
   font-size: var(--t-3xl);
-  font-weight: 650;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 h2 {
   font-size: var(--t-2xl);
@@ -433,7 +437,7 @@ textarea.entrada {
   color: var(--c-texto-3);
 }
 .prosa blockquote {
-  border-left: 3px solid var(--c-acento);
+  border-left: 3px solid var(--c-menta);
   padding-left: var(--e-4);
   color: var(--c-texto-2);
   font-style: italic;
