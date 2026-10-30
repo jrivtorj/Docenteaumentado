@@ -11,6 +11,8 @@ import fotoAutor from '@/assets/autor/jose-david-rivero.jpg';
  * No añadas méritos, premios, publicaciones ni cifras que no puedas acreditar.
  */
 const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
+// Enlace simple, sin reproductor incrustado: el iframe de Spotify pondría cookies antes del consentimiento y choca con la CSP.
+const PODCAST_URL = 'https://open.spotify.com/episode/3Rtr5BOIuPXg61iNIInmbO';
 ---
 
 <Pagina
@@ -58,6 +60,16 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
     {SITIO.nombre} intenta cubrir ese hueco con tutoriales, prompts reutilizables y análisis críticos, escritos por un
     docente para docentes y partiendo de una idea: <strong>la IA debe ampliar las capacidades del docente, no sustituir
     su criterio pedagógico</strong>.
+  </p>
+
+  <h2 id="podcast">El proyecto en un pódcast</h2>
+  <p>
+    Si prefieres escucharlo, hay un episodio de unos veinte minutos sobre {SITIO.nombre}.{' '}
+    <strong>El audio está generado con inteligencia artificial.</strong>
+  </p>
+  <p>
+    <a href={PODCAST_URL} rel="noopener" target="_blank">Escuchar el episodio en Spotify</a>{' '}
+    <span class="nota-externa">(se abre en Spotify, que aplica sus propias cookies)</span>
   </p>
 
   <h2 id="criterios-editoriales">Criterios editoriales</h2>
@@ -122,6 +134,10 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
   }
   #por-que {
     clear: both;
+  }
+  .nota-externa {
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
   }
   @media (min-width: 40rem) {
     .retrato {
