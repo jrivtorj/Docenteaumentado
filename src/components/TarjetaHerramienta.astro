@@ -1,5 +1,6 @@
 ---
-import { CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO } from '@/data/taxonomias';
+import Icono from './Icono.astro';
+import { CATEGORIAS_HERRAMIENTA, ICONOS_CATEGORIA, MODALIDADES_PRECIO } from '@/data/taxonomias';
 import { normalizar, urlHerramienta, type Herramienta } from '@/utils/contenido';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 const { herramienta, nivel = 3 } = Astro.props;
 const { data } = herramienta;
 const H = `h${nivel}` as 'h2' | 'h3';
+const icono = ICONOS_CATEGORIA[data.categorias[0]];
 const texto = normalizar([data.nombre, data.descripcion, data.proveedor, ...data.etiquetas, ...data.usos].join(' '));
 ---
 
@@ -20,8 +22,11 @@ const texto = normalizar([data.nombre, data.descripcion, data.proveedor, ...data
   data-texto={texto}
 >
   <div class="tarjeta-h__cabecera">
-    <H class="tarjeta-h__titulo"><a href={urlHerramienta(herramienta)}>{data.nombre}</a></H>
-    <span class="meta">{data.proveedor}</span>
+    <span class="tarjeta-h__icono"><Icono nombre={icono} tamano={22} /></span>
+    <div class="tarjeta-h__nombre">
+      <H class="tarjeta-h__titulo"><a href={urlHerramienta(herramienta)}>{data.nombre}</a></H>
+      <span class="meta">{data.proveedor}</span>
+    </div>
   </div>
   <p class="tarjeta-h__resumen">{data.descripcion}</p>
   <ul class="etiquetas" aria-label="Categorías">
@@ -56,10 +61,28 @@ const texto = normalizar([data.nombre, data.descripcion, data.proveedor, ...data
   }
   .tarjeta-h__cabecera {
     display: flex;
+    align-items: center;
+    gap: var(--e-3);
+  }
+  /* Pictograma decorativo de la primera categoría: la categoría ya figura en texto en las etiquetas. */
+  .tarjeta-h__icono {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radio);
+    background: var(--c-acento-suave);
+    color: var(--c-acento);
+  }
+  .tarjeta-h__nombre {
+    display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
     gap: var(--e-1) var(--e-3);
+    flex: 1;
+    min-width: 0;
   }
   .tarjeta-h__titulo {
     font-size: var(--t-lg);

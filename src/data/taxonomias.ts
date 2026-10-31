@@ -20,6 +20,22 @@ export const CATEGORIAS_HERRAMIENTA = {
   automatizacion: 'Automatización docente',
 } as const;
 
+/**
+ * Pictograma propio de cada categoría (nombre en Icono.astro). Las fichas muestran el de su primera categoría.
+ * Se usan iconos de categoría y no logotipos: las normas de marca de Anthropic, Google, OpenAI y Canva
+ * exigen permiso previo o prohíben recolorear sus logotipos (comprobado el 31-10-2026).
+ */
+export const ICONOS_CATEGORIA = {
+  asistentes: 'conversacion',
+  investigacion: 'documento',
+  presentaciones: 'pantalla',
+  'imagen-diseno': 'imagen',
+  'video-audio': 'reproducir',
+  evaluacion: 'lista',
+  interactivos: 'cursor',
+  automatizacion: 'engranaje',
+} as const satisfies Record<keyof typeof CATEGORIAS_HERRAMIENTA, string>;
+
 export const MODALIDADES_PRECIO = {
   gratuita: 'Gratuita',
   freemium: 'Gratuita con límites + planes de pago',
