@@ -32,11 +32,11 @@ fuentes:
     url: https://www.aepd.es/guias/guia-centros-educativos.pdf
     editor: Agencia Española de Protección de Datos
     consultado: 2026-10-12
-  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo
-    url: https://code.intef.es/wp-content/uploads/2024/07/Gu%C3%ADa-sobre-el-uso-de-la-IA-en-el-%C3%A1mbito-educativo-INTEF_2024.pdf
+  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo. Versión 2.0
+    url: https://www.libreria.educacion.gob.es/libro/guia-sobre-el-uso-de-la-inteligencia-artificial-en-el-ambito-educativo_187146/
     editor: INTEF
-    fecha: "2024"
-    consultado: 2026-10-12
+    fecha: septiembre de 2026
+    consultado: 2026-11-01
 ---
 
 <div class="nota nota--verificar">

@@ -2,6 +2,7 @@
 titulo: "Qué es (y qué no es) la IA generativa: guía para docentes"
 descripcion: Cómo funciona un modelo de lenguaje, por qué se equivoca con tanta seguridad y qué consecuencias tiene para preparar clases y evaluar.
 fechaPublicacion: 2026-10-12
+fechaActualizacion: 2026-11-01
 autor: jose-david-rivero
 tipo: guia
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico]
@@ -24,11 +25,11 @@ fuentes:
     editor: UNESCO
     fecha: "2024"
     consultado: 2026-10-12
-  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo
-    url: https://code.intef.es/wp-content/uploads/2024/07/Gu%C3%ADa-sobre-el-uso-de-la-IA-en-el-%C3%A1mbito-educativo-INTEF_2024.pdf
+  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo. Versión 2.0
+    url: https://www.libreria.educacion.gob.es/libro/guia-sobre-el-uso-de-la-inteligencia-artificial-en-el-ambito-educativo_187146/
     editor: INTEF, Ministerio de Educación
-    fecha: "2024"
-    consultado: 2026-10-12
+    fecha: septiembre de 2026
+    consultado: 2026-11-01
 ---
 
 Muchos docentes usan ya asistentes como ChatGPT, Claude o Gemini sin haber tenido tiempo de entender qué hay detrás. No hace falta saber programar para usarlos bien, pero sí conviene tener un **modelo mental correcto** de cómo funcionan. Casi todos los errores que se cometen al usarlos en educación (confiar en una cifra inventada, aceptar un criterio de evaluación que no existe, pedir al alumnado que «compruebe con la IA») nacen de un modelo mental equivocado.
@@ -93,7 +94,7 @@ La IA generativa acelera de forma real algunas tareas docentes, sobre todo las d
 - **Cómo** sabremos que lo ha aprendido.
 - **Qué** ajustes necesita cada alumno o alumna.
 
-Los marcos de referencia internacionales apuntan en la misma dirección. El marco de competencias en IA para docentes que publicó la UNESCO en 2024 sitúa la «mentalidad centrada en el ser humano» y la ética de la IA como dimensiones propias, junto a los fundamentos técnicos y la pedagogía. La guía del INTEF de 2024 dedica apartados específicos a los retos, las limitaciones y las medidas preventivas para docentes y alumnado.
+Los marcos de referencia internacionales apuntan en la misma dirección. El marco de competencias en IA para docentes que publicó la UNESCO en 2024 sitúa la «mentalidad centrada en el ser humano» y la ética de la IA como dimensiones propias, junto a los fundamentos técnicos y la pedagogía. La [guía del INTEF](/articulos/guia-intef-ia-educacion-version-2/), actualizada en septiembre de 2026, dedica apartados específicos a los desafíos, los riesgos y las medidas preventivas para el alumnado, el profesorado y el centro.
 
 ## Antes de pedirle algo, tres preguntas
 
