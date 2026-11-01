@@ -88,9 +88,3 @@ Y si usas la IA para preparar instrumentos de evaluación, recuerda que las inst
 ## Para llevar al aula
 
 Si quieres poner en práctica la declaración de uso, tienes una versión breve en la actividad 5 de [Cinco actividades de alfabetización en IA](/articulos/alfabetizacion-ia-alumnado-pensamiento-critico/). Para la propuesta STEM de detectar errores, el prompt [Detectar errores en una resolución generada por IA](/prompts/detectar-errores-resolucion-ia/) te prepara el material.
-
-<div class="nota nota--verificar">
-
-He leído el documento completo, pero el modelo de declaración de uso (anexo 2) es una imagen y no detallo sus campos. Las citas y cifras están tomadas de la versión 2.0 de septiembre de 2026; si el INTEF publica una revisión, pueden cambiar.
-
-</div>
