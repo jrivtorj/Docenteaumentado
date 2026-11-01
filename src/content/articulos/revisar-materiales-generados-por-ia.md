@@ -15,11 +15,11 @@ fuentes:
     url: https://help.openai.com/en/articles/8313428-does-chatgpt-tell-the-truth
     editor: OpenAI Help Center
     consultado: 2026-10-12
-  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo
-    url: https://code.intef.es/wp-content/uploads/2024/07/Gu%C3%ADa-sobre-el-uso-de-la-IA-en-el-%C3%A1mbito-educativo-INTEF_2024.pdf
+  - titulo: Guía sobre el uso de la inteligencia artificial en el ámbito educativo. Versión 2.0
+    url: https://www.libreria.educacion.gob.es/libro/guia-sobre-el-uso-de-la-inteligencia-artificial-en-el-ambito-educativo_187146/
     editor: INTEF
-    fecha: "2024"
-    consultado: 2026-10-12
+    fecha: septiembre de 2026
+    consultado: 2026-11-01
 ---
 
 Todo lo que genera una IA es un borrador. La cuestión práctica es **cómo revisarlo de forma eficiente**, porque una revisión superficial deja pasar errores y una revisión exhaustiva puede costar más que haber hecho el material desde cero. Este tutorial propone un protocolo en cinco capas, de la más crítica a la más fina, para que sepas dónde mirar primero.
