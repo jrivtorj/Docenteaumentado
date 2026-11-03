@@ -170,7 +170,7 @@ El último producto es una hoja de cálculo para registrar lo que hace cada estu
 - El de la **prueba competencial** recoge los criterios que evalúa la prueba y, para cada estudiante, la puntuación de cada apartado agrupada por criterio en Bachillerato, o directamente el nivel de logro en ESO.
 - El del **dossier**, cuando lo evalúo, tiene una columna por criterio.
 
-Lo genero en la misma conversación que la prueba, porque las columnas dependen de cómo esté construida.
+Lo genero en la misma conversación que la prueba, porque las columnas dependen de cómo esté construida. En Bachillerato, la suma de puntos de cada criterio es solo un registro: me ayuda a ver qué ha resuelto cada estudiante, pero no es la calificación del criterio ni fija su nivel de logro.
 
 Este es el prompt que uso para el cuaderno de una prueba competencial, ajustado a las instrucciones de evaluación de 2026/2027:
 
@@ -193,6 +193,8 @@ Diseña un documento profesional, minimalista, organizado y funcional para su ut
 El cuaderno debe ser un instrumento de evaluación docente práctico, no un documento teórico.
 
 Entrega el resultado en formato Excel editable, con fórmulas que sumen las puntuaciones de los apartados de cada criterio como apoyo [solo en Bachillerato], y en PDF listo para imprimir, si tienes capacidad para generar ambos formatos.
+
+La suma de puntuaciones tiene exclusivamente una función descriptiva y de registro de evidencias. No constituye una calificación del criterio ni determina automáticamente su nivel de logro. Indícalo así en el propio cuaderno, junto a la columna de la suma.
 
 Antes de elaborarlo, comprueba que los criterios de evaluación y las rúbricas coinciden exactamente con los de la programación didáctica del proyecto y señálame cualquier discrepancia.
 ```
