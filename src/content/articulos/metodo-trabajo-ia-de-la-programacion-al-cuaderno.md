@@ -228,7 +228,7 @@ Un hueco en una fila es una decisión que tomar: o el criterio se evalúa con ot
 
 ## Tiempo y límites
 
-La revisión de una unidad completa me lleva unos **20 minutos**, una vez que el proyecto tiene la programación, los criterios y las rúbricas bien cargados. La generación es la parte corta. La revisión es la que no conviene recortar, sobre todo la de la prueba, que resuelvo entera.
+La revisión de los documentos de una unidad me lleva unos **20 minutos**, una vez que el proyecto tiene la programación, los criterios y las rúbricas bien cargados. A eso hay que sumar el tiempo de resolver la prueba entera, que no cuento en esos 20 minutos y que no me salto. La generación es la parte corta; la revisión es la que no conviene recortar.
 
 Los límites que he encontrado hasta ahora:
 
