@@ -80,4 +80,6 @@ Lee el documento completo antes de aplicar nada: tiene nueve folios y matices pa
 
 </div>
 
+Si das clase en otra comunidad, he resumido qué regula cada una en [Evaluación LOMLOE en seis comunidades](/articulos/evaluacion-lomloe-comunidades-autonomas-ia/).
+
 Para diseñar rúbricas vinculadas a los criterios, tienes el procedimiento en [Cómo crear rúbricas con IA paso a paso](/articulos/rubricas-con-ia-paso-a-paso/) y el prompt de la [rúbrica analítica a partir de criterios de evaluación](/prompts/rubrica-analitica-criterios-evaluacion/).
