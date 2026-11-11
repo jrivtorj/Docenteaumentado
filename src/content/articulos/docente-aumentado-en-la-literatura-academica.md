@@ -31,7 +31,7 @@ fuentes:
     consultado: 2026-11-11
 ---
 
-Cuando puse nombre a esta web no sabía que, un año después, la expresión aparecería en el título de un capítulo académico. Lo publica la editorial Dykinson en una obra colectiva de 2026 sobre educación e inteligencia artificial, y lo firman Miguel Antonio López Méndez y Gema Guevara-Rincón, de la Universidad de Murcia. Su ámbito es la enseñanza del francés como lengua extranjera, pero la idea de fondo es la misma que da sentido a este sitio.
+Cuando puse nombre a esta web no sabía que la expresión aparecía también en el título de un capítulo académico. Lo publica la editorial Dykinson en una obra colectiva de 2026 sobre educación e inteligencia artificial, y lo firman Miguel Antonio López Méndez y Gema Guevara-Rincón, de la Universidad de Murcia. Su ámbito es la enseñanza del francés como lengua extranjera, pero la idea de fondo es la misma que da sentido a este sitio.
 
 Precisamente por eso conviene leerlo con lupa y no con entusiasmo. Hay una parte que merece la pena aprovechar y otras que no comparto.
 
