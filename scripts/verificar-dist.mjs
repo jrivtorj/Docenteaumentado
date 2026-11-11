@@ -98,6 +98,14 @@ for (const { ruta, html } of paginas) {
     if (!/\swidth="/.test(img) || !/\sheight="/.test(img)) avisos.push(`${ruta}: imagen sin dimensiones: ${img.slice(0, 80)}`);
   }
 
+  // Palabras pegadas a un enlace o a un énfasis («página de<a>contacto</a>»): pasa si un
+  // salto de línea del código desaparece al generar el HTML.
+  const cuerpo = html.replace(/<(script|style)\b[\s\S]*?<\/\1>/g, '');
+  for (const [pegado] of cuerpo.matchAll(
+    /[\p{L}\d,;:]<(?:a|strong|em|b|i|code|abbr|time)\b[^>]*>[^<]{0,20}|<\/(?:a|strong|em|b|i|code|abbr|time)>[\p{L}\d¿¡(]/gu,
+  )) {
+    errores.push(`${ruta}: texto pegado a una etiqueta en línea: ${pegado.replace(/\s[^>]*>/, '>').slice(0, 60)}`);
+  }
   for (const [, href] of html.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)) {
     if (/^(mailto:|tel:)/.test(href)) continue;
     if (/^https?:\/\//.test(href)) {
