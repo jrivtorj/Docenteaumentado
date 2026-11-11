@@ -4,6 +4,7 @@ descripcion: "Cómo encadeno con IA cuatro productos de una misma unidad: conten
 fechaPublicacion: 2026-11-03
 autor: jose-david-rivero
 tipo: laboratorio
+evidencia: experiencia
 temas: [ia-para-docentes, situaciones-de-aprendizaje-ia, evaluacion-rubricas-ia]
 etiquetas: [método de trabajo, situaciones de aprendizaje, dossier de actividades, prueba competencial, cuaderno de evaluación, Canarias]
 necesidad: "¿Cómo organizo el trabajo con IA para que todos los materiales de una unidad salgan de mis criterios y sean coherentes entre sí?"

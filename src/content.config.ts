@@ -1,7 +1,7 @@
 import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { TIPOS_ARTICULO, CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO, TAREAS_DOCENTES, ETAPAS } from './data/taxonomias';
+import { TIPOS_ARTICULO, NIVELES_EVIDENCIA, TIPOS_SIN_EVIDENCIA, CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO, TAREAS_DOCENTES, ETAPAS } from './data/taxonomias';
 
 const claves = <T extends Record<string, unknown>>(obj: T) => Object.keys(obj) as [keyof T & string, ...(keyof T & string)[]];
 
@@ -68,10 +68,16 @@ const articulos = defineCollection({
         destacado: z.boolean().default(false),
         /** Pregunta concreta del profesorado a la que responde el texto (uso editorial interno). */
         necesidad: z.string().optional(),
+        /** Nivel de evidencia (manifiesto, sección 7). Obligatorio salvo en opinión y actualidad. */
+        evidencia: z.enum(claves(NIVELES_EVIDENCIA)).optional(),
         seo,
       })
       .refine((d) => !d.fechaActualizacion || d.fechaActualizacion >= d.fechaPublicacion, {
         message: 'fechaActualizacion no puede ser anterior a fechaPublicacion',
+      })
+      .refine((d) => d.evidencia || (TIPOS_SIN_EVIDENCIA as readonly string[]).includes(d.tipo), {
+        message: 'Indica el nivel de evidencia (evidencia: posibilidad | propuesta | experiencia | resultado)',
+        path: ['evidencia'],
       }),
 });
 

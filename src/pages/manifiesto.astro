@@ -1,0 +1,471 @@
+---
+import Pagina from '@/layouts/Pagina.astro';
+import { NIVELES_EVIDENCIA } from '@/data/taxonomias';
+
+/*
+ * Manifiesto fundacional del proyecto (versión 1.0, noviembre de 2026). Texto del autor.
+ * Si cambia de forma sustancial, sube la versión y la fecha de ACTUALIZADO.
+ * La sección 7 obliga a indicar el nivel de evidencia: el campo `evidencia` de los artículos
+ * (src/content.config.ts) y su definición (src/data/taxonomias.ts) deben seguir coincidiendo con este texto.
+ */
+const ACTUALIZADO = new Date('2026-11-11');
+---
+
+<Pagina
+  titulo="Manifiesto"
+  tituloSeo="Manifiesto: criterio pedagógico e inteligencia artificial"
+  descripcion="Documento fundacional de El docente aumentado: qué defendemos sobre la IA en educación, con qué principios trabajamos y a qué nos comprometemos."
+  ruta="/manifiesto/"
+  antetitulo="El proyecto"
+  entradilla="Criterio pedagógico e inteligencia artificial para transformar la enseñanza. Documento fundacional, versión 1.0."
+  actualizado={ACTUALIZADO}
+>
+  <h2 id="razon-de-ser">1. Nuestra razón de ser</h2>
+  <p>
+    La educación está experimentando una transformación que afecta a la manera en que se produce, se transmite, se
+    interpreta y se evalúa el conocimiento.
+  </p>
+  <p>
+    La inteligencia artificial ha introducido nuevas posibilidades en los procesos de enseñanza y aprendizaje. Su
+    capacidad para generar contenidos, analizar información, adaptar explicaciones, elaborar recursos y proporcionar
+    retroalimentación está modificando las condiciones en las que el profesorado desarrolla su actividad profesional.
+  </p>
+  <p>Sin embargo, la incorporación de estas tecnologías no garantiza por sí misma una mejora educativa.</p>
+  <p>
+    La disponibilidad de herramientas cada vez más sofisticadas no equivale necesariamente a una enseñanza de mayor
+    calidad. Tampoco la automatización de determinadas tareas implica una transformación pedagógica.
+  </p>
+  <p>
+    El verdadero desafío consiste en comprender cómo integrar estas capacidades en el trabajo docente sin renunciar al
+    criterio profesional, la responsabilidad educativa y la dimensión humana de la enseñanza.
+  </p>
+  <p>El docente aumentado nace para explorar, desarrollar y difundir esta nueva forma de entender la profesión docente.</p>
+  <p>
+    No pretendemos sustituir la experiencia del profesorado por sistemas automatizados. Aspiramos a ampliar sus
+    posibilidades de actuación mediante una integración consciente, crítica y pedagógicamente fundamentada de la
+    inteligencia artificial.
+  </p>
+
+  <h2 id="tesis">2. Nuestra tesis fundamental</h2>
+  <p>
+    Defendemos que la inteligencia artificial amplifica el criterio profesional del docente, pero no lo sustituye ni lo
+    genera. En manos de un docente con criterio puede mejorar la enseñanza; sin él, puede empobrecerla. Por eso,
+    <strong>lo primero que hay que formar es el criterio pedagógico, no el manejo de herramientas</strong>.
+  </p>
+  <p>
+    Esta ampliación no debe medirse por el número de herramientas utilizadas, la cantidad de contenidos generados ni la
+    velocidad con la que se realizan determinadas tareas.
+  </p>
+  <p>
+    Debe medirse por la calidad de las decisiones pedagógicas, la pertinencia de las experiencias de aprendizaje, la
+    mejora de los procesos de evaluación y la capacidad de responder a las necesidades del alumnado.
+  </p>
+  <p>
+    Estas dimensiones deben traducirse en indicadores observables, como la coherencia entre criterios de evaluación,
+    actividades e instrumentos, la calidad de la retroalimentación que recibe el alumnado o el tiempo efectivamente
+    reinvertido en tareas de mayor valor educativo.
+  </p>
+  <p>Entendemos por docente aumentado a un profesional que:</p>
+  <ul>
+    <li>Comprende las posibilidades y limitaciones de los sistemas de inteligencia artificial.</li>
+    <li>Integra estas tecnologías en función de objetivos educativos previamente definidos.</li>
+    <li>Diseña experiencias de aprendizaje fundamentadas en el currículo y en el contexto de su alumnado.</li>
+    <li>Utiliza instrumentos de evaluación coherentes con los criterios de evaluación.</li>
+    <li>Analiza críticamente los resultados generados por la inteligencia artificial.</li>
+    <li>Mantiene la responsabilidad sobre las decisiones que afectan al proceso educativo.</li>
+    <li>
+      Emplea la tecnología para liberar tiempo y mejorar aquellas tareas que requieren conocimiento, sensibilidad y
+      juicio profesional.
+    </li>
+  </ul>
+  <p>La inteligencia artificial amplía las posibilidades del docente, pero no sustituye su responsabilidad.</p>
+
+  <h2 id="profesion-docente">3. Nuestra concepción de la profesión docente</h2>
+  <p>
+    Consideramos que la inteligencia artificial permite al profesorado reducir el tiempo dedicado a la elaboración y
+    gestión de materiales para concentrar su esfuerzo en el diseño, la enseñanza, la mediación, la evaluación y la toma
+    de decisiones pedagógicas.
+  </p>
+  <p>
+    Este cambio no implica abandonar los fundamentos de la enseñanza ni restar valor a la instrucción explícita y guiada
+    por el profesorado, que cuenta con un respaldo empírico sólido frente a los enfoques de guía mínima (Kirschner,
+    Sweller y Clark, 2006), aunque el alcance de esa conclusión sigue siendo objeto de debate (Hmelo-Silver, Duncan y
+    Chinn, 2007).
+  </p>
+  <p>
+    El conocimiento disciplinar, la formación científica, la experiencia profesional, la capacidad de comunicación y el
+    conocimiento del alumnado continúan siendo elementos esenciales.
+  </p>
+  <p>
+    La tecnología modifica las condiciones del ejercicio profesional, pero no elimina la necesidad de comprender aquello
+    que se enseña ni de saber cómo aprenden las personas.
+  </p>
+  <p>Por ello, concebimos al docente aumentado como un profesional que combina tres dimensiones:</p>
+  <dl class="dimensiones">
+    <dt>Dimensión disciplinar</dt>
+    <dd>Dominio del conocimiento propio de su especialidad y capacidad para organizarlo didácticamente.</dd>
+    <dt>Dimensión pedagógica</dt>
+    <dd>Capacidad para diseñar, desarrollar y evaluar procesos de enseñanza y aprendizaje.</dd>
+    <dt>Dimensión tecnológica</dt>
+    <dd>
+      Capacidad para seleccionar, utilizar, supervisar y evaluar sistemas tecnológicos, especialmente aquellos basados en
+      inteligencia artificial.
+    </dd>
+  </dl>
+  <p>
+    Esta articulación en tres dimensiones se inspira en el modelo TPACK (Mishra y Koehler, 2006), que pone el acento en
+    el conocimiento que surge de su integración y no en cada dimensión por separado. Es coherente con los marcos de
+    referencia de la competencia digital docente, tanto europeo (DigCompEdu) como estatal (2022), y con el marco de
+    competencias en inteligencia artificial para docentes de la UNESCO (2024). Nuestra aportación consiste en aplicarla
+    específicamente a la inteligencia artificial generativa, que exige al docente una capacidad adicional:
+    <strong>validar lo que la máquina produce</strong>.
+  </p>
+
+  <h2 id="principios">4. Nuestros principios fundamentales</h2>
+
+  <h3 id="criterio-pedagogico">4.1. El criterio pedagógico por encima de la tecnología</h3>
+  <p>La herramienta nunca debe determinar por sí misma la finalidad educativa.</p>
+  <p>Toda incorporación tecnológica debe responder a una necesidad identificada y a un propósito pedagógico concreto.</p>
+  <p>
+    No defendemos utilizar inteligencia artificial porque esté disponible, sino porque su utilización puede aportar un
+    valor educativo justificable.
+  </p>
+
+  <h3 id="evidencia">4.2. La evidencia como fundamento de las decisiones</h3>
+  <p>La innovación educativa debe superar el terreno de las intuiciones y las declaraciones de intenciones.</p>
+  <p>
+    Es necesario distinguir entre posibilidades tecnológicas, propuestas metodológicas, experiencias implementadas y
+    resultados efectivamente contrastados.
+  </p>
+  <p>Defendemos una cultura profesional que documente, analice y evalúe las intervenciones educativas.</p>
+
+  <h3 id="persona">4.3. La centralidad de la persona</h3>
+  <p>La educación es una actividad profundamente humana.</p>
+  <p>
+    La relación pedagógica, el acompañamiento, la confianza, la motivación, la convivencia y la atención a las
+    circunstancias personales del alumnado no pueden reducirse a procesos automatizados.
+  </p>
+  <p>La inteligencia artificial debe contribuir a mejorar las condiciones de esa relación, no a empobrecerla.</p>
+
+  <h3 id="evaluacion">4.4. La evaluación como proceso de conocimiento</h3>
+  <p>La evaluación no puede limitarse a asignar calificaciones.</p>
+  <p>
+    Debe proporcionar información relevante sobre los aprendizajes, identificar dificultades, orientar la intervención
+    docente y facilitar la mejora del alumnado.
+  </p>
+  <p>
+    La inteligencia artificial puede ayudar a diseñar instrumentos, analizar evidencias y proporcionar
+    retroalimentación, pero corresponde al profesional determinar la validez y pertinencia de esos procesos.
+  </p>
+
+  <h3 id="inclusion">4.5. La inclusión como criterio de diseño</h3>
+  <p>La diversidad del alumnado debe estar presente desde el inicio de la planificación.</p>
+  <p>
+    Las tecnologías pueden facilitar la adaptación de contenidos, la diversificación de explicaciones y la creación de
+    diferentes itinerarios de aprendizaje.
+  </p>
+  <p>Sin embargo, también pueden reproducir sesgos, generar nuevas barreras o ampliar desigualdades.</p>
+  <p>
+    Por ello, toda propuesta de integración tecnológica debe incorporar criterios de accesibilidad, equidad y atención a
+    la diversidad.
+  </p>
+
+  <h3 id="autonomia">4.6. La autonomía y el pensamiento crítico</h3>
+  <p>
+    El uso educativo de la inteligencia artificial debe contribuir al desarrollo de la capacidad de pensar, argumentar,
+    contrastar y resolver problemas.
+  </p>
+  <p>No defendemos una educación en la que el alumnado delegue sus procesos intelectuales en sistemas automatizados.</p>
+  <p>
+    Defendemos una educación en la que aprenda a utilizar estas tecnologías sin renunciar a su autonomía intelectual.
+  </p>
+  <p>
+    Esto obliga a replantear qué tareas y qué formas de evaluación siguen teniendo sentido cuando el alumnado dispone de
+    estas herramientas, y a enseñar de forma explícita cuándo su uso es legítimo, cómo debe declararse y qué procesos
+    deben realizarse sin ella.
+  </p>
+
+  <h3 id="responsabilidad">4.7. La responsabilidad y la transparencia</h3>
+  <p>
+    La utilización de inteligencia artificial exige responsabilidad en el tratamiento de datos, protección de la
+    privacidad, reconocimiento de los límites tecnológicos y transparencia sobre los procesos de generación de
+    contenidos.
+  </p>
+  <p>
+    En los centros educativos públicos, esto implica no introducir datos personales del alumnado en herramientas que no
+    hayan sido autorizadas por la administración educativa, en coherencia con el Reglamento (UE) 2016/679, General de
+    Protección de Datos, y con la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía
+    de los derechos digitales.
+  </p>
+  <p>La supervisión humana no debe ser una formalidad. Debe constituir una condición efectiva de utilización.</p>
+
+  <h2 id="practica-docente">5. Nuestra propuesta de transformación de la práctica docente</h2>
+  <p>
+    El docente aumentado aborda la integración de la inteligencia artificial desde los principales ámbitos del
+    ejercicio profesional.
+  </p>
+  <dl class="dimensiones">
+    <dt>Planificación y programación</dt>
+    <dd>
+      La IA puede contribuir al análisis curricular, la organización de contenidos, la elaboración de situaciones de
+      aprendizaje y la coherencia entre objetivos, actividades y evaluación.
+    </dd>
+    <dt>Diseño didáctico</dt>
+    <dd>
+      Puede facilitar la creación de actividades, materiales, secuencias de aprendizaje y recursos adaptados a diferentes
+      niveles y necesidades.
+    </dd>
+    <dt>Personalización del aprendizaje</dt>
+    <dd>
+      Puede ayudar a diversificar explicaciones, generar apoyos específicos y ofrecer alternativas para abordar las
+      dificultades de aprendizaje.
+    </dd>
+    <dt>Evaluación y retroalimentación</dt>
+    <dd>
+      Puede contribuir al diseño de rúbricas, listas de cotejo, pruebas competenciales, instrumentos de autoevaluación y
+      coevaluación, así como al análisis de evidencias.
+    </dd>
+    <dt>Gestión del conocimiento profesional</dt>
+    <dd>
+      Puede facilitar la búsqueda, organización, síntesis y actualización de información necesaria para el desarrollo
+      profesional docente.
+    </dd>
+  </dl>
+  <p>
+    En todos estos ámbitos establecemos una condición: la utilización de inteligencia artificial debe estar subordinada
+    a una finalidad pedagógica y sometida a supervisión profesional.
+  </p>
+
+  <h2 id="metodo">6. Nuestra orientación metodológica</h2>
+  <p>
+    El docente aumentado no propone una colección de instrucciones o herramientas vinculadas a una plataforma
+    determinada.
+  </p>
+  <p>Nuestro propósito es desarrollar procedimientos de trabajo que puedan mantenerse a pesar de la evolución tecnológica.</p>
+  <p>Defendemos un proceso profesional basado en tres operaciones fundamentales:</p>
+  <dl class="dimensiones">
+    <dt>Comprender</dt>
+    <dd>
+      Identificar las necesidades educativas, los objetivos curriculares, las características del alumnado y las
+      evidencias que necesitamos obtener.
+    </dd>
+    <dt>Diseñar</dt>
+    <dd>
+      Tomar las decisiones didácticas y desarrollar propuestas, materiales e instrumentos coherentes con esas
+      necesidades, empleando la inteligencia artificial como apoyo cuando aporte un valor justificable.
+    </dd>
+    <dt>Validar</dt>
+    <dd>
+      Revisar los resultados, contrastar la información, comprobar la adecuación pedagógica y analizar las evidencias
+      obtenidas.
+    </dd>
+  </dl>
+  <p>
+    La validación exige un criterio que el propio uso de la inteligencia artificial puede erosionar si el docente delega
+    de forma sistemática las tareas que lo forman. Por ello, el método debe incluir momentos en los que el profesional
+    diseñe sin asistencia y contraste después su propuesta con la generada por la herramienta.
+  </p>
+  <p>
+    Estas operaciones constituyen una primera base metodológica que deberá desarrollarse, sistematizarse y contrastarse
+    mediante experiencias educativas.
+  </p>
+  <p>
+    No concebimos la metodología como una receta universal, sino como un marco de actuación profesional adaptable a
+    diferentes materias, etapas y contextos.
+  </p>
+
+  <h2 id="conocimiento">7. Nuestro compromiso con el conocimiento</h2>
+  <p>
+    El docente aumentado aspira a contribuir al debate académico y profesional sobre la transformación de la enseñanza.
+  </p>
+  <p>Para ello, asumimos los siguientes compromisos:</p>
+  <ul>
+    <li>Fundamentar nuestras propuestas en bibliografía científica, normativa y documentación relevante.</li>
+    <li>Diferenciar claramente las aportaciones teóricas de las experiencias aplicadas.</li>
+    <li>
+      Indicar en cada guía, tutorial, laboratorio y experiencia de aula el
+      <a href="#niveles-de-evidencia">nivel de evidencia</a> de la propuesta. Los textos de opinión y de actualidad se
+      identifican como tales.
+    </li>
+    <li>No presentar como resultados demostrados aquello que no haya sido evaluado.</li>
+    <li>Reconocer las limitaciones de las tecnologías y de nuestras propias propuestas.</li>
+    <li>Promover el diálogo entre docentes, investigadores y especialistas.</li>
+    <li>
+      Actualizar los contenidos cuando cambien los conocimientos científicos, los marcos normativos o las condiciones
+      tecnológicas.
+    </li>
+  </ul>
+
+  <section class="niveles" aria-labelledby="niveles-de-evidencia">
+    <h3 id="niveles-de-evidencia">Niveles de evidencia</h3>
+    <p>Cada texto que formula una propuesta indica, al principio, en cuál de estos niveles se sitúa:</p>
+    <dl class="dimensiones">
+      {
+        Object.values(NIVELES_EVIDENCIA).map((n) => (
+          <>
+            <dt>{n.nombre}</dt>
+            <dd>{n.descripcion}</dd>
+          </>
+        ))
+      }
+    </dl>
+  </section>
+
+  <p>Consideramos que la innovación educativa necesita tanto experimentación como reflexión crítica.</p>
+  <p>
+    La práctica profesional proporciona preguntas y experiencias; la investigación permite analizarlas, contextualizarlas
+    y contrastarlas.
+  </p>
+  <p>La relación entre ambas constituye uno de los fundamentos de nuestro proyecto.</p>
+
+  <h2 id="comunidad">8. Nuestra comunidad profesional</h2>
+  <p>
+    El docente aumentado nace como una iniciativa impulsada desde la experiencia docente, pero aspira a convertirse en
+    un espacio de colaboración y conocimiento compartido.
+  </p>
+  <p>
+    Queremos reunir a profesionales de distintas especialidades y etapas educativas, investigadores, especialistas en
+    tecnología educativa y personas interesadas en el futuro de la enseñanza.
+  </p>
+  <p>
+    La diversidad de perspectivas debe contribuir a enriquecer las propuestas y evitar que la integración de la
+    inteligencia artificial quede reducida a una visión exclusivamente tecnológica.
+  </p>
+  <p>
+    Aspiramos a construir una comunidad que comparta experiencias, investigue problemas, contraste resultados y
+    desarrolle soluciones aplicables a los contextos educativos.
+  </p>
+  <p>
+    La colaboración debe sustentarse en el rigor, la transparencia, el reconocimiento de la autoría y el respeto a la
+    diversidad de enfoques. Si quieres participar, tienes los detalles en <a href="/colabora/">Colabora</a>.
+  </p>
+
+  <h2 id="vision">9. Nuestra visión de futuro</h2>
+  <p>
+    Imaginamos una profesión docente en la que los sistemas de inteligencia artificial formen parte habitual de los
+    procesos de planificación, diseño, evaluación y gestión del conocimiento.
+  </p>
+  <p>Pero no concebimos ese futuro como una progresiva sustitución del profesorado por sistemas automatizados.</p>
+  <p>Lo concebimos como una oportunidad para redefinir las prioridades del trabajo docente.</p>
+  <p>
+    Si determinadas tareas pueden realizarse con mayor eficiencia mediante herramientas inteligentes, el tiempo y la
+    capacidad profesional liberados deberían orientarse hacia actividades de mayor valor educativo: acompañar,
+    comprender, orientar, investigar, evaluar y enseñar.
+  </p>
+  <p>
+    La escuela del futuro necesitará profesionales capaces de comprender tanto los contenidos de sus disciplinas como los
+    sistemas tecnológicos que intervienen en la producción y circulación del conocimiento.
+  </p>
+  <p>La competencia tecnológica, sin criterio pedagógico, será insuficiente.</p>
+  <p>
+    El conocimiento disciplinar y pedagógico, sin comprensión de estas tecnologías, también encontrará nuevas
+    limitaciones.
+  </p>
+  <p>El desafío consiste en integrar las tres dimensiones sin perder de vista la finalidad última de la educación.</p>
+
+  <h2 id="declaracion">10. Nuestra declaración de principios</h2>
+  <p>El docente aumentado defiende una integración de la inteligencia artificial que sea:</p>
+  <ul>
+    <li>Pedagógicamente fundamentada.</li>
+    <li>Científicamente rigurosa.</li>
+    <li>Éticamente responsable.</li>
+    <li>Inclusiva y accesible.</li>
+    <li>Orientada a la mejora del aprendizaje.</li>
+    <li>Transparente en sus procedimientos.</li>
+    <li>Compatible con la autonomía profesional.</li>
+    <li>Centrada en las personas.</li>
+  </ul>
+  <p>No aspiramos a que el docente dependa de la inteligencia artificial.</p>
+  <p>Aspiramos a que disponga de mejores capacidades para comprender, diseñar, enseñar y evaluar.</p>
+  <p>No defendemos una educación más automatizada por el simple hecho de incorporar tecnología.</p>
+  <p>Defendemos una educación mejor pensada, mejor diseñada y mejor acompañada.</p>
+
+  <aside class="cierre" aria-label="Declaración final">
+    <p>
+      La inteligencia artificial puede ampliar nuestras capacidades, pero el sentido de la educación sigue dependiendo de
+      las decisiones que tomamos como profesionales. El docente aumentado nace de esta convicción: una iniciativa para
+      pensar, investigar y desarrollar nuevas formas de ejercer la docencia en una sociedad en transformación, que sitúa
+      el conocimiento, el criterio pedagógico y la responsabilidad humana en el centro de la innovación educativa.
+    </p>
+    <p class="cierre__lema">
+      El futuro de la educación no consiste en sustituir al docente. Consiste en ampliar sus posibilidades de transformar
+      el aprendizaje.
+    </p>
+    <p class="cierre__firma">
+      <a href="/sobre-el-autor/">José David Rivero Torres</a>, fundador de El docente aumentado
+    </p>
+  </aside>
+
+  <h2 id="referencias">Referencias</h2>
+  <ul class="referencias">
+    <li>
+      Hmelo-Silver, C. E., Duncan, R. G. y Chinn, C. A. (2007). Scaffolding and achievement in problem-based and inquiry
+      learning: A response to Kirschner, Sweller, and Clark (2006). <cite>Educational Psychologist</cite>, 42(2),
+      99-107. <a href="https://doi.org/10.1080/00461520701263368">doi:10.1080/00461520701263368</a>
+    </li>
+    <li>
+      Kirschner, P. A., Sweller, J. y Clark, R. E. (2006). Why minimal guidance during instruction does not work: An
+      analysis of the failure of constructivist, discovery, problem-based, experiential, and inquiry-based teaching.
+      <cite>Educational Psychologist</cite>, 41(2), 75-86.
+      <a href="https://doi.org/10.1207/s15326985ep4102_1">doi:10.1207/s15326985ep4102_1</a>
+    </li>
+    <li>
+      Mishra, P. y Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher
+      knowledge. <cite>Teachers College Record</cite>, 108(6), 1017-1054.
+      <a href="https://doi.org/10.1111/j.1467-9620.2006.00684.x">doi:10.1111/j.1467-9620.2006.00684.x</a>
+    </li>
+    <li>
+      Redecker, C. (2017). <cite>European Framework for the Digital Competence of Educators: DigCompEdu</cite>. Oficina de
+      Publicaciones de la Unión Europea. <a href="https://doi.org/10.2760/159770">doi:10.2760/159770</a>
+    </li>
+    <li>
+      Resolución de 4 de mayo de 2022, de la Dirección General de Evaluación y Cooperación Territorial, por la que se
+      publica el Acuerdo de la Conferencia Sectorial de Educación, sobre la actualización del marco de referencia de la
+      competencia digital docente. <cite>BOE</cite> de 16 de mayo de 2022.
+      <a href="https://www.boe.es/eli/es/res/2022/05/04/(5)">BOE-A-2022-8042</a>
+    </li>
+    <li>UNESCO (2024). <cite>AI competency framework for teachers</cite>. UNESCO.</li>
+  </ul>
+</Pagina>
+
+<style>
+  .dimensiones dt {
+    font-weight: 700;
+  }
+  .dimensiones dd {
+    margin: 0.25em 0 0.9em;
+  }
+  .niveles {
+    padding: var(--e-4) var(--e-5);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio-sm);
+    background: var(--c-fondo-suave);
+  }
+  .niveles > * + * {
+    margin-top: 0.9em;
+  }
+  .niveles h3 {
+    margin-top: 0;
+  }
+  .cierre {
+    margin-block: var(--e-6);
+    padding-left: var(--e-5);
+    border-left: 4px solid var(--c-acento);
+  }
+  .cierre > * + * {
+    margin-top: 0.9em;
+  }
+  .cierre__lema {
+    font-weight: 700;
+  }
+  .cierre__firma {
+    font-size: var(--t-sm);
+    color: var(--c-texto-2);
+  }
+  .referencias {
+    font-size: var(--t-sm);
+  }
+  .referencias a {
+    overflow-wrap: anywhere;
+  }
+</style>

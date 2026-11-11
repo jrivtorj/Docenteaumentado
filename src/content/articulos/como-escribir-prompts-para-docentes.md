@@ -4,6 +4,7 @@ descripcion: Las seis partes de un buen prompt docente (rol, contexto, tarea, re
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: guia
+evidencia: propuesta
 temas: [prompts-para-docentes, ia-para-docentes]
 etiquetas: [prompts, ingeniería de prompts, contexto, método]
 destacado: true

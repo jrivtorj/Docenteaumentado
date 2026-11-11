@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-22
 fechaActualizacion: 2026-10-23
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
 etiquetas: [coevaluación, lista de cotejo, diana de evaluación, evaluación formativa, instrumentos de evaluación]
 necesidad: "¿Cómo preparo con IA un instrumento para que el alumnado evalúe el trabajo de sus compañeros con criterio?"

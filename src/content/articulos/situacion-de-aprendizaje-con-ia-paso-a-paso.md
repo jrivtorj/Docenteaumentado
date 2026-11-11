@@ -4,6 +4,7 @@ descripcion: Procedimiento en seis pasos para diseñar una situación de aprendi
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [situaciones-de-aprendizaje-ia, prompts-para-docentes]
 etiquetas: [situaciones de aprendizaje, LOMLOE, programación didáctica, competencias]
 necesidad: "¿Cómo uso la IA para diseñar una situación de aprendizaje que cumpla la LOMLOE y no sea genérica?"

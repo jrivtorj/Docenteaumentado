@@ -4,6 +4,7 @@ descripcion: Dónde aporta la IA en matemáticas, física, química y biología,
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: guia
+evidencia: propuesta
 temas: [ia-matematicas-ciencias, ia-para-docentes]
 etiquetas: [matemáticas, física y química, biología, cálculo, unidades, verificación]
 destacado: true

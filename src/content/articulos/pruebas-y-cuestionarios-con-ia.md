@@ -4,6 +4,7 @@ descripcion: Tutorial para crear pruebas y cuestionarios con IA con preguntas de
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
 etiquetas: [cuestionarios, exámenes, preguntas de opción múltiple, distractores, evaluación]
 necesidad: "¿Cómo preparo con IA un cuestionario o un examen que no sea solo de memoria?"

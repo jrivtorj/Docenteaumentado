@@ -4,6 +4,7 @@ descripcion: Pautas prácticas para usar IA sin poner en riesgo los datos del al
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: guia
+evidencia: propuesta
 temas: [privacidad-y-etica, ia-para-docentes]
 etiquetas: [protección de datos, RGPD, LOPDGDD, Reglamento de IA, privacidad]
 necesidad: "¿Puedo usar la IA con datos de mi alumnado? ¿Qué está permitido?"
