@@ -4,6 +4,7 @@ descripcion: Tutorial para elaborar rúbricas analíticas con IA a partir de cri
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
 etiquetas: [rúbricas, evaluación, instrumentos de evaluación, descriptores]
 necesidad: "¿Cómo consigo que la IA me haga una rúbrica útil y no una lista de adjetivos?"

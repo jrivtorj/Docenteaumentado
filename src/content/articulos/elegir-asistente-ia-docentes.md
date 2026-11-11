@@ -4,6 +4,7 @@ descripcion: "Criterios prácticos para elegir asistente de IA en el trabajo doc
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: guia
+evidencia: posibilidad
 temas: [chatgpt-para-profesores, claude-en-educacion, ia-para-docentes]
 etiquetas: [chatgpt, claude, gemini, comparativa, elegir herramienta]
 necesidad: "¿Qué asistente de IA debería usar como docente y cuál puede usar mi alumnado?"

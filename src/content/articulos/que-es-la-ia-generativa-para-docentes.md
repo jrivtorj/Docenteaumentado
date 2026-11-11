@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-12
 fechaActualizacion: 2026-11-01
 autor: jose-david-rivero
 tipo: guia
+evidencia: posibilidad
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico]
 etiquetas: [modelos de lenguaje, alucinaciones, fundamentos, criterio docente]
 destacado: true

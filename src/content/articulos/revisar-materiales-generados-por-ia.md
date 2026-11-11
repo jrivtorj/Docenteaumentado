@@ -4,6 +4,7 @@ descripcion: Un protocolo de revisión en cinco capas (exactitud, alineación cu
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico, ia-matematicas-ciencias]
 etiquetas: [revisión, calidad, sesgos, accesibilidad, verificación]
 necesidad: "¿Qué tengo que revisar exactamente en un material hecho con IA antes de dárselo a mi alumnado?"

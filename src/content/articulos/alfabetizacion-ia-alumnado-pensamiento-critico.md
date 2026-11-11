@@ -4,6 +4,7 @@ descripcion: Cinco actividades listas para el aula para que el alumnado entienda
 fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: guia
+evidencia: propuesta
 temas: [alfabetizacion-digital-pensamiento-critico, ia-para-docentes]
 etiquetas: [alfabetización en IA, pensamiento crítico, verificación, fuentes, competencia digital]
 necesidad: "¿Cómo enseño a mi alumnado a usar la IA con sentido crítico, sin que sea una charla teórica?"

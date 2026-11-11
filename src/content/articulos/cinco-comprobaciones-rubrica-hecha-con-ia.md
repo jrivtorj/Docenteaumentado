@@ -4,6 +4,7 @@ descripcion: "Mi forma de trabajar cuando la IA me ayuda a crear un instrumento 
 fechaPublicacion: 2026-10-27
 autor: jose-david-rivero
 tipo: guia
+evidencia: propuesta
 temas: [evaluacion-rubricas-ia, ia-para-docentes]
 etiquetas: [rúbricas, evaluación, criterios de evaluación, revisión de materiales]
 necesidad: "¿Cómo me aseguro de que una rúbrica generada con IA evalúa lo que dice el currículo antes de usarla?"

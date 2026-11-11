@@ -105,7 +105,7 @@ npm run dev               # http://localhost:4321
 | `/herramientas/` y `/herramientas/<slug>/` | Catálogo con filtros y cada ficha |
 | `/temas/` y `/temas/<tema>/` | Páginas de grupo temático |
 | `/buscar/` | Buscador (noindex) |
-| `/sobre-el-autor/`, `/contacto/`, `/newsletter/` | Páginas del proyecto |
+| `/sobre-el-autor/`, `/manifiesto/`, `/contacto/`, `/newsletter/` | Páginas del proyecto |
 | `/aviso-legal/`, `/privacidad/`, `/cookies/` | Páginas legales (noindex) |
 | `/rss.xml`, `/sitemap-index.xml`, `/robots.txt` | Generados |
 
@@ -129,6 +129,7 @@ fechaPublicacion: 2026-10-20
 fechaActualizacion: 2026-11-02     # opcional, solo si hay cambios sustanciales
 autor: jose-david-rivero            # id de src/content/autores.json
 tipo: guia                          # guia | tutorial | opinion | actualidad | laboratorio | experiencia
+evidencia: propuesta                # posibilidad | propuesta | experiencia | resultado (obligatorio salvo en opinion y actualidad; ver /manifiesto/#niveles-de-evidencia)
 temas: [ia-para-docentes]           # ids de src/content/temas.json (mínimo 1)
 etiquetas: [rúbricas, evaluación]
 destacado: false                    # true = aparece en «Para empezar» en la portada

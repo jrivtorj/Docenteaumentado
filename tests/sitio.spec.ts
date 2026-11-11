@@ -19,6 +19,7 @@ const PRINCIPALES = [
   '/opinion/',
   '/desde-mi-aula/',
   '/sobre-el-autor/',
+  '/manifiesto/',
   '/articulos/',
   '/temas/',
   '/buscar/',
@@ -235,8 +236,24 @@ test.describe('Formularios', () => {
   });
 });
 
+test.describe('Manifiesto y niveles de evidencia', () => {
+  test('el manifiesto se enlaza desde el pie y define los cuatro niveles', async ({ page }) => {
+    await page.goto('/manifiesto/');
+    await expect(page.locator('footer a[href="/manifiesto/"]')).toHaveText('Manifiesto');
+    await expect(page.locator('#niveles-de-evidencia + p + dl dt')).toHaveCount(4);
+  });
+
+  test('una guía muestra su nivel de evidencia y una opinión no', async ({ page }) => {
+    await page.goto('/articulos/como-escribir-prompts-para-docentes/');
+    await expect(page.locator('.articulo__evidencia')).toContainText('Nivel de evidencia: Propuesta metodológica');
+    await expect(page.locator('.articulo__evidencia a')).toHaveAttribute('href', '/manifiesto/#niveles-de-evidencia');
+    await page.goto('/articulos/detectores-de-ia-no-son-prueba/');
+    await expect(page.locator('.articulo__evidencia')).toHaveCount(0);
+  });
+});
+
 test.describe('Accesibilidad automática (axe)', () => {
-  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/colabora/', '/laboratorio/constructor-de-prompts/', '/laboratorio/generador-coevaluacion/']) {
+  for (const ruta of ['/', '/prompts/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/herramientas/', '/herramientas/claude/', '/articulos/como-escribir-prompts-para-docentes/', '/buscar/', '/contacto/', '/formacion/', '/colabora/', '/manifiesto/', '/laboratorio/constructor-de-prompts/', '/laboratorio/generador-coevaluacion/']) {
     test(`${ruta} sin infracciones graves`, async ({ page }) => {
       await page.goto(ruta);
       const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
@@ -248,7 +265,7 @@ test.describe('Accesibilidad automática (axe)', () => {
 
 test.describe('Accesibilidad en modo oscuro (axe)', () => {
   test.use({ colorScheme: 'dark' });
-  for (const ruta of ['/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/articulos/proteccion-datos-ia-centros-educativos/', '/herramientas/']) {
+  for (const ruta of ['/', '/prompts/rubrica-analitica-criterios-evaluacion/', '/articulos/proteccion-datos-ia-centros-educativos/', '/herramientas/', '/manifiesto/']) {
     test(`${ruta} sin infracciones graves en oscuro`, async ({ page }) => {
       await page.goto(ruta);
       const r = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();

@@ -7,7 +7,7 @@ import Fuentes from '@/components/Fuentes.astro';
 import CajaAutor from '@/components/CajaAutor.astro';
 import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
 import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
-import { TIPOS_ARTICULO } from '@/data/taxonomias';
+import { TIPOS_ARTICULO, NIVELES_EVIDENCIA } from '@/data/taxonomias';
 import { getArticulos, getPrompts, relacionados, tiempoLectura, urlArticulo, urlTema, type Articulo } from '@/utils/contenido';
 import { fechaISO, fechaLarga } from '@/utils/fechas';
 import { articulo as ldArticulo } from '@/utils/jsonld';
@@ -27,6 +27,7 @@ const { Content, headings } = await render(articulo);
 const autor = await getEntry(data.autor);
 const temas = await getEntries(data.temas);
 const tipo = TIPOS_ARTICULO[data.tipo];
+const evidencia = data.evidencia ? NIVELES_EVIDENCIA[data.evidencia] : undefined;
 const seccion = {
   guia: { nombre: 'IA en el aula', href: '/ia-en-el-aula/' },
   tutorial: { nombre: 'IA en el aula', href: '/ia-en-el-aula/' },
@@ -90,6 +91,14 @@ const tipoSchema = data.tipo === 'opinion' ? 'OpinionNewsArticle' : data.tipo ==
         }
         · {tiempoLectura(articulo)} min de lectura
       </p>
+      {
+        evidencia && (
+          <p class="aviso articulo__evidencia">
+            <strong>Nivel de evidencia: {evidencia.nombre}.</strong> {evidencia.descripcion}{' '}
+            <a href="/manifiesto/#niveles-de-evidencia">Qué significa cada nivel</a>
+          </p>
+        )
+      }
       {
         data.tipo === 'opinion' && (
           <p class="aviso articulo__aviso-opinion">
@@ -165,7 +174,8 @@ const tipoSchema = data.tipo === 'opinion' ? 'OpinionNewsArticle' : data.tipo ==
   .articulo__meta {
     margin-top: var(--e-4);
   }
-  .articulo__aviso-opinion {
+  .articulo__aviso-opinion,
+  .articulo__evidencia {
     margin-top: var(--e-4);
   }
   .articulo__cuerpo {

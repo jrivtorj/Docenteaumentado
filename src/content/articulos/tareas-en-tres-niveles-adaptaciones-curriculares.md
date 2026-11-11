@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-24
 fechaActualizacion: 2026-10-24
 autor: jose-david-rivero
 tipo: tutorial
+evidencia: propuesta
 temas: [situaciones-de-aprendizaje-ia, ia-matematicas-ciencias]
 etiquetas: [Canarias, adaptaciones curriculares, ACUS, atención a la diversidad, DUA, Matemáticas, ESO, materias pendientes]
 necesidad: "¿Cómo atiendo en la misma clase a alumnado del curso, con la materia pendiente y con adaptación curricular sin preparar tres programaciones?"

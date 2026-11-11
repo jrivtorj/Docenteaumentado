@@ -9,6 +9,34 @@ export const TIPOS_ARTICULO = {
   experiencia: { nombre: 'Experiencia de aula', plural: 'Desde mi aula' },
 } as const;
 
+/**
+ * Niveles de evidencia del manifiesto (sección 7). Obligatorio en guías, tutoriales, laboratorio y
+ * experiencias; opinión y actualidad ya se identifican por su tipo. Definiciones en /manifiesto/#niveles-de-evidencia.
+ */
+export const NIVELES_EVIDENCIA = {
+  posibilidad: {
+    nombre: 'Posibilidad tecnológica',
+    descripcion: 'Describe lo que una herramienta puede hacer. No implica que mejore el aprendizaje.',
+  },
+  propuesta: {
+    nombre: 'Propuesta metodológica',
+    descripcion:
+      'Procedimiento fundamentado en normativa, bibliografía o experiencia profesional, sin aplicación documentada en el aula.',
+  },
+  experiencia: {
+    nombre: 'Experiencia implementada',
+    descripcion:
+      'Aplicada en un aula real y documentada (contexto, proceso, resultados agregados y limitaciones), sin evaluación sistemática.',
+  },
+  resultado: {
+    nombre: 'Resultado contrastado',
+    descripcion:
+      'Efecto evaluado con un diseño que permite atribuirlo (comparación, medida antes y después o estudio revisado por pares).',
+  },
+} as const;
+
+export const TIPOS_SIN_EVIDENCIA = ['opinion', 'actualidad'] as const;
+
 export const CATEGORIAS_HERRAMIENTA = {
   asistentes: 'Asistentes conversacionales',
   investigacion: 'Investigación y búsqueda',
