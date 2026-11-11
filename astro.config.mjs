@@ -38,6 +38,9 @@ const ORIGENES_GA = GA_ID
 const anadir = (origenes) => origenes.map((o) => ` ${o}`).join('');
 
 export default defineConfig({
+  // Sin compresión: el compresor de Astro borraba el salto de línea entre una palabra y el
+  // enlace o la negrita de la línea siguiente («página de<a>contacto</a>»). verificar-dist lo vigila.
+  compressHTML: false,
   site: SITE_URL,
   trailingSlash: 'always',
   build: { format: 'directory' },
