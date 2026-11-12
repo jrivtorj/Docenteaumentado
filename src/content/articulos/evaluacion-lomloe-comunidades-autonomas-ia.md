@@ -174,4 +174,4 @@ Esto es un resumen para orientar los prompts, no un sustituto de la norma. Cada 
 
 </div>
 
-Para el caso canario, con sus prohibiciones expresas, tienes el artículo sobre las [instrucciones de evaluación de Canarias 2026/27](/articulos/instrucciones-evaluacion-canarias-2026-27-ia/). Para diseñar las rúbricas, el procedimiento está en [Cómo crear rúbricas con IA paso a paso](/articulos/rubricas-con-ia-paso-a-paso/).
+Para el caso canario, con sus prohibiciones expresas, tienes el artículo sobre las [instrucciones de evaluación de Canarias 2026/27](/articulos/instrucciones-evaluacion-canarias-2026-27-ia/). Para saber qué guías sobre IA ha publicado cada comunidad, tienes el [mapa de las guías sobre IA en educación](/articulos/guias-ia-educacion-comunidades-autonomas/). Para diseñar las rúbricas, el procedimiento está en [Cómo crear rúbricas con IA paso a paso](/articulos/rubricas-con-ia-paso-a-paso/).
