@@ -38,6 +38,11 @@ fuentes:
     editor: INTEF
     fecha: septiembre de 2026
     consultado: 2026-11-01
+  - titulo: La inteligencia artificial (IA) en el ámbito educativo
+    url: https://www3.gobiernodecanarias.org/medusa/ecoescuela/ia/guia/
+    editor: Consejería de Educación del Gobierno de Canarias, Área de Tecnología Educativa
+    fecha: febrero de 2024 (PDF de mayo de 2025)
+    consultado: 2026-11-12
 ---
 
 <div class="nota nota--verificar">
@@ -66,7 +71,7 @@ El **Reglamento (UE) 2026/1744**, conocido como «ómnibus digital sobre IA», m
 
 </div>
 
-**Instrucciones de tu administración educativa.** En la práctica, son las que determinan qué herramientas están autorizadas en tu centro, con qué cuentas y para qué fines. La Agencia Española de Protección de Datos tiene además una guía específica para centros educativos.
+**Instrucciones de tu administración educativa.** En la práctica, son las que determinan qué herramientas están autorizadas en tu centro, con qué cuentas y para qué fines. La Agencia Española de Protección de Datos tiene además una guía específica para centros educativos. En Canarias, la guía de la Consejería sobre IA establece que los centros usen las aplicaciones y herramientas que la Consejería proporciona y autoriza; la comento en [este artículo](/articulos/guia-canarias-ia-ambito-educativo/).
 
 ## Semáforo práctico
 
