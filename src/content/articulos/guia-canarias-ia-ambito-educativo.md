@@ -47,7 +47,7 @@ Enlazo el PDF oficial en lugar de alojar una copia: si la Consejería publica un
 
 ## Por qué leerla si das clase en Canarias
 
-La guía del INTEF es un marco estatal y remite a las administraciones educativas para decidir qué herramientas se pueden usar. Esta es la pieza canaria de ese puzle, y la única orientación oficial de la Consejería sobre IA dirigida al profesorado. No es una norma, sino un documento de orientación sin rango normativo. Aun así, recoge criterios de la Consejería que conviene conocer, y el más importante está en el apartado de protección de datos.
+La guía del INTEF es un marco estatal y remite a las administraciones educativas para decidir qué herramientas se pueden usar. Esta es la pieza canaria de ese puzle, y la única orientación oficial de la Consejería sobre IA dirigida al profesorado. No es una norma, sino un documento de orientación sin rango normativo. Aun así, recoge criterios de la Consejería que conviene conocer, y el más importante está en el apartado de protección de datos. Si quieres compararla con lo que han publicado otras comunidades, las reúno en el [mapa de las guías sobre IA en educación](/articulos/guias-ia-educacion-comunidades-autonomas/).
 
 ## Lo que tienes que quedarte
 
