@@ -550,10 +550,6 @@ textarea.entrada {
   border-left-color: var(--c-aviso);
   background: var(--c-aviso-fondo);
 }
-.prosa .nota--verificar::before {
-  content: 'Comprueba antes de usar';
-  color: var(--c-aviso);
-}
 
 @media (prefers-reduced-motion: reduce) {
   *,
