@@ -181,6 +181,8 @@ Queda fuera la guía de Galicia, porque su objeto es enseñar qué es la IA, no 
 
 </div>
 
+Si necesitas una comparación más fina, con criterios definidos, una escala y la cita de cada valoración, la tienes en la [matriz comparativa de las guías institucionales sobre IA en educación](/articulos/matriz-comparativa-guias-ia-educacion/).
+
 ## Recursos de centros y de formación
 
 **Castilla y León.** La *Guía básica de inteligencia artificial en centros educativos* (16 páginas, actualizada el 15 de febrero de 2025, licencia CC BY-NC-ND 4.0) la firman dos docentes del IES Fernando I y del IES Río Órbigo, en León. Es un buen ejemplo de documento de centro, pero no es una publicación de la Consejería. [PDF](https://iesrioorbigo.centros.educa.jcyl.es/sitio/upload/Guia_basica_IA_en_centros_educativos_3.0_15-2-25.pdf).
@@ -231,6 +233,7 @@ Queda fuera la guía de Galicia, porque su objeto es enseñar qué es la IA, no 
 
 - **12 de noviembre de 2026.** Primera publicación.
 - **12 de noviembre de 2026.** Clasificación de los documentos autonómicos por finalidad y comparación por dimensiones, con lectura completa de las orientaciones de Cataluña.
+- **12 de noviembre de 2026.** Enlace a la matriz comparativa con criterios homogéneos.
 - **Próxima revisión prevista:** febrero de 2027.
 
 Si conoces una guía oficial que no aparece aquí, o una versión más reciente de alguna de estas, [escríbeme](/contacto/) o mira cómo [colaborar](/colabora/). Actualizaré el mapa y su fecha de revisión.
