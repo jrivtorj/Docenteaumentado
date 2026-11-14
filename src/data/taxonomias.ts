@@ -76,3 +76,55 @@ export const ETAPAS = {
 } as const;
 
 export type TipoArticulo = keyof typeof TIPOS_ARTICULO;
+
+/**
+ * Navegación transversal por necesidades docentes (segundo nivel, bajo el menú principal).
+ * Campo `necesidadesDocentes` en artículos y prompts; páginas en /necesidades/<id>/.
+ * No confundir con `necesidad` (pregunta editorial de cada texto) ni con `temas` (agrupaciones SEO).
+ * El orden de las claves es el orden en que se muestran. En cada texto, la primera necesidad
+ * de la lista es la principal: se muestra antes en la página de esa necesidad.
+ */
+export const NECESIDADES_DOCENTES = {
+  evaluacion: {
+    nombre: 'Evaluación',
+    descripcion: 'Rúbricas, coevaluación, pruebas y evidencias de aprendizaje.',
+    entradilla:
+      'Instrumentos de evaluación hechos con IA y revisados con criterio, normativa de evaluación aplicable al pedirlos y cómo evaluar cuando el alumnado tiene IA a mano.',
+  },
+  'inclusion-dua': {
+    nombre: 'Inclusión y DUA',
+    descripcion: 'Adaptaciones, accesibilidad y atención a la diversidad.',
+    entradilla:
+      'Adaptaciones curriculares, ajustes DUA y materiales accesibles con apoyo de la IA, sin perder de vista lo que exige la normativa ni lo que dice la evidencia.',
+  },
+  programacion: {
+    nombre: 'Programación',
+    descripcion: 'Situaciones de aprendizaje, currículo y diseño de propuestas didácticas.',
+    entradilla:
+      'Situaciones de aprendizaje, actividades competenciales y unidades que parten del currículo oficial y usan la IA como apoyo, no como autora.',
+  },
+  'alfabetizacion-ia': {
+    nombre: 'Alfabetización en IA',
+    descripcion: 'Pensamiento crítico, uso responsable y competencia digital.',
+    entradilla:
+      'Cómo funciona la IA generativa, cómo pedirle las cosas y cómo verificar lo que devuelve: para el docente y para trabajarlo con el alumnado.',
+  },
+  'formacion-docente': {
+    nombre: 'Formación docente',
+    descripcion: 'Desarrollo profesional, competencia digital docente y formación de centros.',
+    entradilla:
+      'Lo que dicen los estudios y los informes sobre el profesorado y la IA, y qué supone para la competencia profesional y las condiciones de trabajo docentes.',
+    enlace: { href: '/formacion/', texto: 'Formación para centros y claustros' },
+  },
+  'etica-normativa': {
+    nombre: 'Ética y normativa',
+    descripcion: 'Privacidad, protección de datos, regulación y uso responsable de la IA en educación.',
+    entradilla:
+      'Protección de datos, Reglamento europeo de IA, guías oficiales de las administraciones educativas e integridad académica, leídos desde el aula.',
+  },
+} as const satisfies Record<
+  string,
+  { nombre: string; descripcion: string; entradilla: string; enlace?: { href: string; texto: string } }
+>;
+
+export type NecesidadDocente = keyof typeof NECESIDADES_DOCENTES;

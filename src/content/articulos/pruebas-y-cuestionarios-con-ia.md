@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: tutorial
 evidencia: propuesta
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion]
 etiquetas: [cuestionarios, exámenes, preguntas de opción múltiple, distractores, evaluación]
 necesidad: "¿Cómo preparo con IA un cuestionario o un examen que no sea solo de memoria?"
 estado: publicado

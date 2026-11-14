@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [retroalimentación, evaluación formativa, escritura, feedback]
 temas: [evaluacion-rubricas-ia]
+necesidadesDocentes: [evaluacion]
 relacionados: [rubricas-con-ia-paso-a-paso, proteccion-datos-ia-centros-educativos]
 estado: publicado
 variables:

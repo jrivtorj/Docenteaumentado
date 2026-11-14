@@ -131,6 +131,7 @@ autor: jose-david-rivero            # id de src/content/autores.json
 tipo: guia                          # guia | tutorial | opinion | actualidad | laboratorio | experiencia
 evidencia: propuesta                # posibilidad | propuesta | experiencia | resultado (obligatorio salvo en opinion y actualidad; ver /manifiesto/#niveles-de-evidencia)
 temas: [ia-para-docentes]           # ids de src/content/temas.json (mínimo 1)
+necesidadesDocentes: [evaluacion]   # opcional; evaluacion | inclusion-dua | programacion | alfabetizacion-ia | formacion-docente | etica-normativa. La primera es la principal. Páginas en /necesidades/
 etiquetas: [rúbricas, evaluación]
 destacado: false                    # true = aparece en «Para empezar» en la portada
 necesidad: "Pregunta real del profesorado a la que responde (uso interno)"
@@ -182,6 +183,7 @@ herramientas: [claude]       # ids de herramientas con las que se ha probado (op
 fechaPublicacion: 2026-10-20
 etiquetas: [...]
 temas: [evaluacion-rubricas-ia]
+necesidadesDocentes: [evaluacion]   # opcional, como en los artículos
 relacionados: [rubricas-con-ia-paso-a-paso]   # ids de artículos
 variables:
   - nombre: CURSO            # MAYÚSCULAS y guiones bajos

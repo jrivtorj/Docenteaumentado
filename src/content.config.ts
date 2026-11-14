@@ -1,7 +1,7 @@
 import { defineCollection, reference } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { TIPOS_ARTICULO, NIVELES_EVIDENCIA, TIPOS_SIN_EVIDENCIA, CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO, TAREAS_DOCENTES, ETAPAS } from './data/taxonomias';
+import { TIPOS_ARTICULO, NIVELES_EVIDENCIA, TIPOS_SIN_EVIDENCIA, CATEGORIAS_HERRAMIENTA, MODALIDADES_PRECIO, TAREAS_DOCENTES, ETAPAS, NECESIDADES_DOCENTES } from './data/taxonomias';
 
 const claves = <T extends Record<string, unknown>>(obj: T) => Object.keys(obj) as [keyof T & string, ...(keyof T & string)[]];
 
@@ -59,6 +59,8 @@ const articulos = defineCollection({
         autor: reference('autores'),
         tipo: z.enum(claves(TIPOS_ARTICULO)),
         temas: z.array(reference('temas')).min(1),
+        /** Navegación por necesidades docentes (segundo nivel). Puede quedar vacío. */
+        necesidadesDocentes: z.array(z.enum(claves(NECESIDADES_DOCENTES))).default([]),
         etiquetas: z.array(z.string()).default([]),
         imagen: z.object({ src: image(), alt: z.string().min(5) }).optional(),
         /** Minutos. Si se omite se calcula a partir del texto. */
@@ -137,6 +139,7 @@ const prompts = defineCollection({
       variables: z.array(variable).min(1),
       etiquetas: z.array(z.string()).default([]),
       temas: z.array(reference('temas')).default([]),
+      necesidadesDocentes: z.array(z.enum(claves(NECESIDADES_DOCENTES))).default([]),
       relacionados: z.array(reference('articulos')).default([]),
       fechaPublicacion: z.coerce.date(),
       fechaActualizacion: z.coerce.date().optional(),

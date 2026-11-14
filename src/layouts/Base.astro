@@ -4,6 +4,7 @@ import { PUBLIC_ANALYTICS_SCRIPT, PUBLIC_ANALYTICS_DOMAIN } from 'astro:env/serv
 import Seo, { type SeoProps } from '@/components/Seo.astro';
 import Cabecera from '@/components/Cabecera.astro';
 import Pie from '@/components/Pie.astro';
+import NavNecesidades from '@/components/NavNecesidades.astro';
 import Migas from '@/components/Migas.astro';
 import Consentimiento from '@/components/Consentimiento.astro';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
@@ -48,6 +49,7 @@ const datos = rutaMigas ? [...jsonLd, migasDePan(rutaMigas, site)] : jsonLd;
   <body>
     <a class="salto" href="#contenido">Saltar al contenido</a>
     <Cabecera />
+    <NavNecesidades />
     <main id="contenido" tabindex="-1">
       {
         rutaMigas && (

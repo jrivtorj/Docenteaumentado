@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [ia-para-docentes, privacidad-y-etica]
+necesidadesDocentes: [etica-normativa]
 etiquetas: [comunidades autónomas, guía, INTEF, Consejo Escolar del Estado, Canarias, Cataluña, Euskadi, Galicia, normativa]
 necesidad: "¿Qué ha publicado mi comunidad sobre el uso de la IA en los centros, y qué documento oficial debo leer?"
 estado: publicado

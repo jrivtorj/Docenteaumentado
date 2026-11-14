@@ -7,6 +7,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: posibilidad
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [alfabetizacion-ia]
 etiquetas: [modelos de lenguaje, alucinaciones, fundamentos, criterio docente]
 destacado: true
 necesidad: "¿Qué tengo que saber de cómo funciona la IA para usarla bien en clase sin ser informático?"

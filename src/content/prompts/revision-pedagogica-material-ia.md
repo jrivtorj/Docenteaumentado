@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [revisión, calidad, sesgos, accesibilidad]
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [alfabetizacion-ia]
 relacionados: [revisar-materiales-generados-por-ia]
 estado: publicado
 variables:

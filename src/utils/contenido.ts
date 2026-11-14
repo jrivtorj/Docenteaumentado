@@ -70,6 +70,7 @@ export const urlArticulo = (a: Articulo) => `/articulos/${a.id}/`;
 export const urlHerramienta = (h: Herramienta) => `/herramientas/${h.id}/`;
 export const urlPrompt = (p: Prompt) => `/prompts/${p.id}/`;
 export const urlTema = (id: string) => `/temas/${id}/`;
+export const urlNecesidad = (id: string) => `/necesidades/${id}/`;
 
 /** Elimina tildes y pasa a minúsculas: base de la búsqueda y los filtros. */
 export const normalizar = (s: string) =>

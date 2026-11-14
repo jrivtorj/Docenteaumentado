@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: posibilidad
 temas: [chatgpt-para-profesores, claude-en-educacion, ia-para-docentes]
+necesidadesDocentes: [alfabetizacion-ia, etica-normativa]
 etiquetas: [chatgpt, claude, gemini, comparativa, elegir herramienta]
 necesidad: "¿Qué asistente de IA debería usar como docente y cuál puede usar mi alumnado?"
 estado: publicado

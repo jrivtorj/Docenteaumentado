@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: opinion
 temas: [ia-para-docentes, privacidad-y-etica]
+necesidadesDocentes: [formacion-docente]
 etiquetas: [trabajo docente, burocracia, carga de trabajo, organización escolar]
 necesidad: "¿La IA va a mejorar las condiciones de trabajo del profesorado o solo va a aumentar lo que se nos pide?"
 estado: publicado

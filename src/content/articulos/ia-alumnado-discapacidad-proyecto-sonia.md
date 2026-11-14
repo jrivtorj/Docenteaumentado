@@ -5,6 +5,7 @@ fechaPublicacion: 2026-11-14
 autor: jose-david-rivero
 tipo: actualidad
 temas: [ia-para-docentes, evaluacion-rubricas-ia, privacidad-y-etica]
+necesidadesDocentes: [inclusion-dua]
 etiquetas: [Escuelas Católicas, proyecto SonIA, discapacidad, NEE, NEAE, inclusión, autonomía, adaptaciones curriculares, ACUS, rúbrica, Canarias]
 necesidad: "He leído que la IA mejora la autonomía del alumnado con discapacidad: ¿está demostrado y qué puedo aprovechar con mi alumnado con NEE?"
 estado: publicado

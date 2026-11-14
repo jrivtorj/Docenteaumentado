@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [evaluacion-rubricas-ia, ia-para-docentes]
+necesidadesDocentes: [evaluacion]
 etiquetas: [rúbricas, evaluación, criterios de evaluación, revisión de materiales]
 necesidad: "¿Cómo me aseguro de que una rúbrica generada con IA evalúa lo que dice el currículo antes de usarla?"
 estado: publicado

@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-22
 etiquetas: [coevaluación, lista de cotejo, diana de evaluación, evaluación formativa, criterios de evaluación]
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion]
 relacionados: [coevaluacion-con-ia-instrumentos-basados-en-evidencias, rubricas-con-ia-paso-a-paso]
 estado: publicado
 variables:

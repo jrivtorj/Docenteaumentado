@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [ia-matematicas-ciencias, ia-para-docentes]
+necesidadesDocentes: [alfabetizacion-ia]
 etiquetas: [matemáticas, física y química, biología, cálculo, unidades, verificación]
 destacado: true
 necesidad: "¿Puedo fiarme de la IA para preparar problemas y explicaciones de ciencias y matemáticas?"

@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: tutorial
 evidencia: propuesta
 temas: [situaciones-de-aprendizaje-ia, prompts-para-docentes]
+necesidadesDocentes: [programacion]
 etiquetas: [situaciones de aprendizaje, LOMLOE, programación didáctica, competencias]
 necesidad: "¿Cómo uso la IA para diseñar una situación de aprendizaje que cumpla la LOMLOE y no sea genérica?"
 estado: publicado

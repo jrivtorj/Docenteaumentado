@@ -5,6 +5,7 @@ fechaPublicacion: 2026-11-11
 autor: jose-david-rivero
 tipo: opinion
 temas: [ia-para-docentes, evaluacion-rubricas-ia]
+necesidadesDocentes: [formacion-docente, evaluacion]
 etiquetas: [docente aumentado, retroalimentación, evidencia, protección de datos, competencia digital docente]
 necesidad: "¿Hay respaldo académico para la idea de docente aumentado y qué dice exactamente?"
 estado: publicado

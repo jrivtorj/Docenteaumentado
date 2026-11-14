@@ -1,0 +1,106 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
+import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
+import { NECESIDADES_DOCENTES, type NecesidadDocente } from '@/data/taxonomias';
+import { getArticulos, getPrompts, urlNecesidad } from '@/utils/contenido';
+
+/** Igual que en /temas/: por debajo de este número de recursos la página no se indexa. */
+const MINIMO_INDEXABLE = 3;
+
+export const getStaticPaths = (async () => {
+  const [articulos, prompts] = await Promise.all([getArticulos(), getPrompts()]);
+  return (Object.keys(NECESIDADES_DOCENTES) as NecesidadDocente[])
+    .map((id) => ({
+      params: { necesidad: id },
+      props: {
+        id,
+        articulos: articulos.filter((a) => a.data.necesidadesDocentes.includes(id)),
+        prompts: prompts.filter((p) => p.data.necesidadesDocentes.includes(id)),
+      },
+    }))
+    .filter((p) => p.props.articulos.length + p.props.prompts.length > 0);
+}) satisfies GetStaticPaths;
+
+interface Props {
+  id: NecesidadDocente;
+  articulos: Awaited<ReturnType<typeof getArticulos>>;
+  prompts: Awaited<ReturnType<typeof getPrompts>>;
+}
+const { id, articulos, prompts } = Astro.props;
+const n: { nombre: string; descripcion: string; entradilla: string; enlace?: { href: string; texto: string } } =
+  NECESIDADES_DOCENTES[id];
+const total = articulos.length + prompts.length;
+// Primero los textos cuya necesidad principal (la primera de la lista) es esta; después, los
+// destacados; dentro de cada grupo, por fecha (ya vienen ordenados).
+const peso = (a: (typeof articulos)[number]) => (a.data.necesidadesDocentes[0] === id ? 2 : 0) + (a.data.destacado ? 1 : 0);
+const ordenados = [...articulos].sort((a, b) => peso(b) - peso(a));
+---
+
+<Base
+  titulo={`${n.nombre}: artículos y prompts para docentes`}
+  descripcion={`${n.descripcion} Artículos y prompts para trabajarlo con IA y con criterio docente.`}
+  noindex={total < MINIMO_INDEXABLE}
+  migas={[
+    { nombre: 'Por necesidad docente', href: '/necesidades/' },
+    { nombre: n.nombre, href: urlNecesidad(id) },
+  ]}
+>
+  <div class="contenedor">
+    <CabeceraPagina titulo={n.nombre} antetitulo="Necesidad docente" entradilla={n.entradilla}>
+      <p class="meta">
+        {articulos.length} {articulos.length === 1 ? 'artículo' : 'artículos'}
+        {prompts.length > 0 && ` · ${prompts.length} ${prompts.length === 1 ? 'prompt' : 'prompts'}`}
+      </p>
+    </CabeceraPagina>
+
+    {
+      articulos.length > 0 && (
+        <section class="bloque" aria-labelledby="n-a">
+          <h2 id="n-a">Artículos</h2>
+          <div class="rejilla">
+            {ordenados.map((a) => (
+              <TarjetaArticulo articulo={a} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+    {
+      prompts.length > 0 && (
+        <section class="bloque" aria-labelledby="n-p">
+          <h2 id="n-p">Prompts</h2>
+          <div class="rejilla">
+            {prompts.map((p) => (
+              <TarjetaPrompt prompt={p} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+    {
+      n.enlace && (
+        <p class="bloque">
+          <a class="enlace-flecha" href={n.enlace.href}>
+            {n.enlace.texto}
+          </a>
+        </p>
+      )
+    }
+    <p class="bloque meta">
+      Otras formas de explorar: <a href="/necesidades/">todas las necesidades docentes</a>, <a href="/temas/">temas</a> y el <a href="/buscar/">buscador</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .bloque {
+    margin-top: var(--e-6);
+  }
+  .bloque h2 {
+    font-size: var(--t-xl);
+    margin-bottom: var(--e-4);
+  }
+</style>

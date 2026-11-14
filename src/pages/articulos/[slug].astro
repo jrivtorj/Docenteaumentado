@@ -8,7 +8,8 @@ import CajaAutor from '@/components/CajaAutor.astro';
 import TarjetaArticulo from '@/components/TarjetaArticulo.astro';
 import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
 import { TIPOS_ARTICULO, NIVELES_EVIDENCIA } from '@/data/taxonomias';
-import { getArticulos, getPrompts, relacionados, tiempoLectura, urlArticulo, urlTema, type Articulo } from '@/utils/contenido';
+import { NECESIDADES_DOCENTES } from '@/data/taxonomias';
+import { getArticulos, getPrompts, relacionados, tiempoLectura, urlArticulo, urlTema, urlNecesidad, type Articulo } from '@/utils/contenido';
 import { fechaISO, fechaLarga } from '@/utils/fechas';
 import { articulo as ldArticulo } from '@/utils/jsonld';
 
@@ -119,6 +120,18 @@ const tipoSchema = data.tipo === 'opinion' ? 'OpinionNewsArticle' : data.tipo ==
 
     <footer class="articulo__pie">
       {
+        data.necesidadesDocentes.length > 0 && (
+          <p class="articulo__temas">
+            <span class="meta">Necesidad docente:</span>
+            {data.necesidadesDocentes.map((id) => (
+              <a class="etiqueta etiqueta--acento" href={urlNecesidad(id)}>
+                {NECESIDADES_DOCENTES[id].nombre}
+              </a>
+            ))}
+          </p>
+        )
+      }
+      {
         temas.length > 0 && (
           <p class="articulo__temas">
             <span class="meta">Temas:</span>
@@ -189,6 +202,9 @@ const tipoSchema = data.tipo === 'opinion' ? 'OpinionNewsArticle' : data.tipo ==
     flex-wrap: wrap;
     align-items: center;
     gap: var(--e-2);
+  }
+  .articulo__temas + .articulo__temas {
+    margin-top: var(--e-3);
   }
   .relacionados {
     margin-top: var(--e-8);

@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [pensamiento crítico, errores, matemáticas, ciencias, verificación]
 temas: [alfabetizacion-digital-pensamiento-critico, ia-matematicas-ciencias]
+necesidadesDocentes: [alfabetizacion-ia]
 relacionados: [alfabetizacion-ia-alumnado-pensamiento-critico, ia-matematicas-ciencias-errores-y-usos-fiables]
 estado: publicado
 variables:

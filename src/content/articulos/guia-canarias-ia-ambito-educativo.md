@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [ia-para-docentes, privacidad-y-etica]
+necesidadesDocentes: [etica-normativa]
 etiquetas: [Canarias, Consejería de Educación, guía, protección de datos, Reglamento de IA, lista de cotejo, Plan Digital de Centro]
 necesidad: "Doy clase en Canarias: ¿qué dice la guía oficial de la Consejería sobre IA y qué tengo que tener en cuenta?"
 estado: publicado

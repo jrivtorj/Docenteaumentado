@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-28
 autor: jose-david-rivero
 tipo: opinion
 temas: [ia-para-docentes, situaciones-de-aprendizaje-ia]
+necesidadesDocentes: [programacion]
 etiquetas: [docente aumentado, criterio pedagógico, situaciones de aprendizaje, Canarias, revisión]
 necesidad: "Si la IA ya genera una unidad didáctica completa, ¿qué aporta el docente?"
 estado: publicado

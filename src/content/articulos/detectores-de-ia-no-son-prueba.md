@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: opinion
 temas: [evaluacion-rubricas-ia, privacidad-y-etica]
+necesidadesDocentes: [evaluacion, etica-normativa]
 etiquetas: [integridad académica, detectores de IA, plagio, evaluación]
 necesidad: "¿Puedo usar un detector de IA para saber si un alumno ha copiado?"
 estado: publicado
