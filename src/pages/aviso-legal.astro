@@ -22,7 +22,7 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
   <h2>1. Titular del sitio</h2>
   <p>
     {SITIO.nombre} es un sitio web personal, sin actividad económica, publicidad ni enlaces de afiliación, cuyo titular
-    y autor es <strong>{autor.data.nombre}</strong>.
+    y autor es <strong>{autor.data.nombreLegal ?? autor.data.nombre}</strong>.
   </p>
   <p>
     Contacto:

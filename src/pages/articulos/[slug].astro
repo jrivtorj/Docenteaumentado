@@ -59,7 +59,7 @@ const tipoSchema = data.tipo === 'opinion' ? 'OpinionNewsArticle' : data.tipo ==
       ruta,
       publicado: data.fechaPublicacion,
       actualizado: data.fechaActualizacion,
-      autor: { nombre: autor.data.nombre, url: autor.data.url },
+      autor: { nombre: autor.data.nombre, url: autor.data.url, titulacion: autor.data.titulacion },
       imagen: data.imagen?.src.src,
       tipo: tipoSchema,
       site: Astro.site!,

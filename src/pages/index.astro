@@ -197,7 +197,7 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
         {
           autor && (
             <p>
-              Lo escribe {autor.data.nombre}. {autor.data.bio} <a href="/sobre-el-autor/">Conoce al autor y los criterios editoriales</a>.
+              Lo escribe {autor.data.nombre}{autor.data.titulacion ? ` (${autor.data.titulacion})` : ''}. {autor.data.bio} <a href="/sobre-el-autor/">Conoce al autor y los criterios editoriales</a>.
             </p>
           )
         }
