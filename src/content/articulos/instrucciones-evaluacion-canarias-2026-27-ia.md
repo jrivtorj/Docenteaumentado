@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-19
 autor: jose-david-rivero
 tipo: actualidad
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion, etica-normativa]
 etiquetas: [Canarias, LOMLOE, evaluación, calificación, criterios de evaluación, normativa]
 necesidad: "¿Qué cambia al pedir a la IA pruebas, rúbricas o cuadernos de evaluación con las nuevas instrucciones de Canarias?"
 estado: publicado

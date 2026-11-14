@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [situaciones de aprendizaje, LOMLOE, programación, competencias específicas]
 temas: [situaciones-de-aprendizaje-ia, prompts-para-docentes]
+necesidadesDocentes: [programacion]
 relacionados: [situacion-de-aprendizaje-con-ia-paso-a-paso, como-escribir-prompts-para-docentes]
 estado: publicado
 seo:

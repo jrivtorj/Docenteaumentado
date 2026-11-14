@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [familias, comunicación, transparencia, normas de uso]
 temas: [privacidad-y-etica, alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [etica-normativa]
 relacionados: [proteccion-datos-ia-centros-educativos, evaluar-cuando-el-alumnado-tiene-ia]
 estado: publicado
 variables:

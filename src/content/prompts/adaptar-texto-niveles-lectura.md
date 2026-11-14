@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [atención a la diversidad, lectura fácil, adaptación de materiales, DUA]
 temas: [ia-para-docentes]
+necesidadesDocentes: [inclusion-dua]
 relacionados: [revisar-materiales-generados-por-ia]
 estado: publicado
 variables:

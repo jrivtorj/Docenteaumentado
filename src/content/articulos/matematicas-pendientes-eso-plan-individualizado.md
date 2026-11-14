@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [evaluacion-rubricas-ia, ia-matematicas-ciencias]
+necesidadesDocentes: [evaluacion, inclusion-dua]
 etiquetas: [Canarias, materias pendientes, planes de refuerzo, criterios de evaluación, Matemáticas, ESO, atención a la diversidad]
 necesidad: "¿Cómo organizo la recuperación de Matemáticas pendientes en 1.º y 2.º de ESO de forma coherente con la evaluación por criterios?"
 estado: publicado

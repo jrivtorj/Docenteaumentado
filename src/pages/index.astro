@@ -5,6 +5,7 @@ import TarjetaHerramienta from '@/components/TarjetaHerramienta.astro';
 import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
 import Newsletter from '@/components/Newsletter.astro';
 import Icono from '@/components/Icono.astro';
+import TarjetasNecesidades from '@/components/TarjetasNecesidades.astro';
 import { getEntry } from 'astro:content';
 import { SITIO } from '@/data/sitio';
 import { getArticulos, getHerramientas, getPrompts } from '@/utils/contenido';
@@ -51,6 +52,19 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
           <li><strong>Independiente.</strong> Sin enlaces de afiliación ni contenido patrocinado.</li>
         </ol>
       </aside>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-necesidades">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <div>
+          <p class="antetitulo">Por necesidad docente</p>
+          <h2 id="t-necesidades">¿Qué necesitas resolver?</h2>
+        </div>
+        <a class="enlace-flecha" href="/necesidades/">Ver todas las necesidades</a>
+      </div>
+      <TarjetasNecesidades />
     </div>
   </section>
 
@@ -162,11 +176,11 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
     )
   }
 
-  <section class="seccion" aria-labelledby="newsletter-titulo">
+  <div class="seccion">
     <div class="contenedor">
       <Newsletter />
     </div>
-  </section>
+  </div>
 
   <section class="seccion proyecto" aria-labelledby="t-proyecto">
     <div class="contenedor proyecto__rejilla">

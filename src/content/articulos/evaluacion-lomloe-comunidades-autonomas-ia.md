@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion, etica-normativa]
 etiquetas: [LOMLOE, evaluación, calificación, criterios de evaluación, normativa, comunidades autónomas, Andalucía, Madrid, Cataluña, Comunitat Valenciana, Galicia, Castilla y León]
 necesidad: "Si no doy clase en Canarias, ¿qué condiciones de evaluación de mi comunidad tengo que dar a la IA cuando le pido pruebas, rúbricas o cuadernos?"
 estado: publicado

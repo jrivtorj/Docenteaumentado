@@ -5,6 +5,7 @@ fechaPublicacion: 2026-11-01
 autor: jose-david-rivero
 tipo: actualidad
 temas: [evaluacion-rubricas-ia, ia-para-docentes, alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [evaluacion]
 etiquetas: [Reuters, Estados Unidos, evaluación, integridad académica, examen oral, escritura en el aula, pantallas]
 necesidad: "¿Qué está haciendo el profesorado de otros países para evaluar ahora que el alumnado usa IA?"
 estado: publicado

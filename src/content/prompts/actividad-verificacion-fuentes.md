@@ -9,6 +9,7 @@ herramientas: [perplexity, chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [verificación, fuentes, alfabetización mediática, pensamiento crítico]
 temas: [alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [alfabetizacion-ia]
 relacionados: [alfabetizacion-ia-alumnado-pensamiento-critico]
 estado: publicado
 variables:

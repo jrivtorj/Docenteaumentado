@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini, magicschool]
 fechaPublicacion: 2026-10-12
 etiquetas: [rúbricas, evaluación, descriptores, criterios de evaluación]
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion]
 relacionados: [rubricas-con-ia-paso-a-paso]
 estado: publicado
 variables:

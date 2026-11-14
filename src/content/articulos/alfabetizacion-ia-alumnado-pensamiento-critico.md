@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [alfabetizacion-digital-pensamiento-critico, ia-para-docentes]
+necesidadesDocentes: [alfabetizacion-ia]
 etiquetas: [alfabetización en IA, pensamiento crítico, verificación, fuentes, competencia digital]
 necesidad: "¿Cómo enseño a mi alumnado a usar la IA con sentido crítico, sin que sea una charla teórica?"
 estado: publicado

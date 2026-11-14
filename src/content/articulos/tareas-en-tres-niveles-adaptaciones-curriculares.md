@@ -7,6 +7,7 @@ autor: jose-david-rivero
 tipo: tutorial
 evidencia: propuesta
 temas: [situaciones-de-aprendizaje-ia, ia-matematicas-ciencias]
+necesidadesDocentes: [inclusion-dua, programacion]
 etiquetas: [Canarias, adaptaciones curriculares, ACUS, atención a la diversidad, DUA, Matemáticas, ESO, materias pendientes]
 necesidad: "¿Cómo atiendo en la misma clase a alumnado del curso, con la materia pendiente y con adaptación curricular sin preparar tres programaciones?"
 estado: publicado

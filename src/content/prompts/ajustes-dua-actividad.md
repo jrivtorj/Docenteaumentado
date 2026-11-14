@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [DUA, inclusión, atención a la diversidad, accesibilidad]
 temas: [situaciones-de-aprendizaje-ia]
+necesidadesDocentes: [inclusion-dua]
 relacionados: [situacion-de-aprendizaje-con-ia-paso-a-paso]
 estado: publicado
 variables:

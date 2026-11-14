@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [privacidad-y-etica, ia-para-docentes]
+necesidadesDocentes: [etica-normativa]
 etiquetas: [protección de datos, RGPD, LOPDGDD, Reglamento de IA, privacidad]
 necesidad: "¿Puedo usar la IA con datos de mi alumnado? ¿Qué está permitido?"
 estado: publicado

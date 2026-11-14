@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: guia
 evidencia: propuesta
 temas: [prompts-para-docentes, ia-para-docentes]
+necesidadesDocentes: [alfabetizacion-ia]
 etiquetas: [prompts, ingeniería de prompts, contexto, método]
 destacado: true
 necesidad: "¿Por qué la IA me da resultados tan genéricos y cómo lo arreglo?"

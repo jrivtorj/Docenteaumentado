@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: laboratorio
 evidencia: experiencia
 temas: [ia-para-docentes, situaciones-de-aprendizaje-ia, evaluacion-rubricas-ia]
+necesidadesDocentes: [programacion, evaluacion]
 etiquetas: [método de trabajo, situaciones de aprendizaje, dossier de actividades, prueba competencial, cuaderno de evaluación, Canarias]
 necesidad: "¿Cómo organizo el trabajo con IA para que todos los materiales de una unidad salgan de mis criterios y sean coherentes entre sí?"
 estado: publicado

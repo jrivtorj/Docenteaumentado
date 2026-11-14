@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: actualidad
 temas: [privacidad-y-etica, ia-para-docentes]
+necesidadesDocentes: [etica-normativa]
 etiquetas: [Reglamento de IA, ómnibus digital, normativa, evaluación, alto riesgo]
 necesidad: "¿Qué ha cambiado en el Reglamento europeo de IA y cómo afecta a la evaluación en mi centro?"
 estado: publicado

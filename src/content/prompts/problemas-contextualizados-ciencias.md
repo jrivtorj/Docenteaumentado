@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini]
 fechaPublicacion: 2026-10-12
 etiquetas: [problemas, física y química, matemáticas, contextualización, unidades]
 temas: [ia-matematicas-ciencias]
+necesidadesDocentes: [programacion]
 relacionados: [ia-matematicas-ciencias-errores-y-usos-fiables]
 estado: publicado
 variables:

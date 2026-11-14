@@ -9,6 +9,7 @@ herramientas: [chatgpt, claude, gemini, gemini-notebook]
 fechaPublicacion: 2026-10-12
 etiquetas: [cuestionarios, opción múltiple, distractores, exámenes]
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
+necesidadesDocentes: [evaluacion]
 relacionados: [pruebas-y-cuestionarios-con-ia]
 estado: publicado
 variables:

@@ -5,6 +5,7 @@ fechaPublicacion: 2026-10-12
 autor: jose-david-rivero
 tipo: opinion
 temas: [evaluacion-rubricas-ia, situaciones-de-aprendizaje-ia]
+necesidadesDocentes: [evaluacion]
 etiquetas: [evaluación, tareas, integridad académica, evaluación formativa]
 necesidad: "¿Tiene sentido seguir mandando trabajos para casa si el alumnado puede hacerlos con IA?"
 estado: publicado

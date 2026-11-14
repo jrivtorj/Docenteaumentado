@@ -6,6 +6,7 @@ fechaActualizacion: 2026-11-14
 autor: jose-david-rivero
 tipo: actualidad
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico, evaluacion-rubricas-ia]
+necesidadesDocentes: [formacion-docente, alfabetizacion-ia]
 etiquetas: [Comisión Europea, Eurydice, IA generativa, PISA 2025, formación del profesorado, competencia digital, evaluación]
 necesidad: "¿Qué dicen los últimos informes europeos sobre el uso de la IA en educación?"
 estado: publicado

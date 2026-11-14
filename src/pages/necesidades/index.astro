@@ -1,0 +1,20 @@
+---
+import Base from '@/layouts/Base.astro';
+import CabeceraPagina from '@/components/CabeceraPagina.astro';
+import TarjetasNecesidades from '@/components/TarjetasNecesidades.astro';
+---
+
+<Base
+  titulo="Por necesidad docente: evaluación, inclusión, programación y más"
+  descripcion="Encuentra guías, tutoriales y prompts según lo que necesitas resolver: evaluación, inclusión y DUA, programación, alfabetización en IA, formación docente, ética y normativa."
+  migas={[{ nombre: 'Por necesidad docente', href: '/necesidades/' }]}
+>
+  <div class="contenedor">
+    <CabeceraPagina
+      titulo="Por necesidad docente"
+      antetitulo="Explorar"
+      entradilla="El menú principal ordena la web por tipo de publicación. Aquí la tienes ordenada por lo que necesitas resolver en tu trabajo. Un mismo texto puede aparecer en más de una necesidad."
+    />
+    <TarjetasNecesidades nivel={2} />
+  </div>
+</Base>

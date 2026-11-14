@@ -5,6 +5,7 @@ fechaPublicacion: 2026-11-01
 autor: jose-david-rivero
 tipo: actualidad
 temas: [ia-para-docentes, privacidad-y-etica, alfabetizacion-digital-pensamiento-critico]
+necesidadesDocentes: [etica-normativa, alfabetizacion-ia]
 etiquetas: [INTEF, Ministerio de Educación, guía, alfabetización en IA, integridad académica, Reglamento de IA, Canarias]
 necesidad: "¿Qué dice la nueva guía del INTEF sobre IA en educación y qué me sirve para el aula?"
 estado: publicado

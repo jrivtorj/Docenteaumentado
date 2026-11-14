@@ -6,6 +6,7 @@ autor: jose-david-rivero
 tipo: tutorial
 evidencia: propuesta
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico, ia-matematicas-ciencias]
+necesidadesDocentes: [alfabetizacion-ia]
 etiquetas: [revisión, calidad, sesgos, accesibilidad, verificación]
 necesidad: "¿Qué tengo que revisar exactamente en un material hecho con IA antes de dárselo a mi alumnado?"
 estado: publicado

@@ -7,6 +7,7 @@ autor: jose-david-rivero
 tipo: experiencia
 evidencia: experiencia
 temas: [evaluacion-rubricas-ia, ia-matematicas-ciencias, claude-en-educacion]
+necesidadesDocentes: [evaluacion]
 etiquetas: [Bachillerato, Matemáticas I, prueba competencial, evaluación, Claude]
 necesidad: "¿Puede la IA diseñar una prueba competencial de Bachillerato que se pueda usar en clase?"
 estado: publicado

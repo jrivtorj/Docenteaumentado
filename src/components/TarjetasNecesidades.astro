@@ -1,0 +1,78 @@
+---
+/** Rejilla con las seis necesidades docentes, su descripción y cuántos recursos reúne cada una. */
+import { NECESIDADES_DOCENTES, type NecesidadDocente } from '@/data/taxonomias';
+import { getArticulos, getPrompts, urlNecesidad } from '@/utils/contenido';
+
+interface Props {
+  /** Nivel de encabezado de cada tarjeta (2 en /necesidades/, 3 dentro de una sección). */
+  nivel?: 2 | 3;
+}
+const { nivel = 3 } = Astro.props;
+const H = `h${nivel}` as const;
+const [articulos, prompts] = await Promise.all([getArticulos(), getPrompts()]);
+const necesidades = (Object.keys(NECESIDADES_DOCENTES) as NecesidadDocente[])
+  .map((id) => ({
+    id,
+    ...NECESIDADES_DOCENTES[id],
+    total:
+      articulos.filter((a) => a.data.necesidadesDocentes.includes(id)).length +
+      prompts.filter((p) => p.data.necesidadesDocentes.includes(id)).length,
+  }))
+  .filter((n) => n.total > 0);
+---
+
+<ul class="necesidades rejilla">
+  {
+    necesidades.map((n) => (
+      <li>
+        <H class="necesidades__nombre">
+          <a href={urlNecesidad(n.id)}>{n.nombre}</a>
+        </H>
+        <p>{n.descripcion}</p>
+        <p class="meta">{n.total} recursos</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .necesidades {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    position: relative;
+    display: grid;
+    gap: var(--e-2);
+    align-content: start;
+    padding: var(--e-5);
+    background: var(--c-superficie);
+    border: 1px solid var(--c-borde);
+    border-left: 3px solid var(--c-menta);
+    border-radius: var(--radio);
+  }
+  li:hover,
+  li:focus-within {
+    border-color: var(--c-acento);
+  }
+  .necesidades__nombre {
+    font-size: var(--t-lg);
+  }
+  .necesidades__nombre a {
+    color: var(--c-texto);
+    text-decoration: none;
+  }
+  /* Toda la tarjeta es clicable sin anidar enlaces. */
+  .necesidades__nombre a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .necesidades__nombre a:hover {
+    color: var(--c-acento);
+  }
+  li p:not(.meta) {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+  }
+</style>
