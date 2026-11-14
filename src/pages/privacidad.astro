@@ -71,7 +71,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
 
   <h2>Responsable del tratamiento</h2>
   <ul>
-    <li>Responsable: {autor.data.nombre}</li>
+    <li>Responsable: {autor.data.nombreLegal ?? autor.data.nombre}</li>
     <li>
       Contacto para asuntos de privacidad:
       {

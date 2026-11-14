@@ -27,7 +27,12 @@ const estado = z.enum(['borrador', 'revision', 'publicado']).default('borrador')
 const autores = defineCollection({
   loader: file('src/content/autores.json'),
   schema: z.object({
+    /** Nombre público: firma, caja de autor y datos estructurados. */
     nombre: z.string(),
+    /** Titulación que acompaña al nombre entre paréntesis, p. ej. «Lcdo. en Química». */
+    titulacion: z.string().optional(),
+    /** Nombre completo para las páginas legales (titular y responsable del tratamiento). */
+    nombreLegal: z.string().optional(),
     cargo: z.string(),
     bio: z.string(),
     url: z.string().optional(),

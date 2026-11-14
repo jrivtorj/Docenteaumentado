@@ -11,6 +11,8 @@ import fotoAutor from '@/assets/autor/jose-david-rivero.jpg';
  * No añadas méritos, premios, publicaciones ni cifras que no puedas acreditar.
  */
 const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
+const { nombre, titulacion } = autor.data;
+const nombreVisible = titulacion ? `${nombre} (${titulacion})` : nombre;
 // Enlace simple, sin reproductor incrustado: el iframe de Spotify pondría cookies antes del consentimiento y choca con la CSP.
 const PODCAST_URL = 'https://open.spotify.com/episode/3Rtr5BOIuPXg61iNIInmbO';
 ---
@@ -28,14 +30,14 @@ const PODCAST_URL = 'https://open.spotify.com/episode/3Rtr5BOIuPXg61iNIInmbO';
     <Picture
       src={fotoAutor}
       formats={['avif', 'webp']}
-      widths={[200, 400]}
+      widths={[160, 200, 320, 400]}
       sizes="(min-width: 40rem) 200px, 160px"
-      alt={`Retrato en blanco y negro de ${autor.data.nombre}`}
+      alt={`Retrato de ${nombre}: sonriente, con barba canosa, chaqueta azul marino y camisa celeste, sobre fondo oscuro.`}
       class="foto-autor"
       loading="eager"
       fetchpriority="high"
     />
-    <figcaption>Retrato generado con IA</figcaption>
+    <figcaption>{nombreVisible}</figcaption>
   </figure>
   <p>
     Soy <strong>{autor.data.nombre}</strong>, licenciado en Ciencias Químicas y profesor de Educación Secundaria en

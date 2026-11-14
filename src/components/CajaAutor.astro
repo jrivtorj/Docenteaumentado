@@ -4,12 +4,14 @@ interface Props {
   autor: CollectionEntry<'autores'>;
 }
 const { autor } = Astro.props;
+const { nombre, titulacion } = autor.data;
+const nombreVisible = titulacion ? `${nombre} (${titulacion})` : nombre;
 ---
 
 <aside class="autor" aria-label="Sobre el autor">
   <p class="antetitulo">Escrito por</p>
   <p class="autor__nombre">
-    {autor.data.url ? <a href={autor.data.url}>{autor.data.nombre}</a> : autor.data.nombre}
+    {autor.data.url ? <a href={autor.data.url}>{nombreVisible}</a> : nombreVisible}
   </p>
   <p class="meta">{autor.data.cargo}</p>
   <p class="autor__bio">{autor.data.bio}</p>

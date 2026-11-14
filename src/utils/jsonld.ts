@@ -53,7 +53,7 @@ export function articulo(o: {
   ruta: string;
   publicado: Date;
   actualizado?: Date;
-  autor: { nombre: string; url?: string };
+  autor: { nombre: string; url?: string; titulacion?: string };
   imagen?: string;
   tipo?: 'Article' | 'BlogPosting' | 'TechArticle' | 'OpinionNewsArticle';
   site: URL;
@@ -72,6 +72,7 @@ export function articulo(o: {
     author: {
       '@type': 'Person',
       name: o.autor.nombre,
+      ...(o.autor.titulacion ? { honorificSuffix: o.autor.titulacion } : {}),
       ...(o.autor.url ? { url: abs(o.autor.url, o.site) } : {}),
     },
     publisher: { '@id': abs('/#organizacion', o.site) },
