@@ -29,7 +29,7 @@ const autores = defineCollection({
   schema: z.object({
     /** Nombre público: firma, caja de autor y datos estructurados. */
     nombre: z.string(),
-    /** Titulación que acompaña al nombre entre paréntesis, p. ej. «Lcdo. en Química». */
+    /** Titulación que acompaña al nombre entre paréntesis, p. ej. «Ldo. en Ciencias Químicas». */
     titulacion: z.string().optional(),
     /** Nombre completo para las páginas legales (titular y responsable del tratamiento). */
     nombreLegal: z.string().optional(),
