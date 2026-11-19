@@ -5,6 +5,7 @@ import Filtros from '@/components/Filtros.astro';
 import TarjetaPrompt from '@/components/TarjetaPrompt.astro';
 import { ETAPAS, TAREAS_DOCENTES } from '@/data/taxonomias';
 import { getHerramientas, getPrompts } from '@/utils/contenido';
+import { LICENCIA_PROMPTS } from '@/data/sitio';
 
 const prompts = await getPrompts();
 const herramientas = await getHerramientas();
@@ -26,6 +27,10 @@ const tareasUsadas = new Set(prompts.map((p) => p.data.tarea));
       <p class="meta">
         ¿Primera vez? Lee antes <a href="/articulos/como-escribir-prompts-para-docentes/">cómo escribir prompts eficaces</a>
         o crea el tuyo en el <a href="/laboratorio/constructor-de-prompts/">constructor de prompts</a>.
+      </p>
+      <p class="meta">
+        Todos los prompts se publican con licencia <a href={LICENCIA_PROMPTS.url} rel="license">{LICENCIA_PROMPTS.nombre}</a>:
+        puedes usarlos y adaptarlos citando <cite>El docente aumentado</cite>, sin fines comerciales y compartiendo tus versiones con la misma licencia.
       </p>
     </CabeceraPagina>
 

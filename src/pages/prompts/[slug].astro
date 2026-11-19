@@ -9,7 +9,7 @@ import { ETAPAS, TAREAS_DOCENTES } from '@/data/taxonomias';
 import { getPrompts, urlHerramienta, urlPrompt, urlTema, type Prompt } from '@/utils/contenido';
 import { fechaISO, fechaLarga } from '@/utils/fechas';
 import { articulo as ld } from '@/utils/jsonld';
-import { SITIO } from '@/data/sitio';
+import { LICENCIA_PROMPTS, SITIO } from '@/data/sitio';
 
 export const getStaticPaths = (async () => {
   const todos = await getPrompts();
@@ -58,6 +58,7 @@ const ruta = urlPrompt(prompt);
       tipo: 'TechArticle',
       site: Astro.site!,
       palabrasClave: data.etiquetas,
+      licencia: LICENCIA_PROMPTS.url,
     }),
   ]}
 >
@@ -84,6 +85,13 @@ const ruta = urlPrompt(prompt);
                 </>
               ))
             }
+          </dd>
+        </div>
+        <div>
+          <dt>Licencia</dt>
+          <dd>
+            <a href={LICENCIA_PROMPTS.url} rel="license" title={LICENCIA_PROMPTS.nombreLargo}>{LICENCIA_PROMPTS.nombre}</a>:
+            puedes copiarlo y adaptarlo citando la fuente, sin uso comercial y con la misma licencia.
           </dd>
         </div>
         <div>

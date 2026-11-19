@@ -63,3 +63,10 @@ export const NAV_PIE: { titulo: string; enlaces: EnlaceNav[] }[] = [
     ],
   },
 ];
+
+/** Licencia de los prompts de la biblioteca (no de los artículos). Aprobada por el autor el 19-11-2026. */
+export const LICENCIA_PROMPTS = {
+  nombre: 'CC BY-NC-SA 4.0',
+  nombreLargo: 'Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional',
+  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es',
+} as const;
