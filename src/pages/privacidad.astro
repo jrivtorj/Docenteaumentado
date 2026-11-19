@@ -4,6 +4,7 @@ import { SITIO } from '@/data/sitio';
 import { getEntry } from 'astro:content';
 import {
   PUBLIC_CONTACT_EMAIL,
+  PUBLIC_CONTACT_MAILBOX_GMAIL,
   PUBLIC_CONTACT_FORM_ACTION,
   PUBLIC_NEWSLETTER_ACTION,
   PUBLIC_NEWSLETTER_PROVIDER,
@@ -34,7 +35,9 @@ const PROVEEDORES: Record<string, { nombre: string; garantia: string }> = {
 const dominioFormulario = dominio(PUBLIC_CONTACT_FORM_ACTION);
 const proveedorFormulario = dominioFormulario ? PROVEEDORES[dominioFormulario] : undefined;
 const servicioFormulario = proveedorFormulario?.nombre ?? dominioFormulario;
-const correoGmail = PUBLIC_CONTACT_EMAIL?.toLowerCase().endsWith('@gmail.com');
+// El correo del dominio propio puede reenviarse a Gmail, y Formspree reenvía los formularios a un buzón de Gmail:
+// por eso Google se declara según PUBLIC_CONTACT_MAILBOX_GMAIL y no solo por la terminación de la dirección.
+const correoGmail = PUBLIC_CONTACT_MAILBOX_GMAIL || PUBLIC_CONTACT_EMAIL?.toLowerCase().endsWith('@gmail.com');
 const servicioNewsletter = PUBLIC_NEWSLETTER_PROVIDER ?? dominio(PUBLIC_NEWSLETTER_ACTION);
 const servicioAnalitica = dominio(PUBLIC_ANALYTICS_SCRIPT);
 const hayGA = Boolean(PUBLIC_GA_ID && /^G-[A-Z0-9]+$/.test(PUBLIC_GA_ID));
@@ -45,7 +48,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   titulo="Política de privacidad"
   descripcion={`Cómo trata ${SITIO.nombre} los datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos.`}
   ruta="/privacidad/"
-  actualizado={new Date(hayGA ? '2026-10-28' : '2026-10-24')}
+  actualizado={new Date('2026-11-19')}
   noindex
 >
   <h2>Principio general: mínimos datos</h2>
