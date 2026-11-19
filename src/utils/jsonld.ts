@@ -58,6 +58,7 @@ export function articulo(o: {
   tipo?: 'Article' | 'BlogPosting' | 'TechArticle' | 'OpinionNewsArticle';
   site: URL;
   palabrasClave?: string[];
+  licencia?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -78,5 +79,6 @@ export function articulo(o: {
     publisher: { '@id': abs('/#organizacion', o.site) },
     image: abs(o.imagen ?? SITIO.imagenSocial, o.site),
     ...(o.palabrasClave?.length ? { keywords: o.palabrasClave.join(', ') } : {}),
+    ...(o.licencia ? { license: o.licencia } : {}),
   };
 }
