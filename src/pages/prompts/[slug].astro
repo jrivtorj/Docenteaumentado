@@ -105,7 +105,7 @@ const ruta = urlPrompt(prompt);
     <section aria-labelledby="t-prompt" class="bloque" data-copiar-zona>
       <div class="bloque__cabecera">
         <h2 id="t-prompt">El prompt</h2>
-        <button type="button" class="boton" data-copiar="#texto-prompt" hidden>
+        <button type="button" class="boton" data-copiar="#texto-prompt" data-copiar-evento="copiar_prompt" hidden>
           <Icono nombre="copiar" />
           <span data-etiqueta>Copiar prompt</span>
         </button>
@@ -142,7 +142,7 @@ const ruta = urlPrompt(prompt);
           ))
         }
         <div class="editor__acciones" data-copiar-zona>
-          <button type="button" class="boton" data-copiar="#texto-prompt" hidden>
+          <button type="button" class="boton" data-copiar="#texto-prompt" data-copiar-evento="copiar_prompt" hidden>
             <Icono nombre="copiar" />
             <span data-etiqueta>Copiar prompt rellenado</span>
           </button>
@@ -168,6 +168,18 @@ const ruta = urlPrompt(prompt);
     <div class="prosa bloque">
       <Content />
     </div>
+
+    <section aria-labelledby="t-revisar" class="bloque revision">
+      <h2 id="t-revisar">Qué revisar en la respuesta</h2>
+      <p class="meta">Antes de usar lo que devuelva la IA, comprueba al menos esto:</p>
+      <ul class="revision__lista">
+        {data.revisar.map((r) => <li>{r}</li>)}
+      </ul>
+      <div class="decision">
+        <p class="decision__titulo">Lo que no delegas</p>
+        <p>{data.decisionDocente}</p>
+      </div>
+    </section>
 
     {
       (temas.length > 0 || data.etiquetas.length > 0) && (
@@ -298,6 +310,26 @@ const ruta = urlPrompt(prompt);
   .lista-variables dd {
     margin: 0 0 var(--e-3);
     color: var(--c-texto-2);
+  }
+  .revision__lista {
+    display: grid;
+    gap: var(--e-2);
+    padding-left: 1.25rem;
+  }
+  .decision {
+    margin-top: var(--e-5);
+    padding: var(--e-3) var(--e-4);
+    border: 1px solid var(--c-borde);
+    border-left: 4px solid var(--c-texto);
+    border-radius: var(--radio-sm);
+    background: var(--c-fondo-suave);
+  }
+  .decision__titulo {
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.35em;
   }
   .etiquetas-prompt {
     display: flex;

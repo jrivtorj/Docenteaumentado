@@ -36,6 +36,13 @@ variables:
   - nombre: REFERENTES
     descripcion: Competencias específicas, criterios de evaluación y saberes básicos copiados literalmente del currículo oficial.
     ejemplo: "(pega aquí los textos literales del decreto de currículo)"
+revisar:
+  - "¿Los referentes curriculares aparecen literales, sin resumir, reformular ni añadir otros?"
+  - "¿La matriz de coherencia deja algún criterio sin evidencia o con una evidencia que en realidad no lo observa?"
+  - "¿Incluye datos, normativa o referencias que no le diste? Verifícalos o elimínalos."
+  - "¿Asigna pesos o porcentajes a los instrumentos? Comprueba si tu normativa lo permite: las instrucciones de evaluación de Canarias para 2026/27 no lo permiten."
+  - "¿La secuencia cabe en tus sesiones reales y sus apartados son específicos de esta situación, no genéricos?"
+decisionDocente: "El reto, la secuencia y los instrumentos los eliges tú, de acuerdo con tu programación didáctica y con lo que sabes del grupo. La IA propone; no programa por ti."
 prompt: |
   Actúa como docente de [MATERIA] con experiencia en el diseño de situaciones de aprendizaje según la LOMLOE.
 

@@ -25,6 +25,12 @@ variables:
   - nombre: SESIONES
     descripcion: Tiempo disponible.
     ejemplo: una sesión de 55 minutos
+revisar:
+  - "¿Las afirmaciones extraídas están en la respuesta original, sin añadidos ni reformulaciones que cambien su sentido?"
+  - "¿Ha sugerido títulos, autores o enlaces concretos? Comprueba que existen o elimínalos de la ficha."
+  - "¿Ha dado por verdadera o falsa alguna afirmación pese a la instrucción de no hacerlo?"
+  - "¿La guía de fiabilidad y las preguntas finales son adecuadas para la edad del grupo?"
+decisionDocente: "Verifica tú, antes de clase, al menos las afirmaciones más dudosas: en la puesta en común tienes que saber qué está respaldado y qué no, y eso no puede depender de la IA."
 prompt: |
   Actúa como docente experto en alfabetización mediática e informacional.
 
