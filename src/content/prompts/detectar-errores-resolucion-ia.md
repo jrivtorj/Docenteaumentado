@@ -25,6 +25,12 @@ variables:
   - nombre: NUMERO_ERRORES
     descripcion: Cuántos errores debe contener la resolución.
     ejemplo: "3"
+revisar:
+  - "¿El solucionario recoge exactamente los errores que hay en la resolución, ni más ni menos? Resuelve tú el problema."
+  - "¿El enunciado de partida es correcto y está bien planteado?"
+  - "¿Los errores se pueden detectar con lo trabajado en clase o exigen saberes que el grupo aún no tiene?"
+  - "¿Algún error depende de un dato que el alumnado no puede comprobar?"
+decisionDocente: "El solucionario lo validas tú antes de clase. Si la IA se equivoca al describir sus propios errores, eso también es material para la puesta en común, pero solo si lo has detectado tú primero."
 prompt: |
   Actúa como docente de [MATERIA] en [CURSO] que prepara una actividad de detección de errores.
 

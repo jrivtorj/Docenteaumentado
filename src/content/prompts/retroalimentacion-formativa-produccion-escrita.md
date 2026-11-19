@@ -25,6 +25,13 @@ variables:
   - nombre: CURSO
     descripcion: Curso y etapa.
     ejemplo: 4.º ESO
+revisar:
+  - "¿Los fragmentos que cita existen, literales, en el texto del estudiante?"
+  - "¿Las mejoras que propone se apoyan en la rúbrica o en preferencias de estilo del modelo?"
+  - "¿Hace suposiciones sobre la persona que escribió el texto?"
+  - "¿Ha asignado nota o nivel de la rúbrica pese a la instrucción?"
+  - "¿El tono encaja con lo que sabes de ese estudiante?"
+decisionDocente: "La retroalimentación que llega al estudiante es tuya: decide qué comentarios mantienes y cómo los formulas. La valoración y la calificación no se delegan."
 prompt: |
   Actúa como docente de [CURSO] experto en evaluación formativa y en la enseñanza de la escritura.
 

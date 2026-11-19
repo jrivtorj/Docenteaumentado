@@ -34,6 +34,13 @@ variables:
   - nombre: TIEMPO
     descripcion: Tiempo del que dispone el alumnado para completar el instrumento.
     ejemplo: 5 minutos por exposición
+revisar:
+  - "¿Cada indicador procede de un criterio literal y se puede observar en el producto?"
+  - "¿Se ha colado algún rasgo que no es evidencia de aprendizaje (actitud, simpatía, esfuerzo no observable)?"
+  - "¿El lenguaje es comprensible para la edad del grupo?"
+  - "¿Se puede completar en el tiempo previsto? Pruébalo con un trabajo de muestra."
+  - "¿Ha añadido puntos, porcentajes o notas pese a la instrucción?"
+decisionDocente: "La coevaluación aporta evidencias, no calificaciones. Cómo usas lo que anota el alumnado en tu propia valoración lo decides tú."
 prompt: |
   Actúa como especialista en evaluación formativa y en diseño de instrumentos de coevaluación.
 

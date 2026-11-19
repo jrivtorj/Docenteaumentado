@@ -25,6 +25,13 @@ variables:
   - nombre: NUMERO
     descripcion: Número de preguntas.
     ejemplo: "12"
+revisar:
+  - "¿Cada pregunta tiene una sola respuesta correcta? Resuelve tú las numéricas."
+  - "¿Los distractores representan errores conceptuales reales de tu alumnado o son opciones de relleno?"
+  - "¿Todas las preguntas se basan en tu material o ha preguntado algo que no estaba?"
+  - "¿Es creíble la clasificación por niveles cognitivos o etiqueta como «aplicar» preguntas que solo piden recordar?"
+  - "¿Hay pistas de longitud o gramaticales que delaten la opción correcta?"
+decisionDocente: "Qué preguntas entran en la prueba lo decides tú. La tabla de especificaciones es la decisión de más peso, y por eso el prompt te pide confirmarla antes de seguir."
 prompt: |
   Actúa como especialista en evaluación y en la didáctica de la materia del material que te proporciono.
 

@@ -22,6 +22,13 @@ variables:
   - nombre: CRITERIOS
     descripcion: Criterios de evaluación que el material debería trabajar.
     ejemplo: "(pega aquí los criterios literales)"
+revisar:
+  - "¿Los fragmentos citados existen en el material?"
+  - "¿Has comprobado en una fuente primaria cada dato que marca como dudoso?"
+  - "¿Da por correcta alguna afirmación sin justificarlo?"
+  - "¿Ha reescrito el material pese a la instrucción de no hacerlo?"
+  - "¿Su lista priorizada coincide con lo que tú consideras más grave?"
+decisionDocente: "El diagnóstico de la IA es un segundo lector, no un sello de calidad. Usar, corregir o descartar el material lo decides tú."
 prompt: |
   Actúa como revisor pedagógico exigente. Tu tarea es diagnosticar, no reescribir.
 

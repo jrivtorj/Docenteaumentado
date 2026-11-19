@@ -22,6 +22,13 @@ variables:
   - nombre: CONCEPTOS
     descripcion: Conceptos o términos que deben mantenerse en todas las versiones.
     ejemplo: energía cinética, energía potencial, conservación de la energía
+revisar:
+  - "¿Se mantienen en las tres versiones, con su nombre correcto, los conceptos que fijaste?"
+  - "¿La versión A introduce errores conceptuales al simplificar (por ejemplo, «la energía se gasta»)?"
+  - "¿Alguna versión añade información que no estaba en el texto original?"
+  - "¿Las preguntas de la versión A trabajan lo mismo que las de la B con más apoyo, o piden menos?"
+  - "¿Las definiciones del glosario son correctas y no circulares?"
+decisionDocente: "Qué versión recibe cada estudiante lo decides tú, a partir de lo que conoces del grupo. No le des a la IA datos de estudiantes concretos para que lo decida."
 prompt: |
   Actúa como docente experto en atención a la diversidad y en accesibilidad cognitiva.
 

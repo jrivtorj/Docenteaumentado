@@ -28,6 +28,13 @@ variables:
   - nombre: HERRAMIENTAS
     descripcion: Herramientas que se usarán y con qué cuentas, según lo autorizado por el centro.
     ejemplo: ninguna cuenta del alumnado; el docente usa una herramienta autorizada por el centro
+revisar:
+  - "¿Las herramientas y normas que cita son exactamente las que ha autorizado tu centro y acordado tu departamento?"
+  - "¿Promete beneficios o resultados que no puedes garantizar?"
+  - "¿Menciona normativa que no le has dado?"
+  - "¿Las respuestas a las preguntas previstas coinciden con lo que de verdad vais a hacer?"
+  - "¿El tono y la extensión son adecuados para las familias de tu centro?"
+decisionDocente: "Lo que se comunica a las familias compromete al centro: revisa el texto con quien corresponda antes de enviarlo. La IA redacta; la política de uso la decide el centro."
 prompt: |
   Actúa como docente de [MATERIA] que escribe a las familias del alumnado de [CURSO].
 

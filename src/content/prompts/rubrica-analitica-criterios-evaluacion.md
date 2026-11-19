@@ -7,6 +7,7 @@ etapas: [todas]
 generico: true
 herramientas: [chatgpt, claude, gemini, magicschool]
 fechaPublicacion: 2026-10-12
+fechaActualizacion: 2026-11-19
 etiquetas: [rúbricas, evaluación, descriptores, criterios de evaluación]
 temas: [evaluacion-rubricas-ia, prompts-para-docentes]
 necesidadesDocentes: [evaluacion]
@@ -25,6 +26,13 @@ variables:
   - nombre: NIVELES
     descripcion: Número de niveles de desempeño.
     ejemplo: "4"
+revisar:
+  - "¿Cada dimensión remite a uno de tus criterios literales, sin reformularlo ni añadir otros?"
+  - "¿Queda algún descriptor con adjetivos valorativos («adecuado», «correcto») o cuantificadores vagos («algunos», «bastantes»)?"
+  - "¿Ha añadido puntos, porcentajes o pesos por dimensión aunque no se los has pedido?"
+  - "¿El penúltimo nivel describe de verdad un desempeño que cumple el criterio?"
+  - "¿La versión para el alumnado dice lo mismo que la del docente o ha rebajado la exigencia?"
+decisionDocente: "La IA propone dimensiones y descriptores. Tú decides qué evidencias cuentan, en qué nivel queda cada producción y cómo se traslada eso a la calificación según la normativa de tu comunidad."
 prompt: |
   Actúa como especialista en evaluación competencial en educación secundaria.
 
@@ -51,6 +59,7 @@ prompt: |
   Al final, añade una versión de la rúbrica para el alumnado, en segunda persona («Explicas…», «Incluyes…»), sin cambiar el contenido de los descriptores.
 
   No inventes criterios de evaluación ni añadas otros distintos de los que te he dado.
+  No asignes puntos, porcentajes ni pesos a las dimensiones o a los niveles, ni calcules la calificación como suma o media: cómo se traduce la rúbrica en calificación lo decido yo según la normativa que me corresponde.
 ---
 
 ## Cómo usarlo

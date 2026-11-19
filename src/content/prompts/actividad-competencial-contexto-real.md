@@ -31,6 +31,13 @@ variables:
   - nombre: DURACION
     descripcion: Tiempo disponible.
     ejemplo: dos sesiones de 55 minutos
+revisar:
+  - "¿Los datos del entorno (especies, cifras, lugares) están marcados como «a verificar» y los has confirmado en una fuente oficial?"
+  - "¿La lista de cotejo observa el criterio literal o algo más fácil de observar que no es el criterio?"
+  - "¿El producto y el destinatario son verosímiles para tu alumnado o el encargo resulta artificial?"
+  - "¿Se podría resolver la actividad copiando la respuesta de un buscador o de un asistente de IA?"
+  - "¿Los tiempos caben en tus sesiones reales?"
+decisionDocente: "Si la situación es significativa para tu grupo y si el criterio se observa de verdad en la actividad lo decides tú: la IA no conoce tu entorno ni a tu alumnado."
 prompt: |
   Actúa como docente de [MATERIA] en [CURSO] especializado en metodologías activas.
 

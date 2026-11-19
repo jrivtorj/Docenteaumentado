@@ -25,6 +25,13 @@ variables:
   - nombre: RECURSOS
     descripcion: Recursos realmente disponibles.
     ejemplo: proyector, portátiles compartidos, un docente de apoyo dos horas a la semana
+revisar:
+  - "¿Algún ajuste cambia los objetivos o los criterios de evaluación sin marcarlo? Eso ya no es un ajuste de acceso, sino otra medida con su propio procedimiento."
+  - "¿Propone recursos o tecnologías que tu centro no tiene?"
+  - "¿Los tiempos de preparación que indica son realistas para ti?"
+  - "¿La vía de expresión alternativa sigue permitiendo observar el criterio de evaluación?"
+  - "¿Asocia ajustes a etiquetas o estereotipos en lugar de a barreras concretas de la actividad?"
+decisionDocente: "Qué ajustes aplicas y para quién lo decides tú, con el equipo docente y, cuando proceda, con orientación. La IA solo propone opciones a partir de una descripción genérica."
 prompt: |
   Actúa como especialista en Diseño Universal para el Aprendizaje (DUA) en educación secundaria.
 

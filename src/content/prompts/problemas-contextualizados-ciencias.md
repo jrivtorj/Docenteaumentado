@@ -25,6 +25,13 @@ variables:
   - nombre: CANTIDAD
     descripcion: Número de problemas.
     ejemplo: "6"
+revisar:
+  - "¿Has resuelto con calculadora al menos un problema de cada nivel?"
+  - "¿Las unidades son coherentes en todos los pasos, sobre todo en los cambios (W a kW, s a h, J a kWh)?"
+  - "¿Las cifras significativas del resultado se corresponden con las de los datos?"
+  - "¿Los datos y constantes son verosímiles y figuran en el enunciado con su valor y unidades?"
+  - "¿Los tres niveles de dificultad son realmente distintos o solo cambian los números?"
+decisionDocente: "La corrección de los resultados es responsabilidad tuya: no entregues un problema que no hayas comprobado."
 prompt: |
   Actúa como docente de ciencias de [CURSO] riguroso con el cálculo y las unidades.
 

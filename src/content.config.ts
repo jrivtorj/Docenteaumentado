@@ -142,6 +142,10 @@ const prompts = defineCollection({
       generico: z.boolean().default(true),
       prompt: z.string().min(200),
       variables: z.array(variable).min(1),
+      /** Lista de comprobación de la respuesta de la IA: preguntas concretas, no consejos genéricos. */
+      revisar: z.array(z.string().min(20)).min(3).max(6),
+      /** Lo que no se delega en la IA con este prompt (una o dos frases). */
+      decisionDocente: z.string().min(40),
       etiquetas: z.array(z.string()).default([]),
       temas: z.array(reference('temas')).default([]),
       necesidadesDocentes: z.array(z.enum(claves(NECESIDADES_DOCENTES))).default([]),
