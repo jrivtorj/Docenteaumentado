@@ -83,8 +83,11 @@ export default defineConfig({
       }),
       // Endpoint de Formspree del formulario de contacto (público: aparece en el HTML).
       PUBLIC_CONTACT_FORM_ACTION: envField.string({ context: 'server', access: 'public', default: 'https://formspree.io/f/xqpewezl' }),
-      // Correo de contacto del proyecto. Se publica en contacto, aviso legal y privacidad.
-      PUBLIC_CONTACT_EMAIL: envField.string({ context: 'server', access: 'public', default: 'eldocenteaumentado@gmail.com' }),
+      // Correo de contacto del proyecto. Se publica en contacto, formación, colabora, aviso legal y privacidad.
+      PUBLIC_CONTACT_EMAIL: envField.string({ context: 'server', access: 'public', default: 'contacto@eldocenteaumentado.com' }),
+      // true si los mensajes recibidos (correo directo o reenviados por el formulario) terminan en un buzón de Gmail.
+      // La privacidad nombra entonces a Google como encargado. Poner false solo si ningún mensaje pasa ya por Gmail.
+      PUBLIC_CONTACT_MAILBOX_GMAIL: envField.boolean({ context: 'server', access: 'public', default: true }),
       PUBLIC_NEWSLETTER_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_NEWSLETTER_EMAIL_FIELD: envField.string({ context: 'server', access: 'public', default: 'email' }),
       PUBLIC_NEWSLETTER_PROVIDER: envField.string({ context: 'server', access: 'public', optional: true }),

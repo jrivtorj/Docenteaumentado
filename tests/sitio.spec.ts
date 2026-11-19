@@ -217,6 +217,14 @@ test.describe('Formularios', () => {
     await expect(page.getByText(/Formspree, Inc\./)).toBeVisible();
   });
 
+  test('el correo de contacto es el del dominio propio en todas las páginas que lo muestran', async ({ page }) => {
+    for (const ruta of ['/contacto/', '/formacion/', '/colabora/', '/aviso-legal/', '/privacidad/']) {
+      await page.goto(ruta);
+      await expect(page.locator('a[href^="mailto:contacto@eldocenteaumentado.com"]').first()).toBeVisible();
+      await expect(page.locator('a[href*="gmail.com"]')).toHaveCount(0);
+    }
+  });
+
   test('la solicitud de formación está activa y lleva un asunto propio', async ({ page }) => {
     await page.goto('/formacion/');
     await expect(page.getByRole('button', { name: 'Solicitar información' })).toBeEnabled();
