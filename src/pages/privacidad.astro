@@ -3,6 +3,7 @@ import Pagina from '@/layouts/Pagina.astro';
 import { SITIO } from '@/data/sitio';
 import { getEntry } from 'astro:content';
 import {
+  PUBLIC_TITULAR_NIF,
   PUBLIC_CONTACT_EMAIL,
   PUBLIC_CONTACT_MAILBOX_GMAIL,
   PUBLIC_CONTACT_FORM_ACTION,
@@ -48,7 +49,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   titulo="Política de privacidad"
   descripcion={`Cómo trata ${SITIO.nombre} los datos personales: responsable, finalidades, base jurídica, destinatarios, plazos y derechos.`}
   ruta="/privacidad/"
-  actualizado={new Date('2026-11-19')}
+  actualizado={new Date('2026-11-21')}
   noindex
 >
   <h2>Principio general: mínimos datos</h2>
@@ -75,6 +76,7 @@ const hayFormularios = Boolean(PUBLIC_CONTACT_FORM_ACTION || PUBLIC_NEWSLETTER_A
   <h2>Responsable del tratamiento</h2>
   <ul>
     <li>Responsable: {autor.data.nombreLegal ?? autor.data.nombre}</li>
+    {PUBLIC_TITULAR_NIF && <li>NIF: {PUBLIC_TITULAR_NIF}</li>}
     <li>
       Contacto para asuntos de privacidad:
       {

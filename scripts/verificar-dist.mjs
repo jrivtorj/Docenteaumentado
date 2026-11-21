@@ -45,6 +45,7 @@ for (const f of htmls) {
   idsPorRuta.set(ruta, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
   paginas.push({ ruta, html });
   // Marcadores de texto por completar que no deben llegar a una página publicada.
+  if (html.includes('[pendiente de configurar]')) avisos.push(`${ruta}: datos del titular sin configurar (PUBLIC_TITULAR_NIF / PUBLIC_TITULAR_DOMICILIO)`);
   if (html.includes('[COMPLETAR')) errores.push(`${ruta}: contiene un marcador [COMPLETAR] sin rellenar`);
 }
 

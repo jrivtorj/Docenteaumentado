@@ -114,7 +114,7 @@ export const NECESIDADES_DOCENTES = {
     descripcion: 'Desarrollo profesional, competencia digital docente y formación de centros.',
     entradilla:
       'Lo que dicen los estudios y los informes sobre el profesorado y la IA, y qué supone para la competencia profesional y las condiciones de trabajo docentes.',
-    enlace: { href: '/formacion/', texto: 'Formación para centros y claustros' },
+    enlace: { href: '/formacion/#centros', texto: 'Formación para centros y claustros' },
   },
   'etica-normativa': {
     nombre: 'Ética y normativa',

@@ -88,6 +88,10 @@ export default defineConfig({
       // true si los mensajes recibidos (correo directo o reenviados por el formulario) terminan en un buzón de Gmail.
       // La privacidad nombra entonces a Google como encargado. Poner false solo si ningún mensaje pasa ya por Gmail.
       PUBLIC_CONTACT_MAILBOX_GMAIL: envField.boolean({ context: 'server', access: 'public', default: true }),
+      // Datos del titular para el aviso legal y la privacidad (art. 10 LSSI-CE). Se definen solo en las variables
+      // de build de Cloudflare para no guardarlos en el repositorio. Sin ellas, la página muestra «pendiente».
+      PUBLIC_TITULAR_NIF: envField.string({ context: 'server', access: 'public', optional: true }),
+      PUBLIC_TITULAR_DOMICILIO: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_NEWSLETTER_ACTION: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_NEWSLETTER_EMAIL_FIELD: envField.string({ context: 'server', access: 'public', default: 'email' }),
       PUBLIC_NEWSLETTER_PROVIDER: envField.string({ context: 'server', access: 'public', optional: true }),

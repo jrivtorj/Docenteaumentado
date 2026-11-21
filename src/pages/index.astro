@@ -7,7 +7,8 @@ import Newsletter from '@/components/Newsletter.astro';
 import Icono from '@/components/Icono.astro';
 import TarjetasNecesidades from '@/components/TarjetasNecesidades.astro';
 import { getEntry } from 'astro:content';
-import { SITIO } from '@/data/sitio';
+import { CURSO, SITIO, cursoEnPreventa } from '@/data/sitio';
+import { fechaLarga } from '@/utils/fechas';
 import { getArticulos, getHerramientas, getPrompts } from '@/utils/contenido';
 import { organizacionYSitio } from '@/utils/jsonld';
 
@@ -24,6 +25,7 @@ const herramientas = (await getHerramientas()).filter((h) => DESTACADAS.includes
 const prompts = await getPrompts();
 const promptsMuestra = prompts.slice(0, 3);
 const autor = await getEntry('autores', SITIO.autorPrincipal);
+const preventa = cursoEnPreventa();
 ---
 
 <Base titulo={SITIO.nombre} descripcion={SITIO.descripcion} jsonLd={[organizacionYSitio(Astro.site!)]}>
@@ -176,6 +178,26 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
     )
   }
 
+  <section class="seccion" aria-labelledby="t-curso">
+    <div class="contenedor">
+     <div class="curso">
+      <div>
+        <p class="antetitulo">Curso online · producto propio de pago</p>
+        <h2 id="t-curso">{CURSO.nombre}</h2>
+      </div>
+      <div class="pila">
+        <p>
+          {CURSO.resumen} Los módulos 0 y 1 son gratuitos; del 2 al 6, de pago.
+          {preventa ? ` La venta abre el ${fechaLarga(CURSO.apertura)}.` : ''} No es una formación homologada.
+        </p>
+        <p>
+          <a class="enlace-flecha" href="/formacion/#curso-online">Qué incluye y cómo se hace</a>
+        </p>
+      </div>
+     </div>
+    </div>
+  </section>
+
   <div class="seccion">
     <div class="contenedor">
       <Newsletter />
@@ -207,6 +229,23 @@ const autor = await getEntry('autores', SITIO.autorPrincipal);
 </Base>
 
 <style>
+  .curso {
+    display: grid;
+    gap: var(--e-4);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    padding: var(--e-5);
+  }
+  @media (min-width: 64rem) {
+    .curso {
+      grid-template-columns: 1fr 1.7fr;
+      align-items: center;
+      gap: var(--e-6);
+    }
+  }
+  .curso h2 {
+    margin-top: var(--e-2);
+  }
   .hero {
     padding-block: var(--e-7) var(--e-7);
     border-bottom: 1px solid var(--c-borde);

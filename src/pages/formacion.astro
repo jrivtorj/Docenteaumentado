@@ -1,12 +1,17 @@
 ---
 import { PUBLIC_CONTACT_FORM_ACTION, PUBLIC_CONTACT_EMAIL } from 'astro:env/server';
 import Pagina from '@/layouts/Pagina.astro';
+import { CURSO, cursoEnPreventa } from '@/data/sitio';
+import { fechaLarga } from '@/utils/fechas';
 /*
  * Oferta de formación para centros. Modalidades, duraciones y resultados son una propuesta
  * del autor: revisarlos antes de cada curso. No se publican precios ni se promete
  * certificación oficial: la certificación depende de la vía por la que se organice.
  * El formulario usa el mismo endpoint que el de contacto, con un asunto propio.
+ * El curso online es un producto propio de pago, alojado en otra web: se presenta como tal, sin
+ * precio (para no duplicarlo), sin testimonios ni promesas de resultados. Datos en CURSO (sitio.ts).
  */
+const preventa = cursoEnPreventa();
 const activo = Boolean(PUBLIC_CONTACT_FORM_ACTION);
 const modalidades = [
   {
@@ -37,19 +42,68 @@ const modalidades = [
 ---
 
 <Pagina
-  titulo="Formación para centros"
-  descripcion="Formación sobre inteligencia artificial para claustros y departamentos de Secundaria, Bachillerato y FP: modalidades, duración, destinatarios y resultados de aprendizaje."
+  titulo="Formación"
+  descripcion="Formación sobre IA para el profesorado: un curso online de pago para docentes y formación a medida para claustros y departamentos de Secundaria y FP."
   ruta="/formacion/"
-  entradilla="Formación práctica sobre IA para el profesorado, impartida por un docente en activo. Se adapta a las materias, la etapa y el punto de partida de cada centro."
+  entradilla="Formación práctica sobre IA para el profesorado, impartida por un docente en activo: un curso online para hacerlo a tu ritmo y formación a medida para centros."
 >
-  <h2 id="enfoque">Enfoque</h2>
+  <nav class="opciones" aria-label="Opciones de formación">
+    <a href="#curso-online"><strong>Curso online</strong><span>Para cada docente, a su ritmo. De pago.</span></a>
+    <a href="#centros"><strong>Formación para centros</strong><span>Claustros y departamentos. Propuesta a medida.</span></a>
+  </nav>
+
+  <h2 id="curso-online">Curso online: {CURSO.nombre}</h2>
+  <p class="aviso" role="note">
+    <strong>Producto propio de pago.</strong> Este curso lo diseño, imparto y vendo yo, el autor de esta web. No es un
+    contenido editorial ni una recomendación neutral, y no es una formación homologada: no puntúa para oposiciones,
+    concursos ni sexenios.
+  </p>
+  <p>{CURSO.resumen} Está pensado para docentes que ya saben qué es la IA y cómo escribir un prompt, y quieren producir con ella materiales para su aula.</p>
+  <ul>
+    <li>
+      <strong>Formato:</strong> online, en su propia web, con lecciones de lectura, vídeo, autoevaluación y talleres. Los
+      módulos se publican de forma progresiva cada dos semanas.
+    </li>
+    <li>
+      <strong>Qué es gratis y qué es de pago:</strong> los módulos 0 y 1 son gratuitos y se pueden hacer ya; los módulos 2
+      a 6 son de pago.
+    </li>
+    <li>
+      <strong>Estado:</strong>
+      {
+        preventa
+          ? `en preparación. La venta abre el ${fechaLarga(CURSO.apertura)}; hasta entonces hay una lista de espera.`
+          : `a la venta desde el ${fechaLarga(CURSO.apertura)}.`
+      }
+    </li>
+    <li>
+      <strong>Precio y condiciones:</strong> los indica la web del curso, junto con las condiciones de compra y de
+      reembolso.
+    </li>
+  </ul>
+  <details class="temario">
+    <summary>Ver los módulos</summary>
+    <ol start="0">
+      {CURSO.modulos.map((m) => <li>{m.nombre} <span class="meta">({m.acceso})</span></li>)}
+    </ol>
+  </details>
+  <p>
+    <a class="boton" href={CURSO.url}>Ver el curso y empezar los módulos gratuitos</a>
+  </p>
+  <p class="meta">
+    Datos comprobados en la web del curso el {fechaLarga(CURSO.comprobado)}. El curso tiene su propia política de
+    privacidad, aviso legal y condiciones de compra.
+  </p>
+
+  <h2 id="centros">Formación para centros</h2>
+  <h3 id="enfoque">Enfoque</h3>
   <p>
     La formación parte del trabajo real del aula, no de la herramienta de moda. Cada sesión combina una explicación breve
     con práctica sobre materiales de los propios participantes. El criterio es el mismo que guía esta web: la IA amplía
     lo que hace un buen docente, pero no sustituye su juicio, y todo lo que genera se revisa antes de usarlo.
   </p>
 
-  <h2 id="destinatarios">Destinatarios</h2>
+  <h3 id="destinatarios">Destinatarios</h3>
   <ul>
     <li>Claustros de centros de Educación Secundaria, Bachillerato y Formación Profesional.</li>
     <li>Departamentos didácticos y equipos de ciclo que quieren trabajar sobre sus materias.</li>
@@ -58,12 +112,12 @@ const modalidades = [
   </ul>
   <p>No hace falta experiencia previa con IA. Sí conviene traer un portátil y materiales propios para el taller.</p>
 
-  <h2 id="modalidades">Modalidades y duración</h2>
+  <h3 id="modalidades">Modalidades y duración</h3>
   <div class="modalidades">
     {
       modalidades.map((m, i) => (
         <section class="modalidad" aria-labelledby={`modalidad-${i + 1}`}>
-          <h3 id={`modalidad-${i + 1}`}>{m.nombre}</h3>
+          <h4 id={`modalidad-${i + 1}`}>{m.nombre}</h4>
           <dl>
             <dt>Duración</dt>
             <dd>{m.duracion}</dd>
@@ -79,7 +133,7 @@ const modalidades = [
   </div>
   <p>Las duraciones son orientativas. El programa concreto se acuerda con el centro antes de empezar.</p>
 
-  <h2 id="resultados">Resultados de aprendizaje</h2>
+  <h3 id="resultados">Resultados de aprendizaje</h3>
   <p>Al terminar, según la modalidad, las personas participantes podrán:</p>
   <ol>
     <li>Explicar cómo funciona la IA generativa y por qué produce errores, para decidir cuándo conviene usarla.</li>
@@ -96,7 +150,7 @@ const modalidades = [
     <a href="/desde-mi-aula/">Desde mi aula</a> cuento casos reales de mi práctica con IA, con lo que funcionó y lo que no.
   </p>
 
-  <h2 id="organizacion">Organización y condiciones</h2>
+  <h3 id="organizacion">Organización y condiciones</h3>
   <ul>
     <li>
       Fechas, horario y formato se acuerdan con el centro. La formación online se imparte por videoconferencia con la
@@ -109,7 +163,7 @@ const modalidades = [
     <li>Las condiciones se concretan en cada propuesta, según la modalidad, el número de horas y la forma de organización.</li>
   </ul>
 
-  <h2 id="solicitar">Solicitar información</h2>
+  <h3 id="solicitar">Solicitar información</h3>
   <p>
     Cuéntame qué necesita tu centro y te respondo con una propuesta. Si lo prefieres, escribe a
     {PUBLIC_CONTACT_EMAIL ? <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`}>{PUBLIC_CONTACT_EMAIL}</a> : <a href="/contacto/">la página de contacto</a>}.
@@ -180,6 +234,31 @@ const modalidades = [
 </Pagina>
 
 <style>
+  .opciones {
+    display: grid;
+    gap: var(--e-3);
+    margin-block: var(--e-4) var(--e-6);
+  }
+  @media (min-width: 40rem) {
+    .opciones {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .opciones a {
+    display: grid;
+    gap: var(--e-1);
+    border: 1px solid var(--c-borde);
+    border-radius: var(--radio);
+    padding: var(--e-4);
+    text-decoration: none;
+  }
+  .opciones span {
+    color: var(--c-texto-2);
+    font-size: var(--t-sm);
+  }
+  .temario {
+    margin-block: var(--e-4);
+  }
   .modalidades {
     display: grid;
     gap: var(--e-4);
@@ -190,7 +269,7 @@ const modalidades = [
     border-radius: var(--radio);
     padding: var(--e-4);
   }
-  .modalidad h3 {
+  .modalidad h4 {
     margin-top: 0;
   }
   .modalidad dl {

@@ -47,7 +47,7 @@ export const NAV_PIE: { titulo: string; enlaces: EnlaceNav[] }[] = [
       { href: '/manifiesto/', texto: 'Manifiesto' },
       { href: '/sobre-el-autor/#criterios-editoriales', texto: 'Criterios editoriales' },
       { href: '/desde-mi-aula/', texto: 'Desde mi aula' },
-      { href: '/formacion/', texto: 'Formación para centros' },
+      { href: '/formacion/', texto: 'Formación y curso online' },
       { href: '/colabora/', texto: 'Colabora' },
       { href: '/newsletter/', texto: 'Newsletter' },
       { href: '/contacto/', texto: 'Contacto' },
@@ -70,3 +70,31 @@ export const LICENCIA_PROMPTS = {
   nombreLargo: 'Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional',
   url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es',
 } as const;
+
+/**
+ * Curso online de pago del autor, alojado fuera de este repositorio (curso.eldocenteaumentado.com).
+ * Datos comprobados en su web el 21-11-2026. El precio no se repite aquí a propósito: se remite a la
+ * web del curso para que no haya dos versiones. Si cambian el nombre, las fechas o la homologación,
+ * actualizar este objeto. Toda mención al curso debe presentarlo como producto propio de pago.
+ */
+export const CURSO = {
+  nombre: 'De la SA al aula con IA',
+  url: 'https://curso.eldocenteaumentado.com/',
+  resumen:
+    'Curso online para convertir situaciones de aprendizaje en materiales, rúbricas y evaluación por criterios con ayuda de la IA, sin perder rigor curricular.',
+  /** Apertura de la venta. Antes de esta fecha se muestra como lista de espera. */
+  apertura: new Date('2026-12-15'),
+  modulos: [
+    { nombre: 'Módulo 0 · Reglas del juego', acceso: 'gratuito' },
+    { nombre: 'Módulo 1 · Instrucciones que funcionan', acceso: 'gratuito' },
+    { nombre: 'Módulo 2 · Darle tu currículo a la IA', acceso: 'de pago' },
+    { nombre: 'Módulo 3 · De la SA a los materiales', acceso: 'de pago' },
+    { nombre: 'Módulo 4 · Evaluar por criterios', acceso: 'de pago' },
+    { nombre: 'Módulo 5 · Tu asistente', acceso: 'de pago' },
+    { nombre: 'Módulo 6 · Revisar lo que produce la IA', acceso: 'de pago' },
+  ],
+  comprobado: new Date('2026-11-21'),
+} as const;
+
+/** true si la build se hace antes de que abra la venta del curso. */
+export const cursoEnPreventa = () => Date.now() < CURSO.apertura.getTime();
