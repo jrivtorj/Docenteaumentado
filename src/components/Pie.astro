@@ -1,5 +1,5 @@
 ---
-import { NAV_PIE, SITIO } from '@/data/sitio';
+import { DESARROLLO, NAV_PIE, SITIO } from '@/data/sitio';
 const anio = new Date().getFullYear();
 ---
 
@@ -28,6 +28,9 @@ const anio = new Date().getFullYear();
     <p>
       © {anio} {SITIO.nombre}. Contenido original del autor salvo indicación. Proyecto independiente, sin relación comercial con las
       herramientas analizadas.
+    </p>
+    <p class="pie__desarrollo">
+      Proyecto desarrollado por <a href={DESARROLLO.url}>{DESARROLLO.nombre}</a>.
     </p>
     <p>
       <button type="button" class="pie__cookies" data-abrir-consentimiento>Configurar cookies</button>
@@ -90,6 +93,16 @@ const anio = new Date().getFullYear();
   a:hover {
     color: var(--c-acento);
     text-decoration: underline;
+  }
+  .pie__desarrollo {
+    margin-top: var(--e-2);
+  }
+  .pie__desarrollo a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .pie__desarrollo a:hover {
+    color: var(--c-acento);
   }
   .pie__cookies {
     margin-top: var(--e-2);
