@@ -1,7 +1,7 @@
 ---
 import Pagina from '@/layouts/Pagina.astro';
 import { getEntry } from 'astro:content';
-import { CURSO, LICENCIA_PROMPTS, SITIO } from '@/data/sitio';
+import { CURSO, DESARROLLO, LICENCIA_PROMPTS, SITIO } from '@/data/sitio';
 import { PUBLIC_CONTACT_EMAIL, PUBLIC_TITULAR_DOMICILIO, PUBLIC_TITULAR_NIF } from 'astro:env/server';
 /*
  * Desde el 21-11-2026 el titular ofrece un curso online de pago (en otra web, con sus propias
@@ -18,7 +18,7 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
   titulo="Aviso legal"
   descripcion={`Información sobre el titular de ${SITIO.nombre}, condiciones de uso y propiedad intelectual del sitio.`}
   ruta="/aviso-legal/"
-  actualizado={new Date('2026-11-21')}
+  actualizado={new Date('2026-11-23')}
   noindex
 >
   <h2>1. Titular del sitio</h2>
@@ -63,7 +63,9 @@ const autor = (await getEntry('autores', SITIO.autorPrincipal))!;
 
   <h2>4. Propiedad intelectual</h2>
   <p>
-    Los textos, la estructura y el diseño del sitio son obra de su titular salvo indicación en contrario. Los prompts de
+    Los textos, la estructura y el diseño del sitio son obra de su titular salvo indicación en contrario. El diseño y
+    el desarrollo técnico los realiza el propio titular bajo su marca
+    profesional <a href={DESARROLLO.url}>{DESARROLLO.nombre}</a>. Los prompts de
     la <a href="/prompts/">biblioteca</a> se publican con licencia
     <a href={LICENCIA_PROMPTS.url} rel="license">{LICENCIA_PROMPTS.nombreLargo}</a> ({LICENCIA_PROMPTS.nombre}): pueden
     copiarse, adaptarse y compartirse citando la fuente, sin fines comerciales y con la misma licencia. El resto de
