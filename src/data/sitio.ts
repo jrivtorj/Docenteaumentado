@@ -77,6 +77,12 @@ export const LICENCIA_PROMPTS = {
  * web del curso para que no haya dos versiones. Si cambian el nombre, las fechas o la homologación,
  * actualizar este objeto. Toda mención al curso debe presentarlo como producto propio de pago.
  */
+/** Empresa del titular que diseña y desarrolla el proyecto (crédito en el pie). */
+export const DESARROLLO = {
+  nombre: 'DETTIA',
+  url: 'https://dettia.com/',
+} as const;
+
 export const CURSO = {
   nombre: 'De la SA al aula con IA',
   url: 'https://curso.eldocenteaumentado.com/',

@@ -247,6 +247,13 @@ test.describe('Formularios', () => {
   });
 });
 
+test('el pie acredita el desarrollo a DETTIA con un enlace a su web', async ({ page }) => {
+  await page.goto('/');
+  const credito = page.locator('footer .pie__desarrollo');
+  await expect(credito).toHaveText('Proyecto desarrollado por DETTIA.');
+  await expect(credito.locator('a')).toHaveAttribute('href', 'https://dettia.com/');
+});
+
 test.describe('Manifiesto y niveles de evidencia', () => {
   test('el manifiesto se enlaza desde el pie y define los cuatro niveles', async ({ page }) => {
     await page.goto('/manifiesto/');
