@@ -2,7 +2,7 @@
 titulo: "Dos informes europeos sobre IA y educación digital: qué dicen y qué importa en el aula"
 descripcion: "La Comisión Europea y Eurydice publican dos informes sobre IA generativa y educación digital. Los datos de España, lo útil para el aula y lo que hay que leer con lupa."
 fechaPublicacion: 2026-10-14
-fechaActualizacion: 2026-11-14
+fechaActualizacion: 2026-11-27
 autor: jose-david-rivero
 tipo: actualidad
 temas: [ia-para-docentes, alfabetizacion-digital-pensamiento-critico, evaluacion-rubricas-ia]
@@ -108,7 +108,7 @@ El informe de Eurydice concluye lo siguiente:
 
 <div class="nota nota--prevision">
 
-La Comisión indica que estos resultados alimentarán su trabajo dentro de la «Unión de las Competencias» y la preparación de un próximo paquete de medidas sobre educación. No se ha publicado todavía su contenido ni su calendario.
+La Comisión indicó que estos resultados alimentarían su trabajo dentro de la «Unión de las Competencias» y la preparación de un paquete de medidas sobre educación. Ese paquete se presentó el 5 de noviembre de 2026: lo resumo en [El paquete europeo de educación](/articulos/paquete-educacion-competencias-comision-europea-2026/).
 
 </div>
 
