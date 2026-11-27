@@ -61,6 +61,8 @@ Los estudios que el informe cita para sostenerlo dicen más que la conclusión g
 - **Lo que hace el alumnado con un tutor de IA.** Según un análisis de Khanmigo que recoge el informe (Weatherholtz et al., 2025), solo el **1 %** de las interacciones alcanzó una implicación cognitiva profunda, y el 68 % fue pasivo. Disponer de un buen tutor no garantiza que se use bien.
 - **Las herramientas con diseño pedagógico funcionan mejor que las genéricas.** Es el caso del tutor de Física de Harvard que comenté al hablar del [reportaje de Reuters](/articulos/reuters-profesorado-eeuu-evaluacion-ia/).
 
+Para ver cuántos de estos estudios tienen grupo de control y qué dicen en conjunto, la [revisión de Stanford de noviembre de 2026](/articulos/evidencia-ia-escuelas-stanford-scale-noviembre-2026/) reúne 52 estudios causales y sus límites.
+
 ## Qué dice de España
 
 España aparece en dos datos, y en los dos encabeza la lista:

@@ -78,7 +78,7 @@ Esta guía propone seis tipos de tarea para obtener esa evidencia, con ejemplos 
 
 </div>
 
-La conclusión práctica de estos trabajos es incómoda: **las respuestas correctas pueden subir mientras el aprendizaje baja**, y una tarea que solo mira el resultado no distingue entre ambas cosas. Los porcentajes de Bastani los tomo de dos resúmenes que coinciden (Wharton y PsyPost); el resumen de la publicación confirma el sentido del efecto. El estudio es de matemáticas, con GPT-4 en 2023, y no debe extrapolarse sin más a otras materias o versiones de las herramientas.
+La conclusión práctica de estos trabajos es incómoda: **las respuestas correctas pueden subir mientras el aprendizaje baja**, y una tarea que solo mira el resultado no distingue entre ambas cosas. Los porcentajes de Bastani los tomo de dos resúmenes que coinciden (Wharton y PsyPost); el resumen de la publicación confirma el sentido del efecto. El estudio es de matemáticas, con GPT-4 en 2023, y no debe extrapolarse sin más a otras materias o versiones de las herramientas. La [revisión de estudios causales de Stanford de noviembre de 2026](/articulos/evidencia-ia-escuelas-stanford-scale-noviembre-2026/) llega a la misma conclusión con más estudios: delegar el trabajo en la IA puede empeorar el rendimiento cuando después se trabaja sin ella.
 
 ## Tres remedios que no funcionan
 
